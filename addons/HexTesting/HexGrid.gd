@@ -157,7 +157,7 @@ class_name HexGrid
 extends RefCounted
 
 var HexCell = preload("./HexCell.gd")
-# Duplicate these from HexCell for ease of access
+# Directions of neighbouring cells
 const DIR_N = Vector3(0, 1, -1)
 const DIR_NE = Vector3(1, 0, -1)
 const DIR_SE = Vector3(1, -1, 0)
@@ -211,12 +211,32 @@ static func obj_to_coords(val):
 		return val.get_cube_coords()
 	# Fall through to nothing
 	return
-	
+
+
 static func axial_to_cube_coords(val):
 	# Returns the Vector3 cube coordinates for an axial Vector2
 	var x = val.x
 	var y = val.y
 	return Vector3(x, y, -x - y)
+
+static func round_coords(val):
+	# Rounds floaty coordinate to the nearest whole number cube coords
+	if typeof(val) == TYPE_VECTOR2:
+		val = axial_to_cube_coords(val)
+	
+	# Straight round them
+	var rounded = Vector3(round(val.x), round(val.y), round(val.z))
+	
+	# But recalculate the one with the largest diff so that x+y+z=0
+	var diffs = (rounded - val).abs()
+	if diffs.x > diffs.y and diffs.x > diffs.z:
+		rounded.x = -rounded.y - rounded.z
+	elif diffs.y > diffs.z:
+		rounded.y = -rounded.x - rounded.z
+	else:
+		rounded.z = -rounded.x - rounded.y
+	
+	return rounded
 
 
 func set_hex_scale(scale):
