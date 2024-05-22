@@ -1,0 +1,122 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4y4mpkk6ay38"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_l30f5"]
+[ext_resource type="Script" path="res://scripts/navigation.gd" id="2_acrp8"]
+[ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
+[ext_resource type="PackedScene" uid="uid://lrirg2rvgvgy" path="res://scenes/hexagon.tscn" id="2_xmpkj"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_l30f5")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+size = Vector2i(528, 300)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="Flower" type="Node2D" parent="."]
+position = Vector2(333, 360)
+script = ExtResource("2_bbsd1")
+
+[node name="Navigation" type="Node2D" parent="."]
+position = Vector2(1029, 171)
+script = ExtResource("2_acrp8")
+
+[node name="Hexagon" parent="Navigation" instance=ExtResource("2_xmpkj")]
+metadata/_edit_lock_ = true
+
+[node name="Container" type="Control" parent="Navigation"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="LineEdit_Stay" type="LineEdit" parent="Navigation/Container"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = -15.0
+offset_right = 49.0
+offset_bottom = 17.0
+placeholder_text = "Numbers"
+select_all_on_focus = true
+metadata/_edit_lock_ = true
+
+[node name="LineEdit_N" type="LineEdit" parent="Navigation/Container"]
+layout_mode = 2
+offset_left = -48.0
+offset_top = -89.0
+offset_right = 48.0
+offset_bottom = -57.0
+placeholder_text = "Numbers"
+metadata/_edit_lock_ = true
+
+[node name="LineEdit_NE" type="LineEdit" parent="Navigation/Container"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = -49.0
+offset_right = 163.0
+offset_bottom = -17.0
+placeholder_text = "Numbers"
+metadata/_edit_lock_ = true
+
+[node name="LineEdit_SE" type="LineEdit" parent="Navigation/Container"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 29.0
+offset_right = 150.0
+offset_bottom = 61.0
+placeholder_text = "Numbers"
+metadata/_edit_lock_ = true
+
+[node name="LineEdit_S" type="LineEdit" parent="Navigation/Container"]
+layout_mode = 0
+offset_left = -46.0
+offset_top = 65.0
+offset_right = 50.0
+offset_bottom = 97.0
+placeholder_text = "Numbers"
+metadata/_edit_lock_ = true
+
+[node name="LineEdit_SW" type="LineEdit" parent="Navigation/Container"]
+layout_mode = 0
+offset_left = -148.0
+offset_top = 32.0
+offset_right = -52.0
+offset_bottom = 64.0
+placeholder_text = "Numbers"
+metadata/_edit_lock_ = true
+
+[node name="LineEdit_NW" type="LineEdit" parent="Navigation/Container"]
+layout_mode = 0
+offset_left = -152.0
+offset_top = -56.0
+offset_right = -56.0
+offset_bottom = -24.0
+placeholder_text = "Numbers"
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 970.0
+offset_top = 492.0
+offset_right = 1209.0
+offset_bottom = 657.0
+
+[node name="RollButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+keep_pressed_outside = true
+text = "Roll"
+
+[connection signal="text_submitted" from="Navigation/Container/LineEdit_Stay" to="Navigation" method="_on_line_edit_stay_text_submitted"]
+[connection signal="text_submitted" from="Navigation/Container/LineEdit_N" to="Navigation" method="_on_line_edit_n_text_submitted"]
+[connection signal="text_submitted" from="Navigation/Container/LineEdit_NE" to="Navigation" method="_on_line_edit_ne_text_submitted"]
+[connection signal="text_submitted" from="Navigation/Container/LineEdit_SE" to="Navigation" method="_on_line_edit_se_text_submitted"]
+[connection signal="text_submitted" from="Navigation/Container/LineEdit_S" to="Navigation" method="_on_line_edit_s_text_submitted"]
+[connection signal="text_submitted" from="Navigation/Container/LineEdit_SW" to="Navigation" method="_on_line_edit_sw_text_submitted"]
+[connection signal="text_submitted" from="Navigation/Container/LineEdit_NW" to="Navigation" method="_on_line_edit_nw_text_submitted"]
+[connection signal="pressed" from="Control/RollButton" to="." method="_on_roll_button_pressed"]
