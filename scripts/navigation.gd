@@ -64,9 +64,6 @@ func setup(manager: Manager, nav_dict: Dictionary):
 	_manager = manager
 	
 	directions = nav_dict
-	print("nav_dict = ", typeof(nav_dict))
-	for i in nav_dict:
-		print(nav_dict[i])
 	
 	stay.assign(nav_dict["stay"])
 	n.assign(nav_dict["n"])
@@ -97,7 +94,5 @@ func parse_nav_text(text: String) -> Array[int]:
 
 func get_dir(num: float):
 	for d in directions:
-		for i in directions[d]:
-			print(typeof(i))
 		if directions[d].has(num):
 			return d

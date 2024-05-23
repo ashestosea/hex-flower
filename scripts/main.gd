@@ -15,7 +15,7 @@ func _ready():
 	await get_tree().create_timer(0.25).timeout
 	
 	var file_dialog: FileDialog = $FileDialog
-	file_dialog.popup_centered(Vector2(300, 300))
+	file_dialog.popup_centered(Vector2(300, 720))
 	file_dialog.file_selected.connect(file_selected)
 
 
