@@ -49,6 +49,34 @@ func _on_line_edit_sw_text_submitted(new_text:String):
 func _on_line_edit_nw_text_submitted(new_text:String):
 	nw = parse_nav_text(new_text)
 	
+
+func _on_line_edit_stay_focus_exited():
+	stay = parse_nav_text(le_stay.text)
+
+
+func _on_line_edit_n_focus_exited():
+	n = parse_nav_text(le_n.text)
+
+
+func _on_line_edit_ne_focus_exited():
+	ne = parse_nav_text(le_ne.text)
+
+
+func _on_line_edit_se_focus_exited():
+	se = parse_nav_text(le_se.text)
+
+
+func _on_line_edit_s_focus_exited():
+	s = parse_nav_text(le_s.text)
+
+
+func _on_line_edit_sw_focus_exited():
+	sw = parse_nav_text(le_sw.text)
+
+
+func _on_line_edit_nw_focus_exited():
+	nw = parse_nav_text(le_nw.text)
+	
 	
 func _ready():
 	le_stay = get_node("Container/LineEdit_Stay")
