@@ -11,20 +11,8 @@ const DIRECTIONS = {
 	"nw": Vector3(-1, 1, 0),
 }
 
-func wrap_axial(from_axial_coords: Vector2, to_axial_coords: Vector2) -> Vector2:
-	var result: Vector2
-	
-	match from_axial_coords:
-		Vector2(0, 2):
-			match to_axial_coords:
-				Vector2(1, 2):
-					result = Vector2(-2, 2)
-				Vector2(0, 3):
-					result = Vector2(0, -2)
-				Vector2(-1, 3):
-					result = Vector2(2, 0)
-			
-	return result
+const FLOWER_SIZE = 3
+const FLOWER_DIAM = (FLOWER_SIZE * 2) - 1
 
 var _current_hex: Hex
 var _manager: Manager
@@ -42,19 +30,39 @@ func setup(manager: Manager, rows, start_coords: Vector2 = Vector2.ZERO):
 	var offset = 2
 	for z in rows.size():
 		for x in rows[z].size():
-			var r = offset - z
+			var s = offset - z
 			var q
 			if z <= offset:
-				q = offset - r - x
+				q = offset - s - x
 			else:
 				q = offset - x
 			var hex_node = _hex_scene.instantiate() as Hex
 			_hexes.append(hex_node)
-			# hex_node.setup(_manager, self, _hex_grid, Vector2(q, r), rows[z][x])
-			hex_node.setup(_manager, self, _hex_grid, Vector2(q, r), "%s, %s" % [q, r])
+			hex_node.setup(_manager, self, _hex_grid, Vector2(q, s), rows[z][x])
+			# hex_node.setup(_manager, self, _hex_grid, Vector2(q, s), "%s, %s" % [q, s])
+			# var coords = HexGrid.axial_to_cube_coords(Vector2(q, s))
+			# hex_node.setup(_manager, self, _hex_grid, Vector2(q, s), "%s, %s, %s" % [coords.x, coords.y, coords.z])
 			add_child(hex_node)
 	
 	set_current_hex(get_hex(start_coords))
+
+
+func dir_name(direction: Vector3) -> String:
+	for i in DIRECTIONS:
+		if DIRECTIONS[i] == direction:
+			return i
+	return "Unknown Direction"
+
+
+func wrap_cube(start: Vector3, direction: Vector3) -> Vector3:
+	var new_pos = start + direction
+	var dir_mask = Vector3.ONE - abs(direction)
+	var masked = start * dir_mask
+		
+	if HexGrid.distance(Vector3.ZERO, new_pos) >= FLOWER_SIZE:
+		new_pos += -direction * (FLOWER_DIAM - masked.length())
+	
+	return new_pos
 
 
 func set_current_hex(hex: Hex):
@@ -68,8 +76,8 @@ func traverse(direction: Vector3):
 
 
 func get_adjacent(hex: Hex, dir: Vector3) -> Hex:
-	var adjacent_hex_cell: HexCell = hex._hex_cell.get_adjacent(dir)
-	return get_hex(adjacent_hex_cell.get_cube_coords())
+	var next_hex = wrap_cube(hex._hex_cell.get_cube_coords(), dir)
+	return get_hex(next_hex)
 
 
 func get_hex(coords) -> Hex:
