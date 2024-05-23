@@ -97,15 +97,28 @@ offset_bottom = -24.0
 placeholder_text = "Numbers"
 metadata/_edit_lock_ = true
 
-[node name="Control" type="Control" parent="."]
+[node name="Dice" type="VBoxContainer" parent="."]
+offset_left = 948.0
+offset_top = 357.0
+offset_right = 988.0
+offset_bottom = 397.0
+
+[node name="Label" type="Label" parent="Dice"]
+layout_mode = 2
+text = "Dice"
+
+[node name="LineEdit_Dice" type="LineEdit" parent="Dice"]
+layout_mode = 2
+
+[node name="Buttons" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 970.0
-offset_top = 492.0
-offset_right = 1209.0
-offset_bottom = 657.0
+offset_left = 942.0
+offset_top = 472.0
+offset_right = 1181.0
+offset_bottom = 637.0
 
-[node name="RollButton" type="Button" parent="Control"]
+[node name="Button_Roll" type="Button" parent="Buttons"]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
@@ -119,4 +132,6 @@ text = "Roll"
 [connection signal="text_submitted" from="Navigation/Container/LineEdit_S" to="Navigation" method="_on_line_edit_s_text_submitted"]
 [connection signal="text_submitted" from="Navigation/Container/LineEdit_SW" to="Navigation" method="_on_line_edit_sw_text_submitted"]
 [connection signal="text_submitted" from="Navigation/Container/LineEdit_NW" to="Navigation" method="_on_line_edit_nw_text_submitted"]
-[connection signal="pressed" from="Control/RollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="focus_exited" from="Dice/LineEdit_Dice" to="." method="_on_line_edit_dice_focus_exited"]
+[connection signal="text_submitted" from="Dice/LineEdit_Dice" to="." method="_on_line_edit_dice_text_submitted"]
+[connection signal="pressed" from="Buttons/Button_Roll" to="." method="_on_roll_button_pressed"]

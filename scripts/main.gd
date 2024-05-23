@@ -7,6 +7,7 @@ var dice: String
 @onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var flower: HexFlower = get_node("Flower")
 @onready var navigation: Navigation = get_node("Navigation")
+@onready var le_dice: LineEdit = get_node("Dice/LineEdit_Dice")
 
 func _ready():
 	hex_grid = HexGrid.new()
@@ -22,9 +23,10 @@ func _ready():
 func file_selected(path):
 	var data = JSON.parse_string(FileAccess.get_file_as_string(path))
 	
-	dice = data.dice
 	flower.setup(self, data.rows)
 	navigation.setup(self, data.navigation)
+	dice = data.dice
+	le_dice.text = dice
 
 
 func _on_roll_button_pressed():
@@ -33,3 +35,11 @@ func _on_roll_button_pressed():
 	var dir = HexFlower.DIRECTIONS[dir_name]
 	
 	flower.traverse(dir)
+
+
+func _on_line_edit_dice_text_submitted(new_text:String):
+	dice = new_text
+
+
+func _on_line_edit_dice_focus_exited():
+	dice = le_dice.text
