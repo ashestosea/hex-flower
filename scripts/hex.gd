@@ -12,7 +12,7 @@ var _label: Label
 
 func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 	if event.is_action("ui_touch"):
-		_hex_flower.set_current_hex(self)
+		_manager.set_current_hex(self)
 
 
 func setup(manager: Manager, hex_flower: HexFlower, hex_grid: HexGrid, hex_pos: Vector2, text: String):

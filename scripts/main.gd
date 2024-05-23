@@ -12,6 +12,22 @@ var dice: String
 
 @onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
+func _on_roll_button_pressed():
+	var roll = dice_syntax.roll(dice, _rng)['result']
+	var dir_name = navigation.get_dir(roll)
+	var dir = HexFlower.DIRECTIONS[dir_name]
+	
+	var new_life_path: String = flower.traverse(dir)
+	history_text_edit.insert_line_at(history_text_edit.get_line_count() - 1, new_life_path)
+
+
+func _on_line_edit_dice_text_submitted(new_text:String):
+	dice = new_text
+
+
+func _on_line_edit_dice_focus_exited():
+	dice = dice_line_edit.text
+
 func _ready():
 	hex_grid = HexGrid.new()
 	hex_grid.set_hex_scale(Vector2(128, 128))
@@ -31,18 +47,8 @@ func file_selected(path):
 	dice_line_edit.text = dice
 
 
-func _on_roll_button_pressed():
-	var roll = dice_syntax.roll(dice, _rng)['result']
-	var dir_name = navigation.get_dir(roll)
-	var dir = HexFlower.DIRECTIONS[dir_name]
+func set_current_hex(hex: Hex):
+	history_text_edit.clear()
+	history_text_edit.insert_line_at(0, hex.get_text())
+	flower.set_current_hex(hex);
 	
-	var new_life_path: String = flower.traverse(dir)
-	history_text_edit.insert_line_at(history_text_edit.get_line_count() - 1, new_life_path)
-
-
-func _on_line_edit_dice_text_submitted(new_text:String):
-	dice = new_text
-
-
-func _on_line_edit_dice_focus_exited():
-	dice = dice_line_edit.text
