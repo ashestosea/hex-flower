@@ -26,7 +26,7 @@ project/assembly_name="Heffalump"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/HexMap/plugin.cfg", "res://addons/dice_syntax/plugin.cfg")
+enabled=PackedStringArray("res://addons/dice_syntax/plugin.cfg")
 
 [input]
 
