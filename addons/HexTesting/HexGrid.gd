@@ -283,6 +283,18 @@ func get_hex_center3(hex, y=0):
 	We use axial coords for everything internally (to use Rect2.has_point),
 	but the methods accept cube or axial coords, or HexCell instances.
 """
+static func distance(start, end):
+	# Returns the number of hops from this hex to another
+	# Can be passed cube or axial coords, or another HexCell instance
+	start = HexGrid.obj_to_coords(start)
+	end = HexGrid.obj_to_coords(end)
+	return int((
+			abs(start.x - end.x)
+			+ abs(start.y - end.y)
+			+ abs(start.z - end.z)
+			) / 2)
+
+
 func set_bounds(min_coords, max_coords):
 	# Set the absolute bounds of the pathfinding area in grid coords
 	# The given coords will be inside the boundary (hence the extra (1, 1))
