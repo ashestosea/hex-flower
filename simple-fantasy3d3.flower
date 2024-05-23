@@ -1,0 +1,58 @@
+{
+	"name": "Simple Fantasy Life Path",
+	"dice": "3d3",
+	"navigation": {
+		"stay": [
+			5
+		],
+		"n": [
+			9
+		],
+		"ne": [
+			3
+		],
+		"se": [
+			4
+		],
+		"s": [
+			6
+		],
+		"sw": [
+			7
+		],
+		"nw": [
+			8
+		]
+	},
+	"rows": [
+		[
+			"Lord",
+			"Scholar",
+			"Priest"
+		],
+		[
+			"Knight",
+			"Noble/Courtier",
+			"Acolyte",
+			"Pilgrim"
+		],
+		[
+			"Squire",
+			"Student/Shopkeep",
+			"Apprentice",
+			"Journeyman",
+			"Official"
+		],
+		[
+			"Urchin/Courier",
+			"Laborer",
+			"Guard",
+			"Guard Captain"
+		],
+		[
+			"Performer",
+			"Cutpurse",
+			"Soldier"
+		]
+	]
+}

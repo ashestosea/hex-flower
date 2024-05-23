@@ -1,12 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4y4mpkk6ay38"]
+[gd_scene load_steps=6 format=3 uid="uid://c4y4mpkk6ay38"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_l30f5"]
 [ext_resource type="Script" path="res://scripts/navigation.gd" id="2_acrp8"]
 [ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
 [ext_resource type="PackedScene" uid="uid://lrirg2rvgvgy" path="res://scenes/hexagon.tscn" id="2_xmpkj"]
+[ext_resource type="Theme" uid="uid://ffkwu82iptgy" path="res://themes/default_theme.tres" id="5_dole0"]
 
-[node name="Main" type="Node2D"]
+[node name="Manager" type="MarginContainer" node_paths=PackedStringArray("file_dialog", "flower", "navigation", "dice_line_edit", "history_text_edit")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("5_dole0")
 script = ExtResource("1_l30f5")
+file_dialog = NodePath("FileDialog")
+flower = NodePath("MainArea/FlowerContainer/Flower")
+navigation = NodePath("MainArea/SideContainer/Navigation")
+dice_line_edit = NodePath("MainArea/SideContainer/Dice/LineEdit_Dice")
+history_text_edit = NodePath("MainArea/SideContainer/History/VBox/TextEdit_History")
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
@@ -15,25 +30,37 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 
-[node name="Flower" type="Node2D" parent="."]
-position = Vector2(333, 360)
+[node name="MainArea" type="HBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowerContainer" type="CenterContainer" parent="MainArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Flower" type="Control" parent="MainArea/FlowerContainer"]
+layout_mode = 2
+mouse_filter = 2
 script = ExtResource("2_bbsd1")
 
-[node name="Navigation" type="Node2D" parent="."]
-position = Vector2(1029, 171)
+[node name="SideContainer" type="VBoxContainer" parent="MainArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Navigation" type="CenterContainer" parent="MainArea/SideContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 script = ExtResource("2_acrp8")
 
-[node name="Hexagon" parent="Navigation" instance=ExtResource("2_xmpkj")]
-metadata/_edit_lock_ = true
+[node name="LineEdits" type="Control" parent="MainArea/SideContainer/Navigation"]
+layout_mode = 2
 
-[node name="Container" type="Control" parent="Navigation"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_lock_ = true
-
-[node name="LineEdit_Stay" type="LineEdit" parent="Navigation/Container"]
+[node name="LineEdit_Stay" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
 layout_mode = 0
 offset_left = -47.0
 offset_top = -15.0
@@ -41,97 +68,104 @@ offset_right = 49.0
 offset_bottom = 17.0
 placeholder_text = "Numbers"
 select_all_on_focus = true
-metadata/_edit_lock_ = true
 
-[node name="LineEdit_N" type="LineEdit" parent="Navigation/Container"]
+[node name="LineEdit_N" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
 layout_mode = 2
 offset_left = -48.0
 offset_top = -89.0
 offset_right = 48.0
 offset_bottom = -57.0
 placeholder_text = "Numbers"
-metadata/_edit_lock_ = true
 
-[node name="LineEdit_NE" type="LineEdit" parent="Navigation/Container"]
+[node name="LineEdit_NE" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
 layout_mode = 0
 offset_left = 67.0
 offset_top = -49.0
 offset_right = 163.0
 offset_bottom = -17.0
 placeholder_text = "Numbers"
-metadata/_edit_lock_ = true
 
-[node name="LineEdit_SE" type="LineEdit" parent="Navigation/Container"]
+[node name="LineEdit_SE" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
 layout_mode = 0
 offset_left = 54.0
 offset_top = 29.0
 offset_right = 150.0
 offset_bottom = 61.0
 placeholder_text = "Numbers"
-metadata/_edit_lock_ = true
 
-[node name="LineEdit_S" type="LineEdit" parent="Navigation/Container"]
+[node name="LineEdit_S" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
 layout_mode = 0
 offset_left = -46.0
 offset_top = 65.0
 offset_right = 50.0
 offset_bottom = 97.0
 placeholder_text = "Numbers"
-metadata/_edit_lock_ = true
 
-[node name="LineEdit_SW" type="LineEdit" parent="Navigation/Container"]
+[node name="LineEdit_SW" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
 layout_mode = 0
 offset_left = -148.0
 offset_top = 32.0
 offset_right = -52.0
 offset_bottom = 64.0
 placeholder_text = "Numbers"
-metadata/_edit_lock_ = true
 
-[node name="LineEdit_NW" type="LineEdit" parent="Navigation/Container"]
+[node name="LineEdit_NW" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
 layout_mode = 0
 offset_left = -152.0
 offset_top = -56.0
 offset_right = -56.0
 offset_bottom = -24.0
 placeholder_text = "Numbers"
-metadata/_edit_lock_ = true
 
-[node name="Dice" type="VBoxContainer" parent="."]
-offset_left = 948.0
-offset_top = 357.0
-offset_right = 988.0
-offset_bottom = 397.0
-
-[node name="Label" type="Label" parent="Dice"]
-layout_mode = 2
-text = "Dice"
-
-[node name="LineEdit_Dice" type="LineEdit" parent="Dice"]
+[node name="Hexagon" type="Control" parent="MainArea/SideContainer/Navigation"]
 layout_mode = 2
 
-[node name="Buttons" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 942.0
-offset_top = 472.0
-offset_right = 1181.0
-offset_bottom = 637.0
+[node name="Hexagon" parent="MainArea/SideContainer/Navigation/Hexagon" instance=ExtResource("2_xmpkj")]
 
-[node name="Button_Roll" type="Button" parent="Buttons"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="Buttons" type="VBoxContainer" parent="MainArea/SideContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Button_Roll" type="Button" parent="MainArea/SideContainer/Buttons"]
+layout_mode = 2
 keep_pressed_outside = true
 text = "Roll"
 
-[connection signal="text_submitted" from="Navigation/Container/LineEdit_Stay" to="Navigation" method="_on_line_edit_stay_text_submitted"]
-[connection signal="text_submitted" from="Navigation/Container/LineEdit_N" to="Navigation" method="_on_line_edit_n_text_submitted"]
-[connection signal="text_submitted" from="Navigation/Container/LineEdit_NE" to="Navigation" method="_on_line_edit_ne_text_submitted"]
-[connection signal="text_submitted" from="Navigation/Container/LineEdit_SE" to="Navigation" method="_on_line_edit_se_text_submitted"]
-[connection signal="text_submitted" from="Navigation/Container/LineEdit_S" to="Navigation" method="_on_line_edit_s_text_submitted"]
-[connection signal="text_submitted" from="Navigation/Container/LineEdit_SW" to="Navigation" method="_on_line_edit_sw_text_submitted"]
-[connection signal="text_submitted" from="Navigation/Container/LineEdit_NW" to="Navigation" method="_on_line_edit_nw_text_submitted"]
-[connection signal="focus_exited" from="Dice/LineEdit_Dice" to="." method="_on_line_edit_dice_focus_exited"]
-[connection signal="text_submitted" from="Dice/LineEdit_Dice" to="." method="_on_line_edit_dice_text_submitted"]
-[connection signal="pressed" from="Buttons/Button_Roll" to="." method="_on_roll_button_pressed"]
+[node name="Dice" type="VBoxContainer" parent="MainArea/SideContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MainArea/SideContainer/Dice"]
+layout_mode = 2
+text = "Dice"
+
+[node name="LineEdit_Dice" type="LineEdit" parent="MainArea/SideContainer/Dice"]
+layout_mode = 2
+
+[node name="History" type="MarginContainer" parent="MainArea/SideContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="MainArea/SideContainer/History"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MainArea/SideContainer/History/VBox"]
+layout_mode = 2
+text = "History"
+
+[node name="TextEdit_History" type="TextEdit" parent="MainArea/SideContainer/History/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_Stay" to="MainArea/SideContainer/Navigation" method="_on_line_edit_stay_text_submitted"]
+[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_N" to="MainArea/SideContainer/Navigation" method="_on_line_edit_n_text_submitted"]
+[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_NE" to="MainArea/SideContainer/Navigation" method="_on_line_edit_ne_text_submitted"]
+[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_SE" to="MainArea/SideContainer/Navigation" method="_on_line_edit_se_text_submitted"]
+[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_S" to="MainArea/SideContainer/Navigation" method="_on_line_edit_s_text_submitted"]
+[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_SW" to="MainArea/SideContainer/Navigation" method="_on_line_edit_sw_text_submitted"]
+[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_NW" to="MainArea/SideContainer/Navigation" method="_on_line_edit_nw_text_submitted"]
+[connection signal="pressed" from="MainArea/SideContainer/Buttons/Button_Roll" to="." method="_on_roll_button_pressed"]
+[connection signal="focus_exited" from="MainArea/SideContainer/Dice/LineEdit_Dice" to="." method="_on_line_edit_dice_focus_exited"]
+[connection signal="text_submitted" from="MainArea/SideContainer/Dice/LineEdit_Dice" to="." method="_on_line_edit_dice_text_submitted"]

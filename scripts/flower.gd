@@ -1,5 +1,5 @@
 class_name HexFlower
-extends Node2D
+extends Control
 
 const DIRECTIONS = {
 	"stay": Vector3.ZERO,
@@ -19,7 +19,7 @@ var _manager: Manager
 var _hex_grid: HexGrid
 var _hexes: Array[Hex]
 
-@onready var _hex_scene = load("res://scenes/hexagon.tscn")
+@onready var _hex_scene = load("res://scenes/hex.tscn")
 
 func setup(manager: Manager, rows, start_coords: Vector2 = Vector2.ZERO):
 	_manager = manager;
@@ -72,8 +72,10 @@ func set_current_hex(hex: Hex):
 	_current_hex.highlight()
 
 
-func traverse(direction: Vector3):
-	set_current_hex(get_adjacent(_current_hex, direction))
+func traverse(direction: Vector3) -> String:
+	var new_hex = get_adjacent(_current_hex, direction)
+	set_current_hex(new_hex)
+	return new_hex.get_text()
 
 
 func get_adjacent(hex: Hex, dir: Vector3) -> Hex:

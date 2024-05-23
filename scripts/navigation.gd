@@ -1,5 +1,5 @@
 class_name Navigation
-extends Node2D
+extends Control
 
 var stay: Array[int]
 var n: Array[int]
@@ -79,13 +79,13 @@ func _on_line_edit_nw_focus_exited():
 	
 	
 func _ready():
-	le_stay = get_node("Container/LineEdit_Stay")
-	le_n = get_node("Container/LineEdit_N")
-	le_ne = get_node("Container/LineEdit_NE")
-	le_se = get_node("Container/LineEdit_SE")
-	le_s = get_node("Container/LineEdit_S")
-	le_sw = get_node("Container/LineEdit_SW")
-	le_nw = get_node("Container/LineEdit_NW")
+	le_stay = get_node("LineEdits/LineEdit_Stay")
+	le_n = get_node("LineEdits/LineEdit_N")
+	le_ne = get_node("LineEdits/LineEdit_NE")
+	le_se = get_node("LineEdits/LineEdit_SE")
+	le_s = get_node("LineEdits/LineEdit_S")
+	le_sw = get_node("LineEdits/LineEdit_SW")
+	le_nw = get_node("LineEdits/LineEdit_NW")
 
 
 func setup(manager: Manager, nav_dict: Dictionary):
@@ -117,7 +117,9 @@ func set_le_text(le: LineEdit, arr: Array[int]):
 
 
 func parse_nav_text(text: String) -> Array[int]:
-	return JSON.parse_string("[%s]" % [text])
+	var arr: Array[int] = []
+	arr.assign(JSON.parse_string("[%s]" % [text]))
+	return arr
 
 
 func get_dir(num: float):
