@@ -68,6 +68,7 @@ func wrap_cube(start: Vector3, direction: Vector3) -> Vector3:
 func set_current_hex(hex: Hex):
 	_hexes.map(func (h: Hex): h.unhighlight());
 	_current_hex = hex
+	_current_hex.move_to_front()
 	_current_hex.highlight()
 
 
