@@ -1,5 +1,5 @@
 class_name Manager
-extends Control
+extends Node
 
 @export var file_dialog: FileDialog
 @export var flower: HexFlower
@@ -12,7 +12,7 @@ var dice: String
 
 @onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-func _on_roll_button_pressed():
+func _on_button_roll_pressed():
 	var roll = dice_syntax.roll(dice, _rng)['result']
 	var dir_name = navigation.get_dir(roll)
 	var dir = HexFlower.DIRECTIONS[dir_name]
@@ -52,3 +52,4 @@ func set_current_hex(hex: Hex):
 	history_text_edit.insert_line_at(0, hex.get_text())
 	flower.set_current_hex(hex);
 	
+

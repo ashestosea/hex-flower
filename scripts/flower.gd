@@ -38,7 +38,7 @@ func setup(manager: Manager, rows, start_coords: Vector2 = Vector2.ZERO):
 				q = offset - x
 			var hex_node = _hex_scene.instantiate() as Hex
 			_hexes.append(hex_node)
-			hex_node.setup(_manager, self, _hex_grid, Vector2(q, s), rows[z][x])
+			hex_node.setup(_manager, _hex_grid, Vector2(q, s), rows[z][x])
 			# hex_node.setup(_manager, self, _hex_grid, Vector2(q, s), "%s, %s" % [q, s])
 			# var coords = HexGrid.axial_to_cube_coords(Vector2(q, s))
 			# hex_node.setup(_manager, self, _hex_grid, Vector2(q, s), "%s, %s, %s" % [coords.x, coords.y, coords.z])

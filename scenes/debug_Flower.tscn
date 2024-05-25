@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0o8b2xgk3n8o"]
+
+[ext_resource type="Script" path="res://scripts/flower.gd" id="1_geslr"]
+[ext_resource type="PackedScene" uid="uid://c4xynug7l1ffe" path="res://scenes/hex.tscn" id="2_ppxhb"]
+
+[node name="Flower" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_geslr")
+
+[node name="Hexagon" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(0, -221.702)
+
+[node name="_StaticBody2D_101" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(-96, -166.277)
+
+[node name="_StaticBody2D_102" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(-192, -110.851)
+
+[node name="_StaticBody2D_103" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(96, -166.277)
+
+[node name="_StaticBody2D_104" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(0, -110.851)
+
+[node name="_StaticBody2D_105" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(-96, -55.4256)
+
+[node name="_StaticBody2D_106" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(-192, 0)
+
+[node name="_StaticBody2D_107" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(192, -110.851)
+
+[node name="_StaticBody2D_108" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(96, -55.4256)
+
+[node name="_StaticBody2D_110" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(-96, 55.4256)
+
+[node name="_StaticBody2D_111" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(-192, 110.851)
+
+[node name="_StaticBody2D_112" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(192, 0)
+
+[node name="_StaticBody2D_114" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(0, 110.851)
+
+[node name="_StaticBody2D_115" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(-96, 166.277)
+
+[node name="_StaticBody2D_116" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(192, 110.851)
+
+[node name="_StaticBody2D_117" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(96, 166.277)
+
+[node name="_StaticBody2D_118" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(0, 221.702)
+
+[node name="_StaticBody2D_109" parent="." instance=ExtResource("2_ppxhb")]
+
+[node name="_StaticBody2D_113" parent="." instance=ExtResource("2_ppxhb")]
+position = Vector2(96, 55.4256)

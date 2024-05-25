@@ -1,171 +1,299 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4y4mpkk6ay38"]
+[gd_scene load_steps=10 format=3 uid="uid://nw74v30v0d5m"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_l30f5"]
 [ext_resource type="Script" path="res://scripts/navigation.gd" id="2_acrp8"]
 [ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
 [ext_resource type="PackedScene" uid="uid://lrirg2rvgvgy" path="res://scenes/hexagon.tscn" id="2_xmpkj"]
+[ext_resource type="Texture2D" uid="uid://bwdadn11k7lil" path="res://assets/die.png" id="5_1hi5d"]
 [ext_resource type="Theme" uid="uid://ffkwu82iptgy" path="res://themes/default_theme.tres" id="5_dole0"]
+[ext_resource type="PackedScene" uid="uid://d0o8b2xgk3n8o" path="res://scenes/debug_Flower.tscn" id="6_gqvfc"]
 
-[node name="Manager" type="MarginContainer" node_paths=PackedStringArray("file_dialog", "flower", "navigation", "dice_line_edit", "history_text_edit")]
+[sub_resource type="Gradient" id="Gradient_jlrso"]
+colors = PackedColorArray(0.0750955, 0.263816, 0.186865, 1, 0.148745, 0.138951, 0.339516, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_48q85"]
+gradient = SubResource("Gradient_jlrso")
+width = 800
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.0
+offset_bottom = -796.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_dole0")
+
+[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("file_dialog", "flower", "navigation", "dice_line_edit", "history_text_edit")]
+script = ExtResource("1_l30f5")
+file_dialog = NodePath("../FileDialog")
+flower = NodePath("../MarginContainer/HexFlower")
+navigation = NodePath("../MarginContainer/NavigationContainer/Navigation")
+dice_line_edit = NodePath("../MarginContainer/Dice/LineEdit")
+history_text_edit = NodePath("../MarginContainer/History/VBoxContainer/TextEdit_History")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="MarginContainer" type="Control" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(400, 800)
+scale = Vector2(1, 1600)
+texture = SubResource("GradientTexture1D_48q85")
+
+[node name="NavigationContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+offset_left = 520.0
+offset_top = 48.0
+offset_right = 760.0
+offset_bottom = 228.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 2
-theme = ExtResource("5_dole0")
-script = ExtResource("1_l30f5")
-file_dialog = NodePath("FileDialog")
-flower = NodePath("MainArea/FlowerContainer/Flower")
-navigation = NodePath("MainArea/SideContainer/Navigation")
-dice_line_edit = NodePath("MainArea/SideContainer/Dice/LineEdit_Dice")
-history_text_edit = NodePath("MainArea/SideContainer/History/VBox/TextEdit_History")
 
-[node name="FileDialog" type="FileDialog" parent="."]
-title = "Open a File"
-size = Vector2i(528, 300)
-ok_button_text = "Open"
-file_mode = 0
-access = 2
-
-[node name="MainArea" type="HBoxContainer" parent="."]
-layout_direction = 2
+[node name="Navigation" type="Control" parent="MarginContainer/NavigationContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="FlowerContainer" type="CenterContainer" parent="MainArea"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Flower" type="Control" parent="MainArea/FlowerContainer"]
-layout_mode = 2
-mouse_filter = 2
-script = ExtResource("2_bbsd1")
-
-[node name="SideContainer" type="VBoxContainer" parent="MainArea"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Navigation" type="CenterContainer" parent="MainArea/SideContainer"]
-layout_mode = 2
-size_flags_vertical = 3
 script = ExtResource("2_acrp8")
+metadata/_edit_lock_ = true
 
-[node name="LineEdits" type="Control" parent="MainArea/SideContainer/Navigation"]
-layout_mode = 2
-
-[node name="LineEdit_Stay" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
+[node name="Label" type="Label" parent="MarginContainer/NavigationContainer/Navigation"]
 layout_mode = 0
-offset_left = -47.0
-offset_top = -15.0
-offset_right = 49.0
-offset_bottom = 17.0
-placeholder_text = "Numbers"
+offset_left = -76.0
+offset_top = -123.0
+offset_right = 76.0
+offset_bottom = -92.0
+theme_type_variation = &"HeaderMedium"
+text = "Navigation"
+
+[node name="Hexagon" parent="MarginContainer/NavigationContainer/Navigation" instance=ExtResource("2_xmpkj")]
+metadata/_edit_lock_ = true
+
+[node name="LineEdits" type="Control" parent="MarginContainer/NavigationContainer/Navigation"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -90.0
+offset_right = 140.0
+offset_bottom = 90.0
+
+[node name="LineEdit_Stay" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -14.5
+offset_right = 45.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "5"
+alignment = 1
+virtual_keyboard_type = 2
+right_icon = ExtResource("5_1hi5d")
 select_all_on_focus = true
 
-[node name="LineEdit_N" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
+[node name="LineEdit_N" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_right = 45.0
+offset_bottom = 33.0
+grow_horizontal = 2
+text = "9"
+alignment = 1
+virtual_keyboard_type = 2
+right_icon = ExtResource("5_1hi5d")
+select_all_on_focus = true
+
+[node name="LineEdit_NE" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.2
+offset_left = -90.0
+offset_bottom = 29.0
+grow_horizontal = 0
+text = "10, 11"
+alignment = 1
+virtual_keyboard_type = 2
+right_icon = ExtResource("5_1hi5d")
+select_all_on_focus = true
+
+[node name="LineEdit_SE" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 0.8
+offset_left = -90.0
+offset_top = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "4, 5"
+alignment = 1
+virtual_keyboard_type = 2
+right_icon = ExtResource("5_1hi5d")
+select_all_on_focus = true
+
+[node name="LineEdit_S" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -33.0
+offset_right = 45.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "6"
+alignment = 1
+virtual_keyboard_type = 2
+right_icon = ExtResource("5_1hi5d")
+select_all_on_focus = true
+
+[node name="LineEdit_SW" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_bottom = 0.8
+offset_top = -29.0
+offset_right = 90.0
+grow_vertical = 0
+text = "7"
+alignment = 1
+virtual_keyboard_type = 2
+right_icon = ExtResource("5_1hi5d")
+select_all_on_focus = true
+
+[node name="LineEdit_NW" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.2
+anchor_bottom = 0.2
+offset_right = 90.0
+offset_bottom = 29.0
+text = "8"
+alignment = 1
+virtual_keyboard_type = 2
+right_icon = ExtResource("5_1hi5d")
+select_all_on_focus = true
+
+[node name="Dice" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-offset_left = -48.0
-offset_top = -89.0
-offset_right = 48.0
-offset_bottom = -57.0
-placeholder_text = "Numbers"
-
-[node name="LineEdit_NE" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
-layout_mode = 0
-offset_left = 67.0
-offset_top = -49.0
-offset_right = 163.0
-offset_bottom = -17.0
-placeholder_text = "Numbers"
-
-[node name="LineEdit_SE" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 29.0
-offset_right = 150.0
-offset_bottom = 61.0
-placeholder_text = "Numbers"
-
-[node name="LineEdit_S" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
-layout_mode = 0
-offset_left = -46.0
-offset_top = 65.0
-offset_right = 50.0
-offset_bottom = 97.0
-placeholder_text = "Numbers"
-
-[node name="LineEdit_SW" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
-layout_mode = 0
-offset_left = -148.0
-offset_top = 32.0
-offset_right = -52.0
-offset_bottom = 64.0
-placeholder_text = "Numbers"
-
-[node name="LineEdit_NW" type="LineEdit" parent="MainArea/SideContainer/Navigation/LineEdits"]
-layout_mode = 0
-offset_left = -152.0
-offset_top = -56.0
-offset_right = -56.0
-offset_bottom = -24.0
-placeholder_text = "Numbers"
-
-[node name="Hexagon" type="Control" parent="MainArea/SideContainer/Navigation"]
-layout_mode = 2
-
-[node name="Hexagon" parent="MainArea/SideContainer/Navigation/Hexagon" instance=ExtResource("2_xmpkj")]
-
-[node name="Buttons" type="VBoxContainer" parent="MainArea/SideContainer"]
-layout_mode = 2
+offset_left = 600.0
+offset_top = 262.0
+offset_right = 681.0
+offset_bottom = 330.0
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="Button_Roll" type="Button" parent="MainArea/SideContainer/Buttons"]
+[node name="Label" type="Label" parent="MarginContainer/Dice"]
 layout_mode = 2
-keep_pressed_outside = true
+theme_type_variation = &"HeaderMedium"
+text = "Dice"
+metadata/_edit_lock_ = true
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/Dice"]
+layout_mode = 2
+text = "3d3"
+metadata/_edit_lock_ = true
+
+[node name="History" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+offset_left = 46.0
+offset_top = 690.0
+offset_right = 358.0
+offset_bottom = 1525.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/History"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="MarginContainer/History/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "History"
+metadata/_edit_lock_ = true
+
+[node name="TextEdit_History" type="TextEdit" parent="MarginContainer/History/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Student/Shopkeep
+Laborer
+Performer
+Cutpurse"
+metadata/_edit_lock_ = true
+
+[node name="Button_Roll" type="Button" parent="MarginContainer"]
+layout_mode = 2
+offset_left = 38.0
+offset_top = 37.0
+offset_right = 139.0
+offset_bottom = 82.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Save"
+
+[node name="Flower" parent="MarginContainer" instance=ExtResource("6_gqvfc")]
+visible = false
+layout_mode = 2
+offset_left = 293.0
+offset_top = 388.0
+offset_right = 293.0
+offset_bottom = 388.0
+
+[node name="HexFlower" type="Control" parent="MarginContainer"]
+anchors_preset = 0
+offset_left = 293.0
+offset_top = 388.0
+offset_right = 293.0
+offset_bottom = 388.0
+script = ExtResource("2_bbsd1")
+
+[node name="Button_Save" type="Button" parent="MarginContainer"]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 403.0
+offset_right = 703.0
+offset_bottom = 448.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "Roll"
 
-[node name="Dice" type="VBoxContainer" parent="MainArea/SideContainer"]
-layout_mode = 2
+[node name="Button_Open" type="Button" parent="MarginContainer"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 36.0
+offset_right = 273.0
+offset_bottom = 81.0
 size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Open"
 
-[node name="Label" type="Label" parent="MainArea/SideContainer/Dice"]
-layout_mode = 2
-text = "Dice"
-
-[node name="LineEdit_Dice" type="LineEdit" parent="MainArea/SideContainer/Dice"]
-layout_mode = 2
-
-[node name="History" type="MarginContainer" parent="MainArea/SideContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBox" type="VBoxContainer" parent="MainArea/SideContainer/History"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MainArea/SideContainer/History/VBox"]
-layout_mode = 2
-text = "History"
-
-[node name="TextEdit_History" type="TextEdit" parent="MainArea/SideContainer/History/VBox"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_Stay" to="MainArea/SideContainer/Navigation" method="_on_line_edit_stay_text_submitted"]
-[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_N" to="MainArea/SideContainer/Navigation" method="_on_line_edit_n_text_submitted"]
-[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_NE" to="MainArea/SideContainer/Navigation" method="_on_line_edit_ne_text_submitted"]
-[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_SE" to="MainArea/SideContainer/Navigation" method="_on_line_edit_se_text_submitted"]
-[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_S" to="MainArea/SideContainer/Navigation" method="_on_line_edit_s_text_submitted"]
-[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_SW" to="MainArea/SideContainer/Navigation" method="_on_line_edit_sw_text_submitted"]
-[connection signal="text_submitted" from="MainArea/SideContainer/Navigation/LineEdits/LineEdit_NW" to="MainArea/SideContainer/Navigation" method="_on_line_edit_nw_text_submitted"]
-[connection signal="pressed" from="MainArea/SideContainer/Buttons/Button_Roll" to="." method="_on_roll_button_pressed"]
-[connection signal="focus_exited" from="MainArea/SideContainer/Dice/LineEdit_Dice" to="." method="_on_line_edit_dice_focus_exited"]
-[connection signal="text_submitted" from="MainArea/SideContainer/Dice/LineEdit_Dice" to="." method="_on_line_edit_dice_text_submitted"]
+[connection signal="pressed" from="MarginContainer/Button_Roll" to="Manager" method="_on_button_roll_pressed"]
+[connection signal="pressed" from="MarginContainer/Button_Save" to="Manager" method="_on_button_roll_pressed"]
+[connection signal="pressed" from="MarginContainer/Button_Open" to="Manager" method="_on_button_roll_pressed"]

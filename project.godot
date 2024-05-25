@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="Heffalumps"
+config/version="0.1"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=800
+window/size/viewport_height=1600
+window/handheld/orientation=6
 
 [dotnet]
 
@@ -28,12 +30,28 @@ project/assembly_name="Heffalump"
 
 enabled=PackedStringArray("res://addons/dice_syntax/plugin.cfg")
 
-[input]
+[importer_defaults]
 
-ui_touch={
-"deadzone": 0.5,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
-]
+font_data_dynamic={
+"Compress": null,
+"Fallbacks": null,
+"Rendering": null,
+"allow_system_fallback": true,
+"antialiasing": 1,
+"compress": true,
+"fallbacks": [],
+"force_autohinter": false,
+"generate_mipmaps": false,
+"hinting": 0,
+"language_support": {},
+"msdf_pixel_range": 8,
+"msdf_size": 48,
+"multichannel_signed_distance_field": true,
+"opentype_features": {},
+"oversampling": 0.0,
+"preload": [],
+"script_support": {},
+"subpixel_positioning": 1
 }
 
 [rendering]
