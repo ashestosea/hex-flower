@@ -52,20 +52,25 @@ func _ready():
 
 func file_selected(path):
 	load_modal.hide()
-	load(FileAccess.get_file_as_string(path))
+	print(path)
+	load_json(FileAccess.get_file_as_string(path))
 
 
 func json_pasted():
-	load(json_text_edit.text)
+	load_json(json_text_edit.text)
 	
 	
-func load(json: String):
+func load_json(json: String):
 	var data = JSON.parse_string(json)
-	flower_name.text = data.name
-	flower.setup(self, data.rows)
-	navigation.setup(self, data.navigation)
-	dice = data.dice
-	dice_line_edit.text = dice
+	if data.name != null:
+		flower_name.text = data.name
+	if data.rows != null:
+		flower.setup(self, data.rows)
+	if data.navigation != null:
+		navigation.setup(self, data.navigation)
+	if data.dice != null:
+		dice = data.dice
+		dice_line_edit.text = dice
 
 
 func set_current_hex(hex: Hex):

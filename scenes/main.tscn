@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://nw74v30v0d5m"]
+[gd_scene load_steps=10 format=3 uid="uid://nw74v30v0d5m"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_l30f5"]
-[ext_resource type="Script" path="res://scripts/navigation.gd" id="2_acrp8"]
 [ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
-[ext_resource type="PackedScene" uid="uid://lrirg2rvgvgy" path="res://scenes/hexagon.tscn" id="2_xmpkj"]
-[ext_resource type="Texture2D" uid="uid://bwdadn11k7lil" path="res://assets/die.png" id="5_1hi5d"]
+[ext_resource type="PackedScene" uid="uid://bt3w5qg2tuoem" path="res://scenes/navigation.tscn" id="3_mf25f"]
 [ext_resource type="Theme" uid="uid://ffkwu82iptgy" path="res://themes/default_theme.tres" id="5_dole0"]
 [ext_resource type="PackedScene" uid="uid://d0o8b2xgk3n8o" path="res://scenes/debug_Flower.tscn" id="6_gqvfc"]
 [ext_resource type="FontFile" uid="uid://c8o3wuh7ogcl" path="res://assets/fonts/Goli-Bold.ttf" id="8_ov8oy"]
@@ -31,10 +29,11 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("5_dole0")
 
-[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "navigation", "dice_line_edit", "history_text_edit", "load_modal", "file_dialog")]
+[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "navigation", "flower_name", "dice_line_edit", "history_text_edit", "load_modal", "file_dialog")]
 script = ExtResource("1_l30f5")
 flower = NodePath("../MarginContainer/HexFlower")
 navigation = NodePath("../MarginContainer/NavigationContainer/Navigation")
+flower_name = NodePath("../MarginContainer/FlowerName")
 dice_line_edit = NodePath("../MarginContainer/Dice/LineEdit")
 history_text_edit = NodePath("../MarginContainer/History/VBoxContainer/TextEdit_History")
 load_modal = NodePath("../MarginContainer/LoadModal")
@@ -69,142 +68,15 @@ offset_bottom = 228.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Navigation" type="Control" parent="MarginContainer/NavigationContainer"]
+[node name="Navigation" parent="MarginContainer/NavigationContainer" instance=ExtResource("3_mf25f")]
 layout_mode = 2
-script = ExtResource("2_acrp8")
-metadata/_edit_lock_ = true
-
-[node name="Label" type="Label" parent="MarginContainer/NavigationContainer/Navigation"]
-layout_mode = 0
-offset_left = -76.0
-offset_top = -123.0
-offset_right = 76.0
-offset_bottom = -92.0
-theme_type_variation = &"HeaderMedium"
-text = "Navigation"
-
-[node name="Hexagon" parent="MarginContainer/NavigationContainer/Navigation" instance=ExtResource("2_xmpkj")]
-metadata/_edit_lock_ = true
-
-[node name="LineEdits" type="Control" parent="MarginContainer/NavigationContainer/Navigation"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = -140.0
-offset_top = -90.0
-offset_right = 140.0
-offset_bottom = 90.0
-
-[node name="LineEdit_Stay" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = -14.5
-offset_right = 45.0
-offset_bottom = 14.5
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-virtual_keyboard_type = 2
-right_icon = ExtResource("5_1hi5d")
-select_all_on_focus = true
-
-[node name="LineEdit_N" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -45.0
-offset_right = 45.0
-offset_bottom = 33.0
-grow_horizontal = 2
-alignment = 1
-virtual_keyboard_type = 2
-right_icon = ExtResource("5_1hi5d")
-select_all_on_focus = true
-
-[node name="LineEdit_NE" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.2
-anchor_right = 1.0
-anchor_bottom = 0.2
-offset_left = -90.0
-offset_bottom = 29.0
-grow_horizontal = 0
-alignment = 1
-virtual_keyboard_type = 2
-right_icon = ExtResource("5_1hi5d")
-select_all_on_focus = true
-
-[node name="LineEdit_SE" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.8
-anchor_right = 1.0
-anchor_bottom = 0.8
-offset_left = -90.0
-offset_top = -29.0
-grow_horizontal = 0
-grow_vertical = 0
-alignment = 1
-virtual_keyboard_type = 2
-right_icon = ExtResource("5_1hi5d")
-select_all_on_focus = true
-
-[node name="LineEdit_S" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -33.0
-offset_right = 45.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
-virtual_keyboard_type = 2
-right_icon = ExtResource("5_1hi5d")
-select_all_on_focus = true
-
-[node name="LineEdit_SW" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.8
-anchor_bottom = 0.8
-offset_top = -29.0
-offset_right = 90.0
-grow_vertical = 0
-alignment = 1
-virtual_keyboard_type = 2
-right_icon = ExtResource("5_1hi5d")
-select_all_on_focus = true
-
-[node name="LineEdit_NW" type="LineEdit" parent="MarginContainer/NavigationContainer/Navigation/LineEdits"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.2
-anchor_bottom = 0.2
-offset_right = 90.0
-offset_bottom = 29.0
-alignment = 1
-virtual_keyboard_type = 2
-right_icon = ExtResource("5_1hi5d")
-select_all_on_focus = true
 
 [node name="Dice" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 offset_left = 600.0
 offset_top = 262.0
-offset_right = 681.0
-offset_bottom = 330.0
+offset_right = 791.0
+offset_bottom = 380.0
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
@@ -216,6 +88,7 @@ metadata/_edit_lock_ = true
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/Dice"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "3d3"
 metadata/_edit_lock_ = true
 
@@ -266,8 +139,8 @@ script = ExtResource("2_bbsd1")
 layout_mode = 0
 offset_left = 602.0
 offset_top = 403.0
-offset_right = 703.0
-offset_bottom = 448.0
+offset_right = 802.0
+offset_bottom = 493.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Roll"
@@ -276,8 +149,8 @@ text = "Roll"
 layout_mode = 2
 offset_left = 534.0
 offset_top = 589.0
-offset_right = 635.0
-offset_bottom = 634.0
+offset_right = 734.0
+offset_bottom = 679.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Save"
@@ -286,8 +159,8 @@ text = "Save"
 layout_mode = 0
 offset_left = 668.0
 offset_top = 588.0
-offset_right = 769.0
-offset_bottom = 633.0
+offset_right = 868.0
+offset_bottom = 678.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Open"
