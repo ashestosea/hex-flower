@@ -1,0 +1,60 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Hex Flower"
+config/version="0.1"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.2", "GL Compatibility")
+config/icon="res://assets/icon.svg"
+
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=1600
+window/handheld/orientation=6
+
+[dotnet]
+
+project/assembly_name="HexFlower"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dice_syntax/plugin.cfg")
+
+[importer_defaults]
+
+font_data_dynamic={
+"Compress": null,
+"Fallbacks": null,
+"Rendering": null,
+"allow_system_fallback": true,
+"antialiasing": 1,
+"compress": true,
+"fallbacks": [],
+"force_autohinter": false,
+"generate_mipmaps": false,
+"hinting": 0,
+"language_support": {},
+"msdf_pixel_range": 8,
+"msdf_size": 48,
+"multichannel_signed_distance_field": true,
+"opentype_features": {},
+"oversampling": 0.0,
+"preload": [],
+"script_support": {},
+"subpixel_positioning": 1
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
