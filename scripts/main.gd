@@ -10,7 +10,6 @@ extends Node
 @export var file_dialog: FileDialog
 @export var json_text_edit: TextEdit
 
-var hex_grid: HexGrid
 var dice: String
 
 @onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -46,8 +45,6 @@ func _on_line_edit_dice_focus_exited():
 
 
 func _ready():
-	hex_grid = HexGrid.new()
-	hex_grid.set_hex_scale(Vector2(128, 128))
 	file_dialog.file_selected.connect(file_selected)
 
 

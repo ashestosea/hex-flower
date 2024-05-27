@@ -16,16 +16,12 @@ const FLOWER_DIAM = (FLOWER_SIZE * 2) - 1
 
 var _current_hex: Hex
 var _manager: Manager
-var _hex_grid: HexGrid
 var _hexes: Array[Hex]
 
 @onready var _hex_scene = load("res://scenes/hex.tscn")
 
 func setup(manager: Manager, rows, start_coords: Vector2 = Vector2.ZERO):
 	_manager = manager;
-	
-	_hex_grid = HexGrid.new()
-	_hex_grid.set_hex_scale(Vector2(128, 128))
 	
 	var offset = 2
 	for z in rows.size():
@@ -38,10 +34,7 @@ func setup(manager: Manager, rows, start_coords: Vector2 = Vector2.ZERO):
 				q = offset - x
 			var hex_node = _hex_scene.instantiate() as Hex
 			_hexes.append(hex_node)
-			hex_node.setup(_manager, _hex_grid, Vector2(q, s), rows[z][x])
-			# hex_node.setup(_manager, self, _hex_grid, Vector2(q, s), "%s, %s" % [q, s])
-			# var coords = HexGrid.axial_to_cube_coords(Vector2(q, s))
-			# hex_node.setup(_manager, self, _hex_grid, Vector2(q, s), "%s, %s, %s" % [coords.x, coords.y, coords.z])
+			hex_node.setup(_manager, HexCoords.from_vec2i(Vector2i(q, s)), rows[z][x])
 			add_child(hex_node)
 	
 	set_current_hex(get_hex(start_coords))
@@ -54,8 +47,8 @@ func dir_name(direction: Vector3) -> String:
 	return "Unknown Direction"
 
 
-func wrap_cube(start: Vector3, direction: Vector3) -> Vector3:
-	var new_pos = start + direction
+func wrap_cube(start: HexCoords, direction: Vector3) -> Vector3:
+	var new_pos = start.to_vec3() + direction
 	var dir_mask = Vector3.ONE - abs(direction)
 	var masked = start * dir_mask
 		
@@ -79,14 +72,14 @@ func traverse(direction: Vector3) -> String:
 
 
 func get_adjacent(hex: Hex, dir: Vector3) -> Hex:
-	var next_hex = wrap_cube(hex._hex_cell.get_cube_coords(), dir)
+	var next_hex = wrap_cube(hex.hex_coords, dir)
 	return get_hex(next_hex)
 
 
 func get_hex(coords) -> Hex:
-	var cube_coords = HexGrid.obj_to_coords(coords)
+	var hex_coords = HexUtils.obj_to_coords(coords)
 	
-	var hexes = _hexes.filter(func (x: Hex): return x._hex_cell.get_cube_coords() == cube_coords)
+	var hexes = _hexes.filter(func (hex: Hex): return hex.hex_coords.eq(hex_coords))
 	if hexes == null:
 		return null
 	else:
