@@ -13,8 +13,8 @@ var _hex_cell: HexCell
 func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 	if event is InputEventMouseButton:
 		if (event as InputEventMouseButton).double_click:
-			_label.visible = false;
-			_text_edit.visible = true;
+			_label.hide();
+			_text_edit.show();
 			_text_edit.select_all()
 			_text_edit.grab_focus()
 		elif (event as InputEventMouseButton).pressed:
@@ -59,15 +59,15 @@ func _on_text_edit_gui_input(event:InputEvent):
 	if event.is_action("ui_accept"):
 		set_label(_text_edit.text)
 		_text_edit.accept_event()
-		_text_edit.visible = false
-		_label.visible = true
+		_text_edit.hide()
+		_label.show()
 	elif event.is_action("ui_cancel"):
 		_text_edit.accept_event()
-		_text_edit.visible = false
-		_label.visible = true
+		_text_edit.hide()
+		_label.show()
 
 
 func _on_text_edit_focus_exited():
 	set_label(_text_edit.text)
-	_text_edit.visible = false
-	_label.visible = true
+	_text_edit.hide()
+	_label.show()

@@ -20,11 +20,17 @@ config/icon="res://assets/icon.svg"
 
 window/size/viewport_width=800
 window/size/viewport_height=1600
+window/stretch/mode="canvas_items"
 window/handheld/orientation=6
 
 [dotnet]
 
 project/assembly_name="HexFlower"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 
@@ -54,7 +60,12 @@ font_data_dynamic={
 "subpixel_positioning": 1
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

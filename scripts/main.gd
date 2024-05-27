@@ -20,7 +20,8 @@ func _on_button_open_pressed():
 	
 
 func _on_button_load_json_pressed():
-	pass # Replace with function body.
+	load_modal.hide()
+	load_json(json_text_edit.text)
 
 
 func _on_button_load_file_pressed():
@@ -52,7 +53,6 @@ func _ready():
 
 func file_selected(path):
 	load_modal.hide()
-	print(path)
 	load_json(FileAccess.get_file_as_string(path))
 
 
