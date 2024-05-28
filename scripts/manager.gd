@@ -2,7 +2,9 @@ class_name Manager
 extends Node
 
 @export var flower: HexFlower
+@export var background_flower: Control
 @export var navigation: Navigation
+@export var io_menu: MenuButton
 @export var flower_name: Label
 @export var dice_line_edit: LineEdit
 @export var history_text_edit: TextEdit
@@ -20,7 +22,7 @@ func _on_button_open_pressed():
 
 func _on_button_import_json_pressed():
 	load_modal.hide()
-	Import.import_json(json_text_edit.text)
+	setup(Import.import_json(json_text_edit.text))
 
 
 func _on_button_load_file_pressed():
@@ -47,21 +49,32 @@ func _on_line_edit_dice_focus_exited():
 
 func _ready():
 	file_dialog.file_selected.connect(file_selected)
+	var menu_popup = io_menu.get_popup()
+	menu_popup.add_item("Import", 0, KEY_I)
+	menu_popup.add_separator()
+	menu_popup.add_item("Export", 1, KEY_E)
+	menu_popup.id_pressed.connect(io_menu_handle)
+	
+
+func io_menu_handle(id: int):
+	match id:
+		0:
+			load_modal.show()
+		1:
+			pass
 
 
 func file_selected(path):
 	load_modal.hide()
-	var data: Import.Data = Import.import_json(FileAccess.get_file_as_string(path))
+	setup(Import.import_json(FileAccess.get_file_as_string(path)))
+	
+
+func setup(data: Import.Data):
+	background_flower.hide()
 	flower.setup(self, data.hexes)
 	navigation.setup(self, data.navigation)
 	dice = data.dice
 	dice_line_edit.text = dice
-
-
-#func json_pasted():
-	#var data = Data.import_json(json_text_edit.text)
-	
-	
 
 
 func set_current_hex(hex: Hex):
