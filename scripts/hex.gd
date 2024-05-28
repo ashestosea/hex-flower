@@ -23,14 +23,14 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 				_manager.set_current_hex(self)
 
 
-func setup(manager: Manager, scale: float, hex_pos: Vector3, text: String):
+func setup(manager: Manager, hex_data: Import.HexData, scale: float):
 	_manager = manager
-	cube_coords = hex_pos
-	position = HexUtils.get_hex_center(hex_pos, scale)
+	cube_coords = HexUtils.axial_to_cube_coords(hex_data.axial_coords)
+	position = HexUtils.get_hex_center(cube_coords, scale)
 	_label = get_node("Control/Label")
-	set_label(text)
+	set_label(hex_data.label)
 	_text_edit = get_node("Control/TextEdit") as TextEdit
-	_text_edit.text = text
+	_text_edit.text = hex_data.label
 	
 
 func set_label(text: String):

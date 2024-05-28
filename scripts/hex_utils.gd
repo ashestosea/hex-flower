@@ -1,6 +1,16 @@
 class_name HexUtils
 extends Object
 
+enum Directions {
+	Stay,
+	N,
+	NE,
+	SE,
+	S,
+	SW,
+	NW
+}
+
 const DIR_N = Vector3(0, 1, -1)
 const DIR_NE = Vector3(1, 0, -1)
 const DIR_SE = Vector3(1, -1, 0)
@@ -38,8 +48,8 @@ static func distance(start, end):
 static func get_hex_center(coords: Vector3, hex_scale: float) -> Vector2:
 	var hex_size = BASE_HEX_SIZE * hex_scale
 	var hex_transform = Transform2D(
-		Vector2(hex_size.x * 0.75, -hex_size.y / 2),
-		Vector2(0, -hex_size.y),
+		Vector2(hex_size.x * 0.75, hex_size.y / 2),
+		Vector2(0, hex_size.y),
 		Vector2(0, 0)
 	)
 	return hex_transform * Vector2(coords.x, coords.y)

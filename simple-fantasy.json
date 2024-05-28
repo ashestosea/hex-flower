@@ -1,4 +1,5 @@
 {
+	"format_version": 1,
 	"name": "Simple Fantasy Life Path",
 	"dice": "2d6",
 	"navigation": {
@@ -29,35 +30,177 @@
 			11
 		]
 	},
-	"rows": [
-		[
-			"Lord",
-			"Scholar",
-			"Priest"
-		],
-		[
-			"Knight",
-			"Noble/Courtier",
-			"Acolyte",
-			"Pilgrim"
-		],
-		[
-			"Squire",
-			"Student/Shopkeep",
-			"Apprentice",
-			"Journeyman",
-			"Official"
-		],
-		[
-			"Urchin/Courier",
-			"Laborer",
-			"Guard",
-			"Guard Captain"
-		],
-		[
-			"Performer",
-			"Cutpurse",
-			"Soldier"
-		]
+	"hexes": [
+		{
+			"label": "Lord",
+			"axial_coords": [
+				0,
+				-2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Scholar",
+			"axial_coords": [
+				-1,
+				-1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Priest",
+			"axial_coords": [
+				-2,
+				 0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Knight",
+			"axial_coords": [
+				1,
+				-2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Noble/Courtier",
+			"axial_coords": [
+				0,
+				-1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Acolyte",
+			"axial_coords": [
+				-1,
+				0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Pilgrim",
+			"axial_coords": [
+				-2,
+				1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Squire",
+			"axial_coords": [
+				2,
+				-2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Student/Shopkeep",
+			"axial_coords": [
+				1,
+				-1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Apprentice/Journeyman",
+			"axial_coords": [
+				0,
+				0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Merchant",
+			"axial_coords": [
+				-1,
+				1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Official",
+			"axial_coords": [
+				-2,
+				2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Urchin/Runner",
+			"axial_coords": [
+				2,
+				-1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Laborer",
+			"axial_coords": [
+				1,
+				0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Guard/Captain",
+			"axial_coords": [
+				0,
+				1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Soldier",
+			"axial_coords": [
+				-1,
+				2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Performer",
+			"axial_coords": [
+				2,
+				0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Cutpurse",
+			"axial_coords": [
+				1,
+				1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "Mercenary",
+			"axial_coords": [
+				0,
+				2
+			],
+			"color": "#000000",
+			"barriers": []
+		}
 	]
 }

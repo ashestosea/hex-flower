@@ -122,7 +122,7 @@ func parse_nav_text(text: String) -> Array[int]:
 	return arr
 
 
-func get_dir(num: float):
+func get_dir(num: int):
 	for d in directions:
 		if directions[d].has(num):
 			return d

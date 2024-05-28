@@ -18,9 +18,9 @@ func _on_button_open_pressed():
 	load_modal.show()
 	
 
-func _on_button_load_json_pressed():
+func _on_button_import_json_pressed():
 	load_modal.hide()
-	load_json(json_text_edit.text)
+	Import.import_json(json_text_edit.text)
 
 
 func _on_button_load_file_pressed():
@@ -28,7 +28,8 @@ func _on_button_load_file_pressed():
 
 
 func _on_button_roll_pressed():
-	var roll = dice_syntax.roll(dice, _rng)['result']
+	var roll: int = dice_syntax.roll(dice, _rng)['result']
+	print(roll)
 	var dir_name = navigation.get_dir(roll)
 	var dir = HexFlower.DIRECTIONS[dir_name]
 	
@@ -50,24 +51,17 @@ func _ready():
 
 func file_selected(path):
 	load_modal.hide()
-	load_json(FileAccess.get_file_as_string(path))
+	var data: Import.Data = Import.import_json(FileAccess.get_file_as_string(path))
+	flower.setup(self, data.hexes)
+	navigation.setup(self, data.navigation)
+	dice = data.dice
+	dice_line_edit.text = dice
 
 
-func json_pasted():
-	load_json(json_text_edit.text)
+#func json_pasted():
+	#var data = Data.import_json(json_text_edit.text)
 	
 	
-func load_json(json: String):
-	var data = JSON.parse_string(json)
-	if data.name != null:
-		flower_name.text = data.name
-	if data.rows != null:
-		flower.setup(self, data.rows)
-	if data.navigation != null:
-		navigation.setup(self, data.navigation)
-	if data.dice != null:
-		dice = data.dice
-		dice_line_edit.text = dice
 
 
 func set_current_hex(hex: Hex):

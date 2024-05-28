@@ -3,14 +3,15 @@ extends Control
 
 const DIRECTIONS = {
 	"stay": Vector3.ZERO,
-	"n": Vector3(0, 1, -1),
-	"ne": Vector3(1, 0, -1),
-	"se": Vector3(1, -1, 0),
-	"s": Vector3(0, -1, 1),
-	"sw": Vector3(-1, 0, 1),
-	"nw": Vector3(-1, 1, 0),
+	"n": Vector3(0, -1, 1),
+	"ne": Vector3(1, -1, 0),
+	"se": Vector3(1, 0, -1),
+	"s": Vector3(0, 1, -1),
+	"sw": Vector3(-1, 1, 0),
+	"nw": Vector3(-1, 0, 1),
 }
 
+const DEBUG_COORDS: bool = false
 const FLOWER_SIZE: int = 3
 const FLOWER_DIAM: int = (FLOWER_SIZE * 2) - 1
 const HEX_SCALE: float = 128
@@ -21,22 +22,16 @@ var _hexes: Array[Hex]
 
 @onready var _hex_scene = load("res://scenes/hex.tscn")
 
-func setup(manager: Manager, rows, start_coords: Vector2 = Vector2.ZERO):
+func setup(manager: Manager, hexes: Array[Import.HexData], start_coords: Vector2 = Vector2.ZERO):
 	_manager = manager;
 	
-	var offset = 2
-	for z in rows.size():
-		for x in rows[z].size():
-			var r = offset - z
-			var q
-			if z <= offset:
-				q = offset - r - x
-			else:
-				q = offset - x
-			var hex_node = _hex_scene.instantiate() as Hex
-			_hexes.append(hex_node)
-			hex_node.setup(_manager, HEX_SCALE, HexUtils.axial_to_cube_coords(Vector2(q, r)), rows[z][x])
-			add_child(hex_node)
+	for hex in hexes:
+		var hex_node = _hex_scene.instantiate() as Hex
+		_hexes.append(hex_node)
+		var coords = HexUtils.axial_to_cube_coords(hex.axial_coords)
+		var label: String = hex.label if !DEBUG_COORDS else "%s, %s, %s" % [coords.x, coords.y, coords.z]
+		hex_node.setup(_manager, hex, HEX_SCALE)
+		add_child(hex_node)
 	
 	set_current_hex(get_hex(start_coords))
 
