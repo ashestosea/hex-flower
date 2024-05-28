@@ -3,10 +3,10 @@ extends Node2D
 
 signal hex_selected
 
-const HEX_SCALE = Vector2(128, 128)
-
 var _manager
-var hex_coords: HexCoords
+var _scale: Vector2
+var cube_coords: Vector3
+
 @onready var _label: Label = get_node("Control/Label")
 @onready var _text_edit: TextEdit = get_node("Control/TextEdit")
 @onready var _hexagon: Polygon2D = get_node("Hexagon")
@@ -23,10 +23,10 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 				_manager.set_current_hex(self)
 
 
-func setup(manager: Manager, hex_pos: HexCoords, text: String):
+func setup(manager: Manager, scale: float, hex_pos: Vector3, text: String):
 	_manager = manager
-	hex_coords = hex_pos
-	position = HexUtils.get_hex_center(hex_pos, HEX_SCALE)
+	cube_coords = hex_pos
+	position = HexUtils.get_hex_center(hex_pos, scale)
 	_label = get_node("Control/Label")
 	set_label(text)
 	_text_edit = get_node("Control/TextEdit") as TextEdit
