@@ -1,26 +1,16 @@
 class_name HexUtils
 extends Object
 
-enum Directions {
-	Stay,
-	N,
-	NE,
-	SE,
-	S,
-	SW,
-	NW
-}
-
-const DIR_N = Vector3(0, 1, -1)
-const DIR_NE = Vector3(1, 0, -1)
-const DIR_SE = Vector3(1, -1, 0)
-const DIR_S = Vector3(0, -1, 1)
-const DIR_SW = Vector3(-1, 0, 1)
-const DIR_NW = Vector3(-1, 1, 0)
-const DIR_ALL = [DIR_N, DIR_NE, DIR_SE, DIR_S, DIR_SW, DIR_NW]
-
 const BASE_HEX_SIZE = Vector2(1, sqrt(3)/2)
-
+const DIRECTIONS = {
+	"stay": Vector3.ZERO,
+	"n": Vector3(0, -1, 1),
+	"ne": Vector3(1, -1, 0),
+	"se": Vector3(1, 0, -1),
+	"s": Vector3(0, 1, -1),
+	"sw": Vector3(-1, 1, 0),
+	"nw": Vector3(-1, 0, 1),
+}
 
 static func obj_to_coords(val) -> Vector3:
 	if typeof(val) == TYPE_VECTOR3:

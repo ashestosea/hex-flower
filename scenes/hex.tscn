@@ -18,7 +18,8 @@ script = ExtResource("1_efmln")
 [node name="Hexagon" parent="." instance=ExtResource("2_syq1b")]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-64, 0, -32, -55.42, 32, -55.42, 64, 0, 32, 55.42, -32, 55.42)
+scale = Vector2(80, 80)
+polygon = PackedVector2Array(-1, 0, -0.5, -0.866, 0.5, -0.866, 1, 0, 0.5, 0.866, -0.5, 0.866)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

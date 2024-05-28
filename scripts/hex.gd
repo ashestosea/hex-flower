@@ -4,12 +4,11 @@ extends Node2D
 signal hex_selected
 
 var _manager
-var _scale: Vector2
+var _hexagon: Polygon2D
 var cube_coords: Vector3
 
 @onready var _label: Label = get_node("Control/Label")
 @onready var _text_edit: TextEdit = get_node("Control/TextEdit")
-@onready var _hexagon: Polygon2D = get_node("Hexagon")
 
 func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 	if event is InputEventMouseButton:
@@ -25,6 +24,8 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 
 func setup(manager: Manager, hex_data: Import.HexData, scale: float):
 	_manager = manager
+	_hexagon = get_node("Hexagon")
+	$CollisionShape2D.scale = _hexagon.scale
 	cube_coords = HexUtils.axial_to_cube_coords(hex_data.axial_coords)
 	position = HexUtils.get_hex_center(cube_coords, scale)
 	_label = get_node("Control/Label")
@@ -45,6 +46,12 @@ func set_label(text: String):
 func get_text() -> String:
 	return _label.text
 
+
+func get_hex_scale() -> float:
+	if _hexagon == null:
+		_hexagon = get_node("Hexagon")
+	return _hexagon.scale.x * 2
+	
 
 func highlight():
 	_hexagon.color = Color.CORAL

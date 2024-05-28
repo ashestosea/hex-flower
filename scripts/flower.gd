@@ -1,20 +1,9 @@
 class_name HexFlower
 extends Control
 
-const DIRECTIONS = {
-	"stay": Vector3.ZERO,
-	"n": Vector3(0, -1, 1),
-	"ne": Vector3(1, -1, 0),
-	"se": Vector3(1, 0, -1),
-	"s": Vector3(0, 1, -1),
-	"sw": Vector3(-1, 1, 0),
-	"nw": Vector3(-1, 0, 1),
-}
-
 const DEBUG_COORDS: bool = false
 const FLOWER_SIZE: int = 3
 const FLOWER_DIAM: int = (FLOWER_SIZE * 2) - 1
-const HEX_SCALE: float = 128
 
 var _current_hex: Hex
 var _manager: Manager
@@ -30,15 +19,15 @@ func setup(manager: Manager, hexes: Array[Import.HexData], start_coords: Vector2
 		_hexes.append(hex_node)
 		var coords = HexUtils.axial_to_cube_coords(hex.axial_coords)
 		var label: String = hex.label if !DEBUG_COORDS else "%s, %s, %s" % [coords.x, coords.y, coords.z]
-		hex_node.setup(_manager, hex, HEX_SCALE)
+		hex_node.setup(_manager, hex, hex_node.get_hex_scale())
 		add_child(hex_node)
 	
 	set_current_hex(get_hex(start_coords))
 
 
 func dir_name(direction: Vector3) -> String:
-	for i in DIRECTIONS:
-		if DIRECTIONS[i] == direction:
+	for i in HexUtils.DIRECTIONS:
+		if HexUtils.DIRECTIONS[i] == direction:
 			return i
 	return "Unknown Direction"
 
