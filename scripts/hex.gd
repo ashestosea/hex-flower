@@ -3,12 +3,14 @@ extends Node2D
 
 signal hex_selected
 
+@export var hex_scale: float = 180
+var cube_coords: Vector3
 var _manager
 var _hexagon: Polygon2D
-var cube_coords: Vector3
-
-@onready var _label: Label = get_node("Control/Label")
-@onready var _text_edit: TextEdit = get_node("Control/TextEdit")
+var _collider: CollisionPolygon2D
+var _text_parent: Control
+var _label: Label
+var _text_edit: TextEdit
 
 func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 	if event is InputEventMouseButton:
@@ -24,13 +26,26 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 
 func setup(manager: Manager, hex_data: Import.HexData, scale: float):
 	_manager = manager
-	_hexagon = get_node("Hexagon")
-	$CollisionShape2D.scale = _hexagon.scale
+	
 	cube_coords = HexUtils.axial_to_cube_coords(hex_data.axial_coords)
 	position = HexUtils.get_hex_center(cube_coords, scale)
+	
+	_hexagon = get_node("Hexagon")
+	_hexagon.scale = Vector2(hex_scale, hex_scale)
+	
+	_collider = get_node("CollisionPolygon2D")
+	_collider.scale = Vector2(hex_scale, hex_scale)
+	
+	var text_size = Vector2(hex_scale * HexUtils.BASE_HEX_SIZE.x,
+							hex_scale * HexUtils.BASE_HEX_SIZE.y * 1.9)
+	var text_pos = -text_size / 2
 	_label = get_node("Control/Label")
+	_label.size = text_size
+	_label.position = text_pos
 	set_label(hex_data.label)
 	_text_edit = get_node("Control/TextEdit") as TextEdit
+	_text_edit.size = text_size
+	_text_edit.position = text_pos
 	_text_edit.text = hex_data.label
 	
 
