@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://ffkwu82iptgy"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://ffkwu82iptgy"]
 
 [ext_resource type="FontFile" uid="uid://bkrx6s1iret2i" path="res://assets/fonts/Deledda Open Black.ttf" id="1_w30x4"]
 [ext_resource type="StyleBox" uid="uid://g4kae1g15uf1" path="res://assets/full_screen_button_style_box_flat.tres" id="2_2hmim"]
@@ -14,6 +14,18 @@ expand_margin_left = 20.0
 expand_margin_top = 10.0
 expand_margin_right = 20.0
 expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nuh44"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oal2s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rs6t5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ti6g4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t58h8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88fcp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fny41"]
 
@@ -62,12 +74,25 @@ FullScreenButton/styles/normal = ExtResource("2_2hmim")
 FullScreenButton/styles/pressed = ExtResource("2_2hmim")
 HeaderMedium/font_sizes/font_size = 36
 HeaderMedium/fonts/font = ExtResource("1_w30x4")
+HexCheckBox/base_type = &"CheckBox"
+HexCheckBox/colors/font_color = Color(0, 0, 0, 1)
+HexCheckBox/fonts/font = ExtResource("1_w30x4")
+HexCheckBox/styles/disabled = SubResource("StyleBoxEmpty_nuh44")
+HexCheckBox/styles/focus = SubResource("StyleBoxEmpty_oal2s")
+HexCheckBox/styles/hover = SubResource("StyleBoxEmpty_rs6t5")
+HexCheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_ti6g4")
+HexCheckBox/styles/normal = SubResource("StyleBoxEmpty_t58h8")
+HexCheckBox/styles/pressed = SubResource("StyleBoxEmpty_88fcp")
+HexHeader/base_type = &"Label"
+HexHeader/colors/font_color = Color(0, 0, 0, 1)
+HexHeader/font_sizes/font_size = 24
+HexHeader/fonts/font = ExtResource("1_w30x4")
 HexLabel/base_type = &"Label"
 HexLabel/colors/font_color = Color(0, 0, 0, 1)
-HexLineEdit/base_type = &"LineEdit"
+HexLineEdit/base_type = &"Control"
 HexLineEdit/colors/background_color = Color(0, 0, 0, 0)
 HexLineEdit/colors/font_color = Color(0, 0, 0, 1)
-HexLineEdit/font_sizes/font_size = 14
+HexLineEdit/font_sizes/font_size = 18
 HexLineEdit/styles/focus = SubResource("StyleBoxEmpty_fny41")
 HexLineEdit/styles/normal = SubResource("StyleBoxEmpty_elnpe")
 HexLineEdit/styles/read_only = SubResource("StyleBoxEmpty_gg7g4")
