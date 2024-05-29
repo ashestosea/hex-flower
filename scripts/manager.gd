@@ -11,6 +11,9 @@ extends Node
 @export var import_menu: Control
 @export var file_dialog: FileDialog
 @export var json_text_edit: TextEdit
+@export var hex_edit: HexEdit
+@export var full_screen_back_button: Button
+@export var hex_highlight: Node2D
 
 var dice: String
 
@@ -90,4 +93,15 @@ func set_current_hex(hex: Hex):
 	history_text_edit.clear()
 	history_text_edit.insert_line_at(0, hex.get_text())
 	flower.set_current_hex(hex);
+	hex_highlight.position = hex.global_position
+	
+	
+func edit_hex(hex: Hex):
+	full_screen_back_button.show()
+	hex_edit.open(self, hex)
+	
+
+func finish_edit_hex():
+	full_screen_back_button.hide()
+	flower.show_current_hex()
 	

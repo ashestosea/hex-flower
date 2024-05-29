@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://dqok8wvhogd4r"]
 
-[ext_resource type="PackedScene" path="res://scenes/hexagon.tscn" id="1_q8nlr"]
+[ext_resource type="PackedScene" uid="uid://lrirg2rvgvgy" path="res://scenes/hexagon.tscn" id="1_q8nlr"]
 
 [node name="BackgroundFlower" type="Control"]
 layout_mode = 3

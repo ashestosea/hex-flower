@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://ffkwu82iptgy"]
+[gd_resource type="Theme" load_steps=22 format=3 uid="uid://ffkwu82iptgy"]
 
 [ext_resource type="FontFile" uid="uid://bkrx6s1iret2i" path="res://assets/fonts/Deledda Open Black.ttf" id="1_w30x4"]
 [ext_resource type="StyleBox" uid="uid://g4kae1g15uf1" path="res://assets/full_screen_button_style_box_flat.tres" id="2_2hmim"]
@@ -14,6 +14,16 @@ expand_margin_left = 20.0
 expand_margin_top = 10.0
 expand_margin_right = 20.0
 expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2kqry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rwecb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6f7m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyxfi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ta7y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nuh44"]
 
@@ -74,6 +84,12 @@ FullScreenButton/styles/normal = ExtResource("2_2hmim")
 FullScreenButton/styles/pressed = ExtResource("2_2hmim")
 HeaderMedium/font_sizes/font_size = 36
 HeaderMedium/fonts/font = ExtResource("1_w30x4")
+HexButton/base_type = &"Button"
+HexButton/styles/disabled = SubResource("StyleBoxEmpty_2kqry")
+HexButton/styles/focus = SubResource("StyleBoxEmpty_rwecb")
+HexButton/styles/hover = SubResource("StyleBoxEmpty_v6f7m")
+HexButton/styles/normal = SubResource("StyleBoxEmpty_uyxfi")
+HexButton/styles/pressed = SubResource("StyleBoxEmpty_3ta7y")
 HexCheckBox/base_type = &"CheckBox"
 HexCheckBox/colors/font_color = Color(0, 0, 0, 1)
 HexCheckBox/fonts/font = ExtResource("1_w30x4")

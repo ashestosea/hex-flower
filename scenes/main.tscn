@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://nw74v30v0d5m"]
+[gd_scene load_steps=9 format=3 uid="uid://nw74v30v0d5m"]
 
 [ext_resource type="Script" path="res://scripts/manager.gd" id="1_l30f5"]
 [ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
 [ext_resource type="Texture2D" uid="uid://oclms0ryldso" path="res://assets/debug_background.tres" id="3_2qtwd"]
 [ext_resource type="PackedScene" path="res://scenes/navigation.tscn" id="3_mf25f"]
-[ext_resource type="PackedScene" path="res://scenes/background_flower.tscn" id="4_rphio"]
+[ext_resource type="PackedScene" uid="uid://dqok8wvhogd4r" path="res://scenes/background_flower.tscn" id="4_rphio"]
 [ext_resource type="Theme" uid="uid://ffkwu82iptgy" path="res://themes/default_theme.tres" id="5_dole0"]
 [ext_resource type="FontFile" uid="uid://ni83yw310ies" path="res://assets/fonts/Cadman_Bold.otf" id="7_hlthi"]
+[ext_resource type="PackedScene" uid="uid://6tfpmb58pofv" path="res://scenes/hex_edit.tscn" id="8_evd7p"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -18,7 +19,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("5_dole0")
 
-[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "background_flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "file_dialog", "json_text_edit")]
+[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "background_flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "file_dialog", "json_text_edit", "hex_edit", "full_screen_back_button", "hex_highlight")]
 script = ExtResource("1_l30f5")
 flower = NodePath("../MarginContainer/HexFlower")
 background_flower = NodePath("../MarginContainer/BackgroundFlower")
@@ -30,6 +31,9 @@ history_text_edit = NodePath("../MarginContainer/History/VBoxContainer/TextEdit_
 import_menu = NodePath("../MarginContainer/ImportMenu")
 file_dialog = NodePath("../FileDialog")
 json_text_edit = NodePath("../MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer/PasteJSONBox/TextEdit")
+hex_edit = NodePath("../MarginContainer/HexEdit")
+full_screen_back_button = NodePath("../MarginContainer/BackFullScreenButton")
+hex_highlight = NodePath("../MarginContainer/HexHighlight")
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
@@ -139,6 +143,45 @@ offset_right = 400.0
 offset_bottom = 388.0
 script = ExtResource("2_bbsd1")
 
+[node name="HexHighlight" type="Node2D" parent="MarginContainer"]
+position = Vector2(215, 967)
+scale = Vector2(90, 90)
+
+[node name="Polygon2D" type="Polygon2D" parent="MarginContainer/HexHighlight"]
+position = Vector2(-3.53903e-08, -0.877778)
+color = Color(1, 0.203922, 1, 1)
+polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
+
+[node name="Polygon2D2" type="Polygon2D" parent="MarginContainer/HexHighlight"]
+position = Vector2(-0.744445, 0.433333)
+rotation = -2.0944
+color = Color(1, 0.203922, 1, 1)
+polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
+
+[node name="Polygon2D3" type="Polygon2D" parent="MarginContainer/HexHighlight"]
+position = Vector2(-3.53903e-08, 0.855556)
+rotation = 3.14159
+color = Color(1, 0.203922, 1, 1)
+polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
+
+[node name="Polygon2D4" type="Polygon2D" parent="MarginContainer/HexHighlight"]
+position = Vector2(0.744444, 0.433333)
+rotation = 2.0944
+color = Color(1, 0.203922, 1, 1)
+polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
+
+[node name="Polygon2D5" type="Polygon2D" parent="MarginContainer/HexHighlight"]
+position = Vector2(0.756, -0.433)
+rotation = 1.0472
+color = Color(1, 0.203922, 1, 1)
+polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
+
+[node name="Polygon2D6" type="Polygon2D" parent="MarginContainer/HexHighlight"]
+position = Vector2(-0.756, -0.433)
+rotation = -1.0472
+color = Color(1, 0.203922, 1, 1)
+polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
+
 [node name="Button_Roll" type="Button" parent="MarginContainer"]
 layout_mode = 0
 offset_left = 466.0
@@ -166,6 +209,19 @@ offset_right = 798.0
 offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("7_hlthi")
 text = "⋮"
+
+[node name="BackFullScreenButton" type="Button" parent="MarginContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FullScreenButton"
+
+[node name="HexEdit" parent="MarginContainer" instance=ExtResource("8_evd7p")]
+visible = false
 
 [node name="ImportMenu" type="Button" parent="MarginContainer"]
 visible = false
