@@ -1,19 +1,17 @@
-[gd_resource type="Theme" load_steps=23 format=3 uid="uid://ffkwu82iptgy"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://ffkwu82iptgy"]
 
 [ext_resource type="FontFile" uid="uid://bkrx6s1iret2i" path="res://assets/fonts/Deledda Open Black.ttf" id="1_w30x4"]
 [ext_resource type="StyleBox" uid="uid://g4kae1g15uf1" path="res://assets/full_screen_button_style_box_flat.tres" id="2_2hmim"]
 [ext_resource type="FontFile" uid="uid://yrvvlsqlhpds" path="res://assets/fonts/Cadman_Roman.otf" id="3_w6qed"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76su5"]
-bg_color = Color(0.12, 0.12, 0.12, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-expand_margin_left = 20.0
-expand_margin_top = 10.0
-expand_margin_right = 20.0
-expand_margin_bottom = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3wbk"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8l1i"]
+bg_color = Color(0.0755101, 0.0755101, 0.0755101, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql0dr"]
+bg_color = Color(0.190762, 0.190762, 0.190762, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svkhl"]
 
@@ -78,7 +76,9 @@ BigButton/font_sizes/font_size = 40
 BigButton/fonts/font = ExtResource("1_w30x4")
 Button/font_sizes/font_size = 36
 Button/fonts/font = ExtResource("1_w30x4")
-Button/styles/normal = SubResource("StyleBoxFlat_76su5")
+Button/styles/hover = SubResource("StyleBoxFlat_r3wbk")
+Button/styles/normal = SubResource("StyleBoxFlat_v8l1i")
+Button/styles/pressed = SubResource("StyleBoxFlat_ql0dr")
 FlatColorButton/base_type = &"Button"
 FlatColorButton/styles/disabled = ExtResource("2_2hmim")
 FlatColorButton/styles/focus = ExtResource("2_2hmim")
