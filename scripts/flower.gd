@@ -48,7 +48,8 @@ func set_current_hex(hex: Hex):
 
 
 func show_current_hex():
-	_current_hex._label.show()
+	if _current_hex:
+		_current_hex._label.show()
 
 
 func traverse(direction: Vector3) -> String:

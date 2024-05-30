@@ -1,6 +1,8 @@
 class_name HexEdit
 extends Node2D
 
+signal finished
+
 @export var _hexagon: Polygon2D
 @export var _collider: CollisionPolygon2D
 @export var _anim: AnimationPlayer
@@ -22,7 +24,7 @@ func _on_hex_text_edit_gui_input(event:InputEvent):
 		if Input.is_key_pressed(KEY_SHIFT):
 			submit_edit()
 	elif event.is_action("ui_cancel"):
-		close()
+		finished.emit()
 
 
 func _on_color_picker_button_color_changed(color):
@@ -34,7 +36,7 @@ func _on_start_hex_check_box_toggled(toggled_on):
 
 
 func _on_cancel_button_pressed():
-	close()
+	finished.emit()
 
 
 func _on_ok_button_pressed():
@@ -65,24 +67,20 @@ func open(manager: Manager, hex: Hex):
 	
 	_edit_parent.show()
 	
-
-func close():
+	
+func close_anim() -> float:
 	_anim.play_backwards("hex_edit")
-	var anim_len = _anim.current_animation_length
+	return _anim.current_animation_length
 	
-	await get_tree().create_timer(anim_len * 0.5).timeout
-	
+
+func close(time: float):
 	_edit_parent.hide()
-	
-	await get_tree().create_timer(anim_len * 0.5).timeout
-	
+	await get_tree().create_timer(time).timeout
 	hide()
-	_manager.finish_edit_hex()
-	
-	
-	
+
+
 func submit_edit():
 	_current_hex.set_text(_hex_text)
 	_current_hex.set_color(_color)
 	_current_hex.set_start_hex(_start_hex)
-	close()
+	finished.emit()

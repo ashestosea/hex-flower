@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://nw74v30v0d5m"]
+[gd_scene load_steps=13 format=3 uid="uid://nw74v30v0d5m"]
 
 [ext_resource type="Script" path="res://scripts/manager.gd" id="1_l30f5"]
 [ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
@@ -8,6 +8,18 @@
 [ext_resource type="Theme" uid="uid://ffkwu82iptgy" path="res://themes/default_theme.tres" id="5_dole0"]
 [ext_resource type="FontFile" uid="uid://ni83yw310ies" path="res://assets/fonts/Cadman_Bold.otf" id="7_hlthi"]
 [ext_resource type="PackedScene" uid="uid://6tfpmb58pofv" path="res://scenes/hex_edit.tscn" id="8_evd7p"]
+[ext_resource type="Animation" uid="uid://bxi7oxo07684q" path="res://animations/fade.res" id="8_r63mh"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_v776a"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_fct4s"]
+events = [SubResource("InputEventAction_v776a")]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tevbo"]
+_data = {
+"fade": ExtResource("8_r63mh")
+}
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -19,7 +31,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("5_dole0")
 
-[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "background_flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "file_dialog", "json_text_edit", "hex_edit", "full_screen_back_button", "hex_highlight")]
+[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "background_flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "paste_json_menu", "file_dialog", "json_text_edit", "hex_edit", "global_back_button", "global_back_button_anim", "hex_highlight")]
 script = ExtResource("1_l30f5")
 flower = NodePath("../MarginContainer/HexFlower")
 background_flower = NodePath("../MarginContainer/BackgroundFlower")
@@ -29,10 +41,12 @@ flower_name = NodePath("../MarginContainer/FlowerName")
 dice_line_edit = NodePath("../MarginContainer/Dice/LineEdit")
 history_text_edit = NodePath("../MarginContainer/History/VBoxContainer/TextEdit_History")
 import_menu = NodePath("../MarginContainer/ImportMenu")
+paste_json_menu = NodePath("../MarginContainer/PasteJSONMenu")
 file_dialog = NodePath("../FileDialog")
-json_text_edit = NodePath("../MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer/PasteJSONBox/TextEdit")
+json_text_edit = NodePath("../MarginContainer/PasteJSONMenu/ColorRect/MarginContainer/VBoxContainer/PasteJSONBox/TextEdit")
 hex_edit = NodePath("../MarginContainer/HexEdit")
-full_screen_back_button = NodePath("../MarginContainer/BackFullScreenButton")
+global_back_button = NodePath("../MarginContainer/GlobalBackButton")
+global_back_button_anim = NodePath("../MarginContainer/GlobalBackButton/AnimationPlayer")
 hex_highlight = NodePath("../MarginContainer/HexHighlight")
 
 [node name="FileDialog" type="FileDialog" parent="."]
@@ -210,7 +224,7 @@ offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("7_hlthi")
 text = "⋮"
 
-[node name="BackFullScreenButton" type="Button" parent="MarginContainer"]
+[node name="GlobalBackButton" type="Button" parent="MarginContainer"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -218,44 +232,39 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_type_variation = &"FullScreenButton"
+theme_type_variation = &"FlatColorButton"
+shortcut = SubResource("Shortcut_fct4s")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/GlobalBackButton"]
+libraries = {
+"": SubResource("AnimationLibrary_tevbo")
+}
 
 [node name="HexEdit" parent="MarginContainer" instance=ExtResource("8_evd7p")]
 visible = false
 
-[node name="ImportMenu" type="Button" parent="MarginContainer"]
+[node name="ImportMenu" type="Control" parent="MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_left = 200.0
+offset_top = 600.0
+offset_right = 600.0
+offset_bottom = 1000.0
 theme_type_variation = &"FullScreenButton"
-action_mode = 0
+metadata/_edit_use_anchors_ = true
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/ImportMenu"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/ImportMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Control" type="Control" parent="MarginContainer/ImportMenu/CenterContainer"]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/ImportMenu/CenterContainer/Control"]
-layout_mode = 2
-offset_left = -200.0
-offset_top = -200.0
-offset_right = 200.0
-offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1812, 0.1812, 0.1812, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/ImportMenu/CenterContainer/Control/ColorRect"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/ImportMenu/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -263,49 +272,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ImportMenu/CenterContainer/Control/ColorRect/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ImportMenu/ColorRect/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 60
 alignment = 1
 
-[node name="File" type="Button" parent="MarginContainer/ImportMenu/CenterContainer/Control/ColorRect/CenterContainer/VBoxContainer"]
+[node name="File" type="Button" parent="MarginContainer/ImportMenu/ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigButton"
 text = "Load File"
 
-[node name="Paste" type="Button" parent="MarginContainer/ImportMenu/CenterContainer/Control/ColorRect/CenterContainer/VBoxContainer"]
+[node name="Paste" type="Button" parent="MarginContainer/ImportMenu/ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigButton"
 text = "Paste JSON"
 
-[node name="Cancel" type="Button" parent="MarginContainer/ImportMenu/CenterContainer/Control/ColorRect/CenterContainer/VBoxContainer"]
+[node name="Cancel" type="Button" parent="MarginContainer/ImportMenu/ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigButton"
 shortcut_feedback = false
 text = "Cancel
 "
 
-[node name="PasteJSONMenu" type="Button" parent="MarginContainer"]
+[node name="PasteJSONMenu" type="Control" parent="MarginContainer"]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"FullScreenButton"
-action_mode = 0
 
-[node name="Control" type="Control" parent="MarginContainer/PasteJSONMenu"]
-layout_mode = 1
-anchor_left = 0.05
-anchor_top = 0.05
-anchor_right = 0.95
-anchor_bottom = 0.9
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/PasteJSONMenu/Control"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/PasteJSONMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -314,7 +316,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.135617, 0.135617, 0.135617, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PasteJSONMenu/Control/ColorRect"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PasteJSONMenu/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -322,55 +324,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PasteJSONMenu/ColorRect/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="PasteJSONBox" type="VBoxContainer" parent="MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer"]
+[node name="PasteJSONBox" type="VBoxContainer" parent="MarginContainer/PasteJSONMenu/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 
-[node name="Label" type="Label" parent="MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer/PasteJSONBox"]
+[node name="Label" type="Label" parent="MarginContainer/PasteJSONMenu/ColorRect/MarginContainer/VBoxContainer/PasteJSONBox"]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Paste JSON"
 
-[node name="TextEdit" type="TextEdit" parent="MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer/PasteJSONBox"]
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/PasteJSONMenu/ColorRect/MarginContainer/VBoxContainer/PasteJSONBox"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PasteJSONMenu/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 75
 alignment = 2
 
-[node name="Cancel" type="Button" parent="MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Cancel" type="Button" parent="MarginContainer/PasteJSONMenu/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Cancel
 "
 
-[node name="Submit" type="Button" parent="MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Submit" type="Button" parent="MarginContainer/PasteJSONMenu/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Submit"
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PasteJSONMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
+[connection signal="pressed" from="MarginContainer/ImportButton" to="Manager" method="_on_open_import_pressed"]
 [connection signal="pressed" from="MarginContainer/ImportButton" to="MarginContainer/ImportButton" method="hide"]
-[connection signal="pressed" from="MarginContainer/ImportButton" to="MarginContainer/ImportMenu" method="show"]
-[connection signal="pressed" from="MarginContainer/Button_Roll" to="Manager" method="_on_button_roll_pressed"]
-[connection signal="pressed" from="MarginContainer/ImportMenu" to="MarginContainer/ImportMenu" method="hide"]
-[connection signal="pressed" from="MarginContainer/ImportMenu/CenterContainer/Control/ColorRect/CenterContainer/VBoxContainer/File" to="Manager" method="_on_button_load_file_pressed"]
-[connection signal="pressed" from="MarginContainer/ImportMenu/CenterContainer/Control/ColorRect/CenterContainer/VBoxContainer/Paste" to="MarginContainer/PasteJSONMenu" method="show"]
-[connection signal="pressed" from="MarginContainer/ImportMenu/CenterContainer/Control/ColorRect/CenterContainer/VBoxContainer/Cancel" to="MarginContainer/ImportMenu" method="hide"]
-[connection signal="pressed" from="MarginContainer/PasteJSONMenu" to="MarginContainer/PasteJSONMenu" method="hide"]
-[connection signal="pressed" from="MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="Manager" method="_on_button_load_json_pressed"]
-[connection signal="pressed" from="MarginContainer/PasteJSONMenu/Control/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Submit" to="Manager" method="_on_button_load_json_pressed"]
+[connection signal="focus_exited" from="MarginContainer/Dice/LineEdit" to="Manager" method="_on_dice_focus_exited"]
+[connection signal="text_submitted" from="MarginContainer/Dice/LineEdit" to="Manager" method="_on_dice_text_submitted"]
+[connection signal="pressed" from="MarginContainer/Button_Roll" to="Manager" method="_on_roll_pressed"]
+[connection signal="pressed" from="MarginContainer/ImportMenu/ColorRect/CenterContainer/VBoxContainer/File" to="Manager" method="_on_load_file_pressed"]
+[connection signal="pressed" from="MarginContainer/ImportMenu/ColorRect/CenterContainer/VBoxContainer/Paste" to="Manager" method="_on_open_paste_pressed"]
+[connection signal="pressed" from="MarginContainer/ImportMenu/ColorRect/CenterContainer/VBoxContainer/Cancel" to="Manager" method="import_menu_hide"]
+[connection signal="pressed" from="MarginContainer/PasteJSONMenu/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="Manager" method="paste_json_menu_hide"]
+[connection signal="pressed" from="MarginContainer/PasteJSONMenu/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Submit" to="Manager" method="_on_load_paste_pressed"]
