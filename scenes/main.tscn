@@ -297,6 +297,7 @@ text = "Cancel
 [node name="PasteJSONMenu" type="Control" parent="MarginContainer"]
 visible = false
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0

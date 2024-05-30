@@ -6,7 +6,6 @@ extends Node2D
 @export var _anim: AnimationPlayer
 @export var _label: Label
 @export var _highlight: Node2D
-@export var hex_scale: float = 180
 
 var cube_coords: Vector3
 var _manager
@@ -22,15 +21,15 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 				_manager.set_current_hex(self)
 
 
-func setup(manager: Manager, hex_data: Import.HexData, scale: float):
+func setup(manager: Manager, hex_data: Import.HexData, hex_scale, hex_spacing: float):
 	_manager = manager
-	
+
 	cube_coords = HexUtils.axial_to_cube_coords(hex_data.axial_coords)
-	position = HexUtils.get_hex_center(cube_coords, scale)
-	
+	position = HexUtils.get_hex_center(cube_coords, hex_spacing)
+
 	_hexagon.scale = Vector2(hex_scale / 2, hex_scale / 2)
 	_collider.scale = Vector2(hex_scale / 2, hex_scale / 2)
-	
+
 	var text_size = Vector2(hex_scale, hex_scale * HexUtils.BASE_HEX_SIZE.y * 1.9)
 	var text_pos = -text_size / 2
 	_label.size = text_size
@@ -54,20 +53,20 @@ func set_text(text: String):
 
 func get_text() -> String:
 	return _label.text
-	
-	
+
+
 func set_color(color: Color):
 	_hexagon.color = color
-	
-	
+
+
 func get_color() -> Color:
 	return _hexagon.color
-	
+
 
 func set_start_hex(is_start: bool):
 	pass
-	
-	
+
+
 func get_start_hex():
 	pass
 

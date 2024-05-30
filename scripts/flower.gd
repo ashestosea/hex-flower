@@ -5,6 +5,9 @@ const DEBUG_COORDS: bool = false
 const FLOWER_SIZE: int = 3
 const FLOWER_DIAM: int = (FLOWER_SIZE * 2) - 1
 
+@export var hex_scale = 160
+@export var hex_spacing = 200
+
 var _current_hex: Hex
 var _manager: Manager
 var _hexes: Array[Hex]
@@ -13,15 +16,15 @@ var _hexes: Array[Hex]
 
 func setup(manager: Manager, hexes: Array[Import.HexData], start_coords: Vector2 = Vector2.ZERO):
 	_manager = manager;
-	
+
 	for hex in hexes:
 		var hex_node = _hex_scene.instantiate() as Hex
 		_hexes.append(hex_node)
 		var coords = HexUtils.axial_to_cube_coords(hex.axial_coords)
 		var label: String = hex.label if !DEBUG_COORDS else "%s, %s, %s" % [coords.x, coords.y, coords.z]
-		hex_node.setup(_manager, hex, hex_node.hex_scale)
+		hex_node.setup(_manager, hex, hex_scale, hex_spacing)
 		add_child(hex_node)
-	
+
 	set_current_hex(get_hex(start_coords))
 
 
@@ -36,10 +39,10 @@ func wrap_cube(start: Vector3, direction: Vector3) -> Vector3:
 	var new_pos: Vector3 = start + direction
 	var dir_mask: Vector3 = Vector3.ONE - abs(direction)
 	var masked: Vector3 = start * dir_mask
-		
+
 	if HexUtils.distance(Vector3.ZERO, new_pos) >= FLOWER_SIZE:
 		new_pos += -direction * (FLOWER_DIAM - masked.length())
-	
+
 	return new_pos
 
 
@@ -65,7 +68,7 @@ func get_adjacent(hex: Hex, dir: Vector3) -> Hex:
 
 func get_hex(coords) -> Hex:
 	var cube_coords = HexUtils.obj_to_coords(coords)
-	
+
 	var hexes = _hexes.filter(func (hex: Hex): return hex.cube_coords == cube_coords)
 	if hexes == null:
 		return null

@@ -46,32 +46,32 @@ func _on_ok_button_pressed():
 func open(manager: Manager, hex: Hex):
 	_manager = manager
 	_current_hex = hex
-	
+
 	position = hex.global_position
 	var hex_scale = hex.hex_scale
-	
+
 	_hexagon.scale = Vector2(hex_scale / 2, hex_scale / 2)
 	_collider.scale = Vector2(hex_scale / 2, hex_scale / 2)
-	
+
 	_edit_parent.size.x = hex_scale * 2 * 0.9
 	_edit_parent.size.y = hex_scale * 2 * HexUtils.BASE_HEX_SIZE.y * 0.9
 	_edit_parent.position = -_edit_parent.size / 2
 	_hex_text_edit.text = hex.get_text()
-	
+
 	show()
-	
+
 	_anim.play("hex_edit")
 	var anim_len = _anim.current_animation_length * 0.5
-	
+
 	await get_tree().create_timer(anim_len).timeout
-	
+
 	_edit_parent.show()
-	
-	
+
+
 func close_anim() -> float:
 	_anim.play_backwards("hex_edit")
 	return _anim.current_animation_length
-	
+
 
 func close(time: float):
 	_edit_parent.hide()

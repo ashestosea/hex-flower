@@ -44,7 +44,7 @@ func _on_roll_pressed():
 	print(roll)
 	var dir_name = navigation.get_dir(roll)
 	var dir = HexUtils.DIRECTIONS[dir_name]
-	
+
 	var new_hex: String = flower.traverse(dir)
 	history_text_edit.insert_line_at(history_text_edit.get_line_count() - 1, new_hex)
 
@@ -64,9 +64,9 @@ func _ready():
 	kebab_popup.add_separator()
 	kebab_popup.add_item("Export", 1, KEY_E)
 	kebab_popup.id_pressed.connect(kebab_handler)
-	
+
 	hex_edit.finished.connect(finish_edit_hex)
-	
+
 	var hexes = Import.import_json(FileAccess.get_file_as_string("res://examples/simple-fantasy.json")).hexes
 	var _hex_scene = load("res://scenes/hexagon.tscn")
 	for hex in hexes:
@@ -75,7 +75,7 @@ func _ready():
 		hex_node.position = HexUtils.get_hex_center(coords, hex_node.scale.x * 2)
 		hex_node.color = Color.DIM_GRAY
 		background_flower.add_child(hex_node)
-	
+
 
 func kebab_handler(id: int):
 	match id:
@@ -88,7 +88,7 @@ func kebab_handler(id: int):
 func file_selected(path):
 	import_menu_hide()
 	setup(Import.import_json(FileAccess.get_file_as_string(path)))
-	
+
 
 func setup(data: Import.Data):
 	background_flower.hide()
@@ -103,8 +103,8 @@ func set_current_hex(hex: Hex):
 	history_text_edit.insert_line_at(0, hex.get_text())
 	flower.set_current_hex(hex);
 	hex_highlight.position = hex.global_position
-	
-	
+
+
 func edit_hex(hex: Hex):
 	global_back_button_show(finish_edit_hex)
 	hex_edit.open(self, hex)
@@ -112,14 +112,14 @@ func edit_hex(hex: Hex):
 
 func finish_edit_hex():
 	var anim_len = hex_edit.close_anim() * 0.5
-	
+
 	await get_tree().create_timer(anim_len).timeout
-	
+
 	global_back_button_hide(anim_len)
 	hex_edit.close(anim_len)
-	
+
 	await get_tree().create_timer(anim_len).timeout
-	
+
 	flower.show_current_hex()
 
 
@@ -141,8 +141,8 @@ func paste_json_menu_show():
 func paste_json_menu_hide():
 	paste_json_menu.hide()
 	import_menu_show()
-	
-	
+
+
 func global_back_button_show(callback: Callable):
 	global_back_button.show()
 	if !global_back_button.visible:
@@ -150,13 +150,13 @@ func global_back_button_show(callback: Callable):
 	for dict in global_back_button.pressed.get_connections():
 		global_back_button.pressed.disconnect(dict["callable"])
 	global_back_button.pressed.connect(callback)
-	
-	
+
+
 func global_back_button_hide(seconds: float = 0):
 	global_back_button_anim.play("fade")
-	
+
 	if seconds > 0:
 		await get_tree().create_timer(seconds).timeout
-	
+
 	global_back_button.hide()
 	global_back_button_anim.stop()
