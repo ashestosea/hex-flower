@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://nw74v30v0d5m"]
+[gd_scene load_steps=12 format=3 uid="uid://nw74v30v0d5m"]
 
 [ext_resource type="Script" path="res://scripts/manager.gd" id="1_l30f5"]
 [ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
 [ext_resource type="Texture2D" uid="uid://oclms0ryldso" path="res://assets/debug_background.tres" id="3_2qtwd"]
 [ext_resource type="PackedScene" path="res://scenes/navigation.tscn" id="3_mf25f"]
 [ext_resource type="PackedScene" uid="uid://dqok8wvhogd4r" path="res://scenes/background_flower.tscn" id="4_rphio"]
-[ext_resource type="Theme" uid="uid://ffkwu82iptgy" path="res://themes/default_theme.tres" id="5_dole0"]
 [ext_resource type="FontFile" uid="uid://ni83yw310ies" path="res://assets/fonts/Cadman_Bold.otf" id="7_hlthi"]
 [ext_resource type="PackedScene" uid="uid://6tfpmb58pofv" path="res://scenes/hex_edit.tscn" id="8_evd7p"]
 [ext_resource type="Animation" uid="uid://bxi7oxo07684q" path="res://animations/fade.res" id="8_r63mh"]
@@ -29,7 +28,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("5_dole0")
 
 [node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "background_flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "paste_json_menu", "file_dialog", "json_text_edit", "hex_edit", "global_back_button", "global_back_button_anim", "hex_highlight")]
 script = ExtResource("1_l30f5")

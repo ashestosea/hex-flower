@@ -31,6 +31,10 @@ project/assembly_name="HexFlower"
 
 enabled=PackedStringArray("res://addons/dice_syntax/plugin.cfg")
 
+[gui]
+
+theme/custom="res://themes/default_theme.tres"
+
 [importer_defaults]
 
 font_data_dynamic={
@@ -58,6 +62,7 @@ font_data_dynamic={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+pointing/android/enable_long_press_as_right_click=true
 
 [rendering]
 

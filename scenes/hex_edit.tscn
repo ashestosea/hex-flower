@@ -47,7 +47,7 @@ _start_hex_checkbox = NodePath("UI/EditParent/StartHexCheckBox")
 _hex_text_edit = NodePath("UI/EditParent/LabelEditBox/VBoxContainer/HexTextEdit")
 _hex_color_edit = NodePath("UI/EditParent/ColorEditBox/ColorLineEdit")
 _barriers_parent = NodePath("UI/Barriers")
-_barriers_stay = NodePath("UI/Barriers/BarrierStay")
+_barriers_stay = NodePath("UI/EditParent/BarrierStay")
 _barriers_n = NodePath("UI/Barriers/BarrierN")
 _barriers_ne = NodePath("UI/Barriers/BarrierNE")
 _barriers_se = NodePath("UI/Barriers/BarrierSE")
@@ -81,18 +81,30 @@ grow_vertical = 2
 theme = ExtResource("4_c5nq1")
 
 [node name="EditParent" type="VBoxContainer" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = -170.0
 offset_top = -140.0
 offset_right = 170.0
 offset_bottom = 141.0
+theme_override_constants/separation = 10
 alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="BarrierStay" type="CheckButton" parent="UI/EditParent"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"BarrierCheckButton"
+button_pressed = true
+action_mode = 0
+text = "Stay"
+flat = true
 
 [node name="StartHexCheckBox" type="CheckBox" parent="UI/EditParent"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 2
+size_flags_vertical = 4
 size_flags_stretch_ratio = 0.15
 theme_type_variation = &"HexCheckBox"
 text = "Start hex"
@@ -101,16 +113,16 @@ alignment = 1
 [node name="LabelEditBox" type="MarginContainer" parent="UI/EditParent"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.21
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/EditParent/LabelEditBox"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="UI/EditParent/LabelEditBox/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 8
 theme_type_variation = &"HexHeader"
 text = "Hex Label"
 horizontal_alignment = 1
@@ -119,7 +131,7 @@ metadata/_edit_lock_ = true
 [node name="HexTextEdit" type="TextEdit" parent="UI/EditParent/LabelEditBox/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"HexLineEdit"
+theme_type_variation = &"HexTextEdit"
 text = "The quick brown fox jumps over the lazy dog the quick brown fox "
 wrap_mode = 1
 caret_blink = true
@@ -129,7 +141,7 @@ metadata/_edit_lock_ = true
 [node name="ColorEditBox" type="HBoxContainer" parent="UI/EditParent"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
+size_flags_vertical = 4
 size_flags_stretch_ratio = 0.14
 theme_override_constants/separation = 25
 alignment = 1
@@ -159,28 +171,23 @@ edit_alpha = false
 [node name="Buttons" type="HBoxContainer" parent="UI/EditParent"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 44
 alignment = 1
 
 [node name="CancelButton" type="Button" parent="UI/EditParent/Buttons"]
-custom_minimum_size = Vector2(44, 0)
+custom_minimum_size = Vector2(56, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"HexButton"
-theme_override_colors/font_color = Color(0.65, 0.279933, 0.2535, 1)
+theme_type_variation = &"ModalButtonNeg"
 text = "✖"
 
 [node name="OKButton" type="Button" parent="UI/EditParent/Buttons"]
-custom_minimum_size = Vector2(44, 0)
+custom_minimum_size = Vector2(56, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"HexButton"
-theme_override_colors/font_color = Color(0.25166, 0.651848, 0.551229, 1)
+theme_type_variation = &"ModalButtonPos"
 text = "✔"
 
 [node name="Barriers" type="Control" parent="UI"]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 offset_left = -180.0
@@ -189,123 +196,118 @@ offset_right = 180.0
 offset_bottom = 155.88
 mouse_filter = 2
 
-[node name="BarrierStay" type="CheckButton" parent="UI/Barriers"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 82.0
-offset_top = -46.12
-offset_right = 114.0
-offset_bottom = -14.12
-grow_horizontal = 2
-pivot_offset = Vector2(16, 32)
-button_pressed = true
-flat = true
-
 [node name="BarrierN" type="CheckButton" parent="UI/Barriers"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
+anchor_top = -0.01
 anchor_right = 0.5
-offset_left = -16.0
-offset_top = -32.0
-offset_right = 16.0
+anchor_bottom = -0.01
+offset_left = -25.0
+offset_top = -50.0
+offset_right = 25.0
 grow_horizontal = 2
-pivot_offset = Vector2(16, 32)
+pivot_offset = Vector2(25, 50)
+theme_type_variation = &"BarrierCheckButton"
 button_pressed = true
 flat = true
 
 [node name="BarrierNE" type="CheckButton" parent="UI/Barriers"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.883
-anchor_top = 0.264
-anchor_right = 0.883
-anchor_bottom = 0.264
-offset_left = -16.0
-offset_top = -31.9996
-offset_right = 16.0
-offset_bottom = 0.000358582
+anchor_left = 0.886
+anchor_top = 0.237
+anchor_right = 0.886
+anchor_bottom = 0.237
+offset_left = -25.0
+offset_top = -50.0
+offset_right = -25.0
 rotation = 1.0472
-pivot_offset = Vector2(16, 32)
+pivot_offset = Vector2(25, 50)
+theme_type_variation = &"BarrierCheckButton"
 button_pressed = true
+action_mode = 0
 flat = true
 
 [node name="BarrierSE" type="CheckButton" parent="UI/Barriers"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.117
-anchor_top = 0.736
-anchor_right = 0.117
-anchor_bottom = 0.736
-offset_left = -16.0
-offset_top = -32.0
-offset_right = 16.0
+anchor_left = 0.114
+anchor_top = 0.763
+anchor_right = 0.114
+anchor_bottom = 0.763
+offset_left = -25.0
+offset_top = -50.0
+offset_right = -25.0
 rotation = -2.0944
-pivot_offset = Vector2(16, 32)
+pivot_offset = Vector2(25, 50)
+theme_type_variation = &"BarrierCheckButton"
 button_pressed = true
+action_mode = 0
 flat = true
-metadata/_edit_use_anchors_ = true
 
 [node name="BarrierS" type="CheckButton" parent="UI/Barriers"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 1.01
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -32.0
-offset_right = 16.0
+anchor_bottom = 1.01
+offset_left = -25.0
+offset_top = -50.0
+offset_right = 25.0
 grow_horizontal = 2
 grow_vertical = 0
 rotation = 3.14159
-pivot_offset = Vector2(16, 32)
+pivot_offset = Vector2(25, 50)
+theme_type_variation = &"BarrierCheckButton"
 button_pressed = true
+action_mode = 0
 flat = true
 
 [node name="BarrierSW" type="CheckButton" parent="UI/Barriers"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.883
-anchor_top = 0.736
-anchor_right = 0.883
-anchor_bottom = 0.736
-offset_left = -16.0
-offset_top = -32.0
-offset_right = 16.0
-offset_bottom = -13.4246
+anchor_left = 0.886
+anchor_top = 0.763
+anchor_right = 0.886
+anchor_bottom = 0.763
+offset_left = -25.0
+offset_top = -50.0
+offset_right = -25.0
 rotation = 2.0944
-pivot_offset = Vector2(16, 32)
+pivot_offset = Vector2(25, 50)
+theme_type_variation = &"BarrierCheckButton"
 button_pressed = true
+action_mode = 0
 flat = true
-metadata/_edit_use_anchors_ = true
 
 [node name="BarrierNW" type="CheckButton" parent="UI/Barriers"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.116667
-anchor_top = 0.264331
-anchor_right = 0.116667
-anchor_bottom = 0.264331
-offset_left = -16.0
-offset_top = -32.0
-offset_right = 16.0
+anchor_left = 0.113889
+anchor_top = 0.236977
+anchor_right = 0.113889
+anchor_bottom = 0.236977
+offset_left = -25.0
+offset_top = -50.0
+offset_right = 25.0
 rotation = -1.0472
-pivot_offset = Vector2(16, 32)
+pivot_offset = Vector2(25, 50)
+theme_type_variation = &"BarrierCheckButton"
 button_pressed = true
+action_mode = 0
 flat = true
 metadata/_edit_use_anchors_ = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="toggled" from="UI/EditParent/BarrierStay" to="." method="_on_barrier_stay_toggled"]
 [connection signal="toggled" from="UI/EditParent/StartHexCheckBox" to="." method="_on_start_hex_check_box_toggled"]
 [connection signal="gui_input" from="UI/EditParent/LabelEditBox/VBoxContainer/HexTextEdit" to="." method="_on_hex_text_edit_gui_input"]
 [connection signal="gui_input" from="UI/EditParent/ColorEditBox/ColorLineEdit" to="." method="_on_color_line_edit_gui_input"]
 [connection signal="color_changed" from="UI/EditParent/ColorEditBox/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="UI/EditParent/Buttons/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="UI/EditParent/Buttons/OKButton" to="." method="_on_ok_button_pressed"]
-[connection signal="toggled" from="UI/Barriers/BarrierStay" to="." method="_on_barrier_n_toggled"]
 [connection signal="toggled" from="UI/Barriers/BarrierN" to="." method="_on_barrier_n_toggled"]
 [connection signal="toggled" from="UI/Barriers/BarrierNE" to="." method="_on_barrier_ne_toggled"]
 [connection signal="toggled" from="UI/Barriers/BarrierSE" to="." method="_on_barrier_se_toggled"]

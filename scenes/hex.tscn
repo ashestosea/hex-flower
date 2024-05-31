@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4xynug7l1ffe"]
+[gd_scene load_steps=6 format=3 uid="uid://c4xynug7l1ffe"]
 
 [ext_resource type="Script" path="res://scripts/hex.gd" id="1_efmln"]
 [ext_resource type="PackedScene" uid="uid://lrirg2rvgvgy" path="res://scenes/hexagon.tscn" id="2_syq1b"]
 [ext_resource type="Animation" uid="uid://cv1syvfs72jlh" path="res://animations/hex_bump.res" id="3_nmwxc"]
-[ext_resource type="Theme" uid="uid://ffkwu82iptgy" path="res://themes/default_theme.tres" id="5_fvlxi"]
 
 [sub_resource type="Animation" id="Animation_ylfll"]
 length = 0.001
@@ -68,7 +67,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("5_fvlxi")
 
 [node name="Label" type="Label" parent="UI"]
 layout_mode = 0

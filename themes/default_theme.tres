@@ -1,10 +1,13 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://ffkwu82iptgy"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://ffkwu82iptgy"]
 
 [ext_resource type="FontFile" uid="uid://bkrx6s1iret2i" path="res://assets/fonts/Deledda Open Black.ttf" id="1_w30x4"]
-[ext_resource type="StyleBox" uid="uid://g4kae1g15uf1" path="res://assets/full_screen_button_style_box_flat.tres" id="2_2hmim"]
-[ext_resource type="Texture2D" uid="uid://b265fu432jw2u" path="res://assets/door_enter.png" id="2_t5im7"]
-[ext_resource type="Texture2D" uid="uid://64j4aw17q2go" path="res://assets/door.png" id="3_m2b5n"]
+[ext_resource type="Texture2D" uid="uid://bn5gfbeq7enpa" path="res://assets/barrier_off.png" id="2_8qj15"]
+[ext_resource type="Texture2D" uid="uid://4xwx5r8w6juj" path="res://assets/barrier_on.png" id="3_5rgt6"]
 [ext_resource type="FontFile" uid="uid://yrvvlsqlhpds" path="res://assets/fonts/Cadman_Roman.otf" id="3_w6qed"]
+[ext_resource type="StyleBox" uid="uid://g4kae1g15uf1" path="res://themes/full_screen_button_style.tres" id="5_ty1m6"]
+[ext_resource type="StyleBox" uid="uid://cv55d5ti65eo" path="res://themes/modal_button_hover_style.tres" id="6_2aert"]
+[ext_resource type="StyleBox" uid="uid://6i2ejlbk2vao" path="res://themes/modal_button_style.tres" id="6_11ty6"]
+[ext_resource type="StyleBox" uid="uid://p1aocs10cir2" path="res://themes/modal_button_pressed_style.tres" id="7_abx76"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3wbk"]
 bg_color = Color(0.14902, 0.14902, 0.14902, 1)
@@ -16,16 +19,6 @@ bg_color = Color(0.0755101, 0.0755101, 0.0755101, 1)
 bg_color = Color(0.190762, 0.190762, 0.190762, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svkhl"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2kqry"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rwecb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6f7m"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyxfi"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ta7y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nuh44"]
 
@@ -39,11 +32,11 @@ bg_color = Color(0.190762, 0.190762, 0.190762, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88fcp"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fny41"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ga63p"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_elnpe"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ykdd"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gg7g4"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2kqry"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2s1jj"]
 content_margin_left = 2.0
@@ -73,6 +66,16 @@ spacing_top = -1
 [resource]
 default_font = SubResource("FontVariation_mrsu6")
 default_font_size = 30
+BarrierCheckButton/base_type = &"CheckButton"
+BarrierCheckButton/colors/font_color = Color(0, 0, 0, 1)
+BarrierCheckButton/colors/font_focus_color = Color(0, 0, 0, 1)
+BarrierCheckButton/colors/font_hover_color = Color(0, 0, 0, 1)
+BarrierCheckButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+BarrierCheckButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+BarrierCheckButton/font_sizes/font_size = 24
+BarrierCheckButton/fonts/font = ExtResource("1_w30x4")
+BarrierCheckButton/icons/checked = ExtResource("3_5rgt6")
+BarrierCheckButton/icons/unchecked = ExtResource("2_8qj15")
 BigButton/base_type = &"Button"
 BigButton/font_sizes/font_size = 40
 BigButton/fonts/font = ExtResource("1_w30x4")
@@ -81,24 +84,19 @@ Button/fonts/font = ExtResource("1_w30x4")
 Button/styles/hover = SubResource("StyleBoxFlat_r3wbk")
 Button/styles/normal = SubResource("StyleBoxFlat_v8l1i")
 Button/styles/pressed = SubResource("StyleBoxFlat_ql0dr")
-CheckButton/icons/checked = ExtResource("2_t5im7")
-CheckButton/icons/unchecked = ExtResource("3_m2b5n")
+Control/colors/font_color = Color(1, 0.980392, 0.941176, 1)
+Control/fonts/font = ExtResource("3_w6qed")
 FlatColorButton/base_type = &"Button"
-FlatColorButton/styles/disabled = ExtResource("2_2hmim")
-FlatColorButton/styles/focus = ExtResource("2_2hmim")
-FlatColorButton/styles/hover = ExtResource("2_2hmim")
-FlatColorButton/styles/normal = ExtResource("2_2hmim")
+FlatColorButton/styles/disabled = ExtResource("5_ty1m6")
+FlatColorButton/styles/focus = ExtResource("5_ty1m6")
+FlatColorButton/styles/hover = ExtResource("5_ty1m6")
+FlatColorButton/styles/normal = ExtResource("5_ty1m6")
 FlatColorButton/styles/pressed = SubResource("StyleBoxEmpty_svkhl")
 HeaderMedium/font_sizes/font_size = 36
 HeaderMedium/fonts/font = ExtResource("1_w30x4")
-HexButton/base_type = &"Button"
-HexButton/styles/disabled = SubResource("StyleBoxEmpty_2kqry")
-HexButton/styles/focus = SubResource("StyleBoxEmpty_rwecb")
-HexButton/styles/hover = SubResource("StyleBoxEmpty_v6f7m")
-HexButton/styles/normal = SubResource("StyleBoxEmpty_uyxfi")
-HexButton/styles/pressed = SubResource("StyleBoxEmpty_3ta7y")
 HexCheckBox/base_type = &"CheckBox"
 HexCheckBox/colors/font_color = Color(0, 0, 0, 1)
+HexCheckBox/font_sizes/font_size = 24
 HexCheckBox/fonts/font = ExtResource("1_w30x4")
 HexCheckBox/styles/disabled = SubResource("StyleBoxEmpty_nuh44")
 HexCheckBox/styles/focus = SubResource("StyleBoxEmpty_oal2s")
@@ -112,19 +110,37 @@ HexHeader/font_sizes/font_size = 24
 HexHeader/fonts/font = ExtResource("1_w30x4")
 HexLabel/base_type = &"Label"
 HexLabel/colors/font_color = Color(0, 0, 0, 1)
-HexLineEdit/base_type = &"Control"
-HexLineEdit/colors/background_color = Color(0, 0, 0, 0)
-HexLineEdit/colors/font_color = Color(0, 0, 0, 1)
-HexLineEdit/font_sizes/font_size = 18
-HexLineEdit/styles/focus = SubResource("StyleBoxEmpty_fny41")
-HexLineEdit/styles/normal = SubResource("StyleBoxEmpty_elnpe")
-HexLineEdit/styles/read_only = SubResource("StyleBoxEmpty_gg7g4")
+HexTextEdit/base_type = &"TextEdit"
+HexTextEdit/colors/background_color = Color(0.184314, 0.239216, 0.494118, 0)
+HexTextEdit/colors/caret_color = Color(0.184314, 0.239216, 0.494118, 1)
+HexTextEdit/colors/font_color = Color(0, 0, 0, 1)
+HexTextEdit/font_sizes/font_size = 18
+HexTextEdit/styles/focus = SubResource("StyleBoxEmpty_ga63p")
+HexTextEdit/styles/normal = SubResource("StyleBoxEmpty_2ykdd")
 Label/constants/minimum_character_width = 1
 LineEdit/constants/minimum_character_width = 1
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
-TextEdit/colors/caret_color = Color(0.12103, 0.12103, 0.12103, 1)
+ModalButton/base_type = &"Button"
+ModalButton/styles/disabled = SubResource("StyleBoxEmpty_2kqry")
+ModalButton/styles/hover = ExtResource("6_2aert")
+ModalButton/styles/normal = ExtResource("6_11ty6")
+ModalButton/styles/pressed = ExtResource("7_abx76")
+ModalButtonNeg/base_type = &"ModalButton"
+ModalButtonNeg/colors/font_color = Color(0.890196, 0.572549, 0.694118, 1)
+ModalButtonNeg/colors/font_focus_color = Color(0.890196, 0.572549, 0.694118, 1)
+ModalButtonNeg/colors/font_hover_color = Color(0.890196, 0.572549, 0.694118, 0.784314)
+ModalButtonNeg/colors/font_pressed_color = Color(0.890196, 0.572549, 0.694118, 1)
+ModalButtonPos/base_type = &"ModalButton"
+ModalButtonPos/colors/font_color = Color(0.694118, 0.890196, 0.572549, 1)
+ModalButtonPos/colors/font_focus_color = Color(0.694118, 0.890196, 0.572549, 1)
+ModalButtonPos/colors/font_hover_color = Color(0.694118, 0.890196, 0.572549, 0.784314)
+ModalButtonPos/colors/font_pressed_color = Color(0.694118, 0.890196, 0.572549, 1)
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/caret_color = Color(1, 0.980392, 0.941176, 1)
+TextEdit/colors/font_placeholder_color = Color(1, 0.980392, 0.941176, 0.6)
+TextEdit/colors/selection_color = Color(0.54902, 0.917647, 0.94902, 1)
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_2s1jj")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_s22ca")

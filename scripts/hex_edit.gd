@@ -43,6 +43,10 @@ func _on_start_hex_check_box_toggled(toggled_on):
 	_start_hex = toggled_on
 
 
+func _on_barrier_stay_toggled(toggled_on):
+	set_barrier("stay", toggled_on)
+
+
 func _on_barrier_n_toggled(toggled_on):
 	set_barrier("n", toggled_on)
 
@@ -101,6 +105,7 @@ func open(hex: Hex):
 	await get_tree().create_timer(anim_len).timeout
 
 	_edit_parent.show()
+	_barriers_parent.show()
 
 
 func close_anim() -> float:
@@ -110,6 +115,7 @@ func close_anim() -> float:
 
 func close(time: float):
 	_edit_parent.hide()
+	_barriers_parent.hide()
 	await get_tree().create_timer(time).timeout
 	hide()
 
