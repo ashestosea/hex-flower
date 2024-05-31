@@ -6,7 +6,7 @@ const FLOWER_SIZE: int = 3
 const FLOWER_DIAM: int = (FLOWER_SIZE * 2) - 1
 
 static var hex_scale = 160
-static var hex_spacing = 200
+static var hex_spacing = 180
 
 var _current_hex: Hex
 var _manager: Manager

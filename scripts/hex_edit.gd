@@ -9,7 +9,7 @@ signal finished
 @export var _edit_parent: Control
 @export var _start_hex_checkbox: CheckBox
 @export var _hex_text_edit: TextEdit
-@export var _hex_color_edit: LineEdit
+@export var _hex_color_button: ColorPickerButton
 @export var _barriers_parent: Control
 @export var _barriers_stay: CheckButton
 @export var _barriers_n: CheckButton
@@ -90,12 +90,15 @@ func open(hex: Hex):
 
 	set_barriers(hex.get_barriers())
 
+	_hex_text_edit.text = hex.get_text()
+
+	_hex_color_button.color = hex.get_color()
+
 	var size = Vector2(hex_scale * 2, hex_scale * 2 * HexUtils.BASE_HEX_SIZE.y)
 	_edit_parent.size = size * 0.9
 	_edit_parent.position = -_edit_parent.size / 2
 	_barriers_parent.size = size
 	_barriers_parent.position = -_barriers_parent.size / 2
-	_hex_text_edit.text = hex.get_text()
 
 	show()
 

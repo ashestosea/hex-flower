@@ -65,7 +65,6 @@ mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
 position = Vector2(400, 800)
-scale = Vector2(1, 1600)
 texture = ExtResource("3_2qtwd")
 
 [node name="BackgroundFlower-old" parent="MarginContainer" instance=ExtResource("4_rphio")]
@@ -88,6 +87,7 @@ offset_left = 340.0
 offset_top = 366.0
 offset_right = 461.0
 offset_bottom = 411.0
+theme_type_variation = &"BigButton"
 text = "Import"
 
 [node name="NavigationContainer" type="CenterContainer" parent="MarginContainer"]
@@ -202,6 +202,7 @@ offset_right = 541.0
 offset_bottom = 1057.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_type_variation = &"BigButton"
 text = "Roll"
 
 [node name="FlowerName" type="Label" parent="MarginContainer"]
