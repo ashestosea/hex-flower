@@ -1,0 +1,7 @@
+Text - FloralWhite - fdfaed
+Base - Indigo - 2f3d7e
+Primary - Lavender - c491e3
+Secondary - Cerulean - 6fade0
+Tertiary - Spray - 8ceaf2
+Positive - Apple - b1e392
+Negative - Mauvelous - e392b1
