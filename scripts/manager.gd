@@ -2,7 +2,6 @@ class_name Manager
 extends Node
 
 @export var flower: HexFlower
-@export var background_flower: Control
 @export var navigation: Navigation
 @export var kebab: MenuButton
 @export var flower_name: Label
@@ -94,7 +93,6 @@ func file_selected(path):
 
 
 func setup(data: Import.Data):
-	background_flower.hide()
 	flower.setup(self, data.hexes)
 	navigation.setup(self, data.navigation)
 	dice = data.dice

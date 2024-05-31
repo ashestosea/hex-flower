@@ -1,113 +1,136 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt3w5qg2tuoem"]
+[gd_scene load_steps=4 format=3 uid="uid://d030ybjtriqgu"]
 
 [ext_resource type="Script" path="res://scripts/navigation.gd" id="1_dmuru"]
-[ext_resource type="Theme" uid="uid://ffkwu82iptgy" path="res://themes/default_theme.tres" id="1_p0437"]
 [ext_resource type="PackedScene" uid="uid://lrirg2rvgvgy" path="res://scenes/hexagon.tscn" id="2_4brvy"]
-[ext_resource type="PackedScene" uid="uid://bkstv8qd4kt46" path="res://scenes/nav_line_edit.tscn" id="3_uv7si"]
+[ext_resource type="PackedScene" path="res://scenes/nav_line_edit.tscn" id="3_uv7si"]
 
 [node name="Navigation" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-theme = ExtResource("1_p0437")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -800.0
+offset_right = -400.0
+offset_bottom = -800.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_dmuru")
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = -76.0
-offset_top = -123.0
+offset_top = -156.0
 offset_right = 76.0
-offset_bottom = -92.0
+offset_bottom = -125.0
 theme_type_variation = &"HeaderMedium"
 text = "Navigation"
 
 [node name="Hexagon" parent="." instance=ExtResource("2_4brvy")]
-metadata/_edit_lock_ = true
+position = Vector2(0, 19)
 
 [node name="LineEdits" type="Control" parent="."]
 layout_mode = 2
 anchors_preset = 0
-offset_left = -140.0
-offset_top = -90.0
-offset_right = 140.0
-offset_bottom = 90.0
+offset_left = -182.0
+offset_top = -118.0
+offset_right = 182.0
+offset_bottom = 156.0
 
 [node name="LineEdit_Stay" parent="LineEdits" instance=ExtResource("3_uv7si")]
 layout_mode = 1
-offset_top = -15.5
-offset_bottom = 15.5
+offset_left = -60.0
+offset_top = -26.0
+offset_right = 60.0
+offset_bottom = 26.0
+metadata/_edit_lock_ = true
 
 [node name="LineEdit_N" parent="LineEdits" instance=ExtResource("3_uv7si")]
 layout_mode = 1
 anchors_preset = 5
 anchor_top = 0.0
 anchor_bottom = 0.0
+offset_left = -60.0
 offset_top = 0.0
-offset_bottom = 31.0
+offset_right = 60.0
+offset_bottom = 52.0
 grow_vertical = 1
+metadata/_edit_lock_ = true
 
 [node name="LineEdit_NE" parent="LineEdits" instance=ExtResource("3_uv7si")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.2
-anchor_right = 1.0
-anchor_bottom = 0.2
-offset_left = -90.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 31.0
-grow_horizontal = 0
+anchor_left = 0.72
+anchor_top = 0.4
+anchor_right = 0.72
+anchor_bottom = 0.4
+offset_left = 0.0
+offset_top = -52.0
+offset_right = 120.0
+offset_bottom = 0.0
+grow_horizontal = 1
 grow_vertical = 1
+metadata/_edit_lock_ = true
 
 [node name="LineEdit_SE" parent="LineEdits" instance=ExtResource("3_uv7si")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.8
-anchor_right = 1.0
-anchor_bottom = 0.8
-offset_left = -90.0
-offset_top = -29.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 0
+anchor_left = 0.72
+anchor_top = 0.6
+anchor_right = 0.72
+anchor_bottom = 0.6
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 120.0
+offset_bottom = 52.0
+grow_horizontal = 1
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="LineEdit_S" parent="LineEdits" instance=ExtResource("3_uv7si")]
 layout_mode = 1
 anchors_preset = 7
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -31.0
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 60.0
 offset_bottom = 0.0
 grow_vertical = 0
+metadata/_edit_lock_ = true
 
 [node name="LineEdit_SW" parent="LineEdits" instance=ExtResource("3_uv7si")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0
-anchor_top = 0.8
-anchor_right = 0.0
-anchor_bottom = 0.8
-offset_left = 0.0
-offset_top = -31.0
-offset_right = 90.0
-offset_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 0
+anchor_left = 0.28
+anchor_top = 0.6
+anchor_right = 0.28
+anchor_bottom = 0.6
+offset_left = -120.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 52.0
+grow_horizontal = 0
+grow_vertical = 1
+alignment = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="LineEdit_NW" parent="LineEdits" instance=ExtResource("3_uv7si")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0
-anchor_top = 0.2
-anchor_right = 0.0
-anchor_bottom = 0.2
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 90.0
-offset_bottom = 29.0
-grow_horizontal = 1
+anchor_left = 0.28
+anchor_top = 0.4
+anchor_right = 0.28
+anchor_bottom = 0.4
+offset_left = -120.0
+offset_top = -52.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
 grow_vertical = 1
+alignment = 2
+metadata/_edit_lock_ = true

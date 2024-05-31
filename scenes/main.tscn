@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/manager.gd" id="1_l30f5"]
 [ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
 [ext_resource type="Texture2D" uid="uid://oclms0ryldso" path="res://assets/debug_background.tres" id="3_2qtwd"]
-[ext_resource type="PackedScene" path="res://scenes/navigation.tscn" id="3_mf25f"]
+[ext_resource type="PackedScene" uid="uid://d030ybjtriqgu" path="res://scenes/navigation.tscn" id="3_mf25f"]
 [ext_resource type="FontFile" uid="uid://ni83yw310ies" path="res://assets/fonts/Cadman_Bold.otf" id="7_hlthi"]
 [ext_resource type="PackedScene" uid="uid://6tfpmb58pofv" path="res://scenes/hex_edit.tscn" id="8_evd7p"]
 [ext_resource type="Animation" uid="uid://bxi7oxo07684q" path="res://animations/fade.res" id="8_r63mh"]
@@ -28,15 +28,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "background_flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "paste_json_menu", "file_dialog", "json_text_edit", "hex_edit", "global_back_button", "global_back_button_anim", "hex_highlight")]
+[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "paste_json_menu", "file_dialog", "json_text_edit", "hex_edit", "global_back_button", "global_back_button_anim", "hex_highlight")]
 script = ExtResource("1_l30f5")
 flower = NodePath("../MarginContainer/HexFlower")
-background_flower = NodePath("")
 navigation = NodePath("../MarginContainer/NavigationContainer/Navigation")
 kebab = NodePath("../MarginContainer/Kebab")
 flower_name = NodePath("../MarginContainer/FlowerName")
 dice_line_edit = NodePath("../MarginContainer/Dice/LineEdit")
-history_text_edit = NodePath("../MarginContainer/History/VBoxContainer/TextEdit_History")
+history_text_edit = NodePath("../MarginContainer/History/VBoxContainer/HistoryTextEdit")
 import_menu = NodePath("../MarginContainer/ImportMenu")
 paste_json_menu = NodePath("../MarginContainer/PasteJSONMenu")
 file_dialog = NodePath("../FileDialog")
@@ -66,24 +65,34 @@ mouse_filter = 2
 position = Vector2(400, 800)
 texture = ExtResource("3_2qtwd")
 
-[node name="NavigationContainer" type="CenterContainer" parent="MarginContainer"]
+[node name="NavigationContainer" type="Control" parent="MarginContainer"]
 layout_mode = 2
-offset_left = 100.0
-offset_top = 900.0
-offset_right = 340.0
-offset_bottom = 1080.0
+anchors_preset = 0
+offset_left = 39.0
+offset_top = 870.185
+offset_right = 448.0
+offset_bottom = 1190.19
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Navigation" parent="MarginContainer/NavigationContainer" instance=ExtResource("3_mf25f")]
 layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 204.0
+offset_top = 160.0
+offset_right = 204.0
+offset_bottom = 160.0
 
 [node name="Dice" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-offset_left = 550.0
-offset_top = 900.0
-offset_right = 741.0
-offset_bottom = 1018.0
+offset_left = 549.0
+offset_top = 874.0
+offset_right = 740.0
+offset_bottom = 992.0
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
@@ -117,7 +126,7 @@ theme_type_variation = &"HeaderMedium"
 text = "History"
 metadata/_edit_lock_ = true
 
-[node name="TextEdit_History" type="TextEdit" parent="MarginContainer/History/VBoxContainer"]
+[node name="HistoryTextEdit" type="TextEdit" parent="MarginContainer/History/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "History"
@@ -141,6 +150,7 @@ theme_type_variation = &"BigButton"
 text = "Import"
 
 [node name="HexHighlight" type="Node2D" parent="MarginContainer"]
+visible = false
 position = Vector2(215, 967)
 scale = Vector2(90, 90)
 
@@ -179,12 +189,12 @@ rotation = -1.0472
 color = Color(1, 0.203922, 1, 1)
 polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
 
-[node name="Button_Roll" type="Button" parent="MarginContainer"]
+[node name="RollButton" type="Button" parent="MarginContainer"]
 layout_mode = 0
-offset_left = 550.0
-offset_top = 1100.0
-offset_right = 625.0
-offset_bottom = 1145.0
+offset_left = 600.0
+offset_top = 1077.0
+offset_right = 675.0
+offset_bottom = 1122.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_type_variation = &"BigButton"
@@ -347,7 +357,7 @@ text = "Submit"
 [connection signal="text_submitted" from="MarginContainer/Dice/LineEdit" to="Manager" method="_on_dice_text_submitted"]
 [connection signal="pressed" from="MarginContainer/ImportButton" to="Manager" method="_on_open_import_pressed"]
 [connection signal="pressed" from="MarginContainer/ImportButton" to="MarginContainer/ImportButton" method="hide"]
-[connection signal="pressed" from="MarginContainer/Button_Roll" to="Manager" method="_on_roll_pressed"]
+[connection signal="pressed" from="MarginContainer/RollButton" to="Manager" method="_on_roll_pressed"]
 [connection signal="pressed" from="MarginContainer/ImportMenu/ColorRect/CenterContainer/VBoxContainer/File" to="Manager" method="_on_load_file_pressed"]
 [connection signal="pressed" from="MarginContainer/ImportMenu/ColorRect/CenterContainer/VBoxContainer/Paste" to="Manager" method="_on_open_paste_pressed"]
 [connection signal="pressed" from="MarginContainer/ImportMenu/ColorRect/CenterContainer/VBoxContainer/Cancel" to="Manager" method="import_menu_hide"]
