@@ -67,14 +67,17 @@ func _ready():
 
 	hex_edit.finished.connect(finish_edit_hex)
 
-	var hexes = Import.import_json(FileAccess.get_file_as_string("res://examples/simple-fantasy.json")).hexes
-	var _hex_scene = load("res://scenes/hexagon.tscn")
-	for hex in hexes:
-		var hex_node = _hex_scene.instantiate() as Node2D
-		var coords = HexUtils.axial_to_cube_coords(hex.axial_coords)
-		hex_node.position = HexUtils.get_hex_center(coords, hex_node.scale.x * 2)
-		hex_node.color = Color.DIM_GRAY
-		background_flower.add_child(hex_node)
+
+	setup(Import.import_json(FileAccess.get_file_as_string("res://examples/empty.json")))
+
+	#var hexes = Import.import_json(FileAccess.get_file_as_string("res://examples/simple-fantasy.json")).hexes
+	#var _hex_scene = load("res://scenes/hexagon.tscn")
+	#for hex in hexes:
+		#var hex_node = _hex_scene.instantiate() as Node2D
+		#var coords = HexUtils.axial_to_cube_coords(hex.axial_coords)
+		#hex_node.position = HexUtils.get_hex_center(coords, hex_node.scale.x * 2)
+		#hex_node.color = Color.DIM_GRAY
+		#background_flower.add_child(hex_node)
 
 
 func kebab_handler(id: int):

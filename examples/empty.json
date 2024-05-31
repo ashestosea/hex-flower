@@ -1,0 +1,204 @@
+{
+	"format_version": 1,
+	"name": "Empty Hex Flower",
+	"dice": "2d6",
+	"navigation": {
+		"stay": [],
+		"n": [
+			2,
+			12
+		],
+		"ne": [
+			3
+		],
+		"se": [
+			4,
+			5
+		],
+		"s": [
+			6,
+			7
+		],
+		"sw": [
+			8,
+			9
+		],
+		"nw": [
+			10,
+			11
+		]
+	},
+	"hexes": [
+		{
+			"label": "",
+			"axial_coords": [
+				0,
+				-2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				-1,
+				-1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				-2,
+				0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				1,
+				-2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				0,
+				-1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				-1,
+				0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				-2,
+				1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				2,
+				-2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				1,
+				-1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				0,
+				0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				-1,
+				1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				-2,
+				2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				2,
+				-1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				1,
+				0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				0,
+				1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				-1,
+				2
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				2,
+				0
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				1,
+				1
+			],
+			"color": "#000000",
+			"barriers": []
+		},
+		{
+			"label": "",
+			"axial_coords": [
+				0,
+				2
+			],
+			"color": "#000000",
+			"barriers": []
+		}
+	]
+}

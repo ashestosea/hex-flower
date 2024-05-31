@@ -11,12 +11,12 @@ static var hex_spacing = 180
 var _current_hex: Hex
 var _manager: Manager
 var _hexes: Array[Hex]
-
-@onready var _hex_scene = load("res://scenes/hex.tscn")
+var _hex_scene: PackedScene
 
 func setup(manager: Manager, hexes: Array[Import.HexData], start_coords: Vector2 = Vector2.ZERO):
 	_manager = manager;
 
+	_hex_scene = load("res://scenes/hex.tscn")
 	for hex in hexes:
 		var hex_node = _hex_scene.instantiate() as Hex
 		_hexes.append(hex_node)

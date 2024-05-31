@@ -48,7 +48,7 @@ func _on_line_edit_sw_text_submitted(new_text:String):
 
 func _on_line_edit_nw_text_submitted(new_text:String):
 	nw = parse_nav_text(new_text)
-	
+
 
 func _on_line_edit_stay_focus_exited():
 	stay = parse_nav_text(le_stay.text)
@@ -76,9 +76,11 @@ func _on_line_edit_sw_focus_exited():
 
 func _on_line_edit_nw_focus_exited():
 	nw = parse_nav_text(le_nw.text)
-	
-	
-func _ready():
+
+
+func setup(manager: Manager, nav_dict: Dictionary):
+	_manager = manager
+
 	le_stay = get_node("LineEdits/LineEdit_Stay")
 	le_n = get_node("LineEdits/LineEdit_N")
 	le_ne = get_node("LineEdits/LineEdit_NE")
@@ -87,12 +89,8 @@ func _ready():
 	le_sw = get_node("LineEdits/LineEdit_SW")
 	le_nw = get_node("LineEdits/LineEdit_NW")
 
-
-func setup(manager: Manager, nav_dict: Dictionary):
-	_manager = manager
-	
 	directions = nav_dict
-	
+
 	stay.assign(nav_dict["stay"])
 	n.assign(nav_dict["n"])
 	ne.assign(nav_dict["ne"])
@@ -100,7 +98,7 @@ func setup(manager: Manager, nav_dict: Dictionary):
 	s.assign(nav_dict["s"])
 	sw.assign(nav_dict["sw"])
 	nw.assign(nav_dict["nw"])
-	
+
 	set_le_text(le_stay, stay)
 	set_le_text(le_n, n)
 	set_le_text(le_ne, ne)
