@@ -36,7 +36,7 @@ _data = {
 "hex_edit": ExtResource("3_rgarb")
 }
 
-[node name="HexEdit" type="StaticBody2D" node_paths=PackedStringArray("_hexagon", "_collider", "_anim", "_edit_parent", "_start_hex_checkbox", "_hex_text_edit", "_hex_color_edit")]
+[node name="HexEdit" type="StaticBody2D" node_paths=PackedStringArray("_hexagon", "_collider", "_anim", "_edit_parent", "_start_hex_checkbox", "_hex_text_edit", "_hex_color_edit", "_barriers_parent", "_barriers_stay", "_barriers_n", "_barriers_ne", "_barriers_se", "_barriers_s", "_barriers_sw", "_barriers_nw")]
 input_pickable = true
 script = ExtResource("1_4ivut")
 _hexagon = NodePath("HexagonScale/Hexagon")
@@ -46,6 +46,14 @@ _edit_parent = NodePath("UI/EditParent")
 _start_hex_checkbox = NodePath("UI/EditParent/StartHexCheckBox")
 _hex_text_edit = NodePath("UI/EditParent/LabelEditBox/VBoxContainer/HexTextEdit")
 _hex_color_edit = NodePath("UI/EditParent/ColorEditBox/ColorLineEdit")
+_barriers_parent = NodePath("UI/Barriers")
+_barriers_stay = NodePath("UI/Barriers/BarrierStay")
+_barriers_n = NodePath("UI/Barriers/BarrierN")
+_barriers_ne = NodePath("UI/Barriers/BarrierNE")
+_barriers_se = NodePath("UI/Barriers/BarrierSE")
+_barriers_s = NodePath("UI/Barriers/BarrierS")
+_barriers_sw = NodePath("UI/Barriers/BarrierSW")
+_barriers_nw = NodePath("UI/Barriers/BarrierNW")
 
 [node name="HexagonScale" type="Node2D" parent="."]
 
@@ -79,6 +87,7 @@ offset_top = -140.0
 offset_right = 170.0
 offset_bottom = 141.0
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="StartHexCheckBox" type="CheckBox" parent="UI/EditParent"]
 layout_mode = 2
@@ -171,6 +180,124 @@ theme_type_variation = &"HexButton"
 theme_override_colors/font_color = Color(0.25166, 0.651848, 0.551229, 1)
 text = "✔"
 
+[node name="Barriers" type="Control" parent="UI"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = -180.0
+offset_top = -155.88
+offset_right = 180.0
+offset_bottom = 155.88
+mouse_filter = 2
+
+[node name="BarrierStay" type="CheckButton" parent="UI/Barriers"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 82.0
+offset_top = -46.12
+offset_right = 114.0
+offset_bottom = -14.12
+grow_horizontal = 2
+pivot_offset = Vector2(16, 32)
+button_pressed = true
+flat = true
+
+[node name="BarrierN" type="CheckButton" parent="UI/Barriers"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+grow_horizontal = 2
+pivot_offset = Vector2(16, 32)
+button_pressed = true
+flat = true
+
+[node name="BarrierNE" type="CheckButton" parent="UI/Barriers"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.264
+anchor_right = 0.883
+anchor_bottom = 0.264
+offset_left = -16.0
+offset_top = -31.9996
+offset_right = 16.0
+offset_bottom = 0.000358582
+rotation = 1.0472
+pivot_offset = Vector2(16, 32)
+button_pressed = true
+flat = true
+
+[node name="BarrierSE" type="CheckButton" parent="UI/Barriers"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.117
+anchor_top = 0.736
+anchor_right = 0.117
+anchor_bottom = 0.736
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+rotation = -2.0944
+pivot_offset = Vector2(16, 32)
+button_pressed = true
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="BarrierS" type="CheckButton" parent="UI/Barriers"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 3.14159
+pivot_offset = Vector2(16, 32)
+button_pressed = true
+flat = true
+
+[node name="BarrierSW" type="CheckButton" parent="UI/Barriers"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.736
+anchor_right = 0.883
+anchor_bottom = 0.736
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = -13.4246
+rotation = 2.0944
+pivot_offset = Vector2(16, 32)
+button_pressed = true
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="BarrierNW" type="CheckButton" parent="UI/Barriers"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.116667
+anchor_top = 0.264331
+anchor_right = 0.116667
+anchor_bottom = 0.264331
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+rotation = -1.0472
+pivot_offset = Vector2(16, 32)
+button_pressed = true
+flat = true
+metadata/_edit_use_anchors_ = true
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="toggled" from="UI/EditParent/StartHexCheckBox" to="." method="_on_start_hex_check_box_toggled"]
 [connection signal="gui_input" from="UI/EditParent/LabelEditBox/VBoxContainer/HexTextEdit" to="." method="_on_hex_text_edit_gui_input"]
@@ -178,3 +305,10 @@ text = "✔"
 [connection signal="color_changed" from="UI/EditParent/ColorEditBox/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="UI/EditParent/Buttons/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="UI/EditParent/Buttons/OKButton" to="." method="_on_ok_button_pressed"]
+[connection signal="toggled" from="UI/Barriers/BarrierStay" to="." method="_on_barrier_n_toggled"]
+[connection signal="toggled" from="UI/Barriers/BarrierN" to="." method="_on_barrier_n_toggled"]
+[connection signal="toggled" from="UI/Barriers/BarrierNE" to="." method="_on_barrier_ne_toggled"]
+[connection signal="toggled" from="UI/Barriers/BarrierSE" to="." method="_on_barrier_se_toggled"]
+[connection signal="toggled" from="UI/Barriers/BarrierS" to="." method="_on_barrier_s_toggled"]
+[connection signal="toggled" from="UI/Barriers/BarrierSW" to="." method="_on_barrier_sw_toggled"]
+[connection signal="toggled" from="UI/Barriers/BarrierNW" to="." method="_on_barrier_nw_toggled"]

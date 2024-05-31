@@ -47,6 +47,7 @@ _label = NodePath("UI/Label")
 [node name="HexagonScale" type="Node2D" parent="."]
 
 [node name="Hexagon" parent="HexagonScale" instance=ExtResource("2_syq1b")]
+scale = Vector2(80, 80)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false

@@ -107,7 +107,7 @@ func set_current_hex(hex: Hex):
 
 func edit_hex(hex: Hex):
 	global_back_button_show(finish_edit_hex)
-	hex_edit.open(self, hex)
+	hex_edit.open(hex)
 
 
 func finish_edit_hex():

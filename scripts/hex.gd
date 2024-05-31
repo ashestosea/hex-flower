@@ -9,6 +9,7 @@ extends Node2D
 
 var cube_coords: Vector3
 var _manager
+var _barriers: Array[String]
 
 
 func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
@@ -26,6 +27,8 @@ func setup(manager: Manager, hex_data: Import.HexData, hex_scale, hex_spacing: f
 
 	cube_coords = HexUtils.axial_to_cube_coords(hex_data.axial_coords)
 	position = HexUtils.get_hex_center(cube_coords, hex_spacing)
+
+	set_barriers(hex_data.barriers)
 
 	_hexagon.scale = Vector2(hex_scale / 2, hex_scale / 2)
 	_collider.scale = Vector2(hex_scale / 2, hex_scale / 2)
@@ -70,3 +73,20 @@ func set_start_hex(is_start: bool):
 func get_start_hex():
 	pass
 
+
+func set_barrier(direction: String, on: bool):
+	if on:
+		if !_barriers.has(direction):
+			_barriers.append(direction)
+	else:
+		_barriers.erase(direction)
+
+
+func set_barriers(directions: Array[String]):
+	_barriers.clear()
+	for b in directions:
+		_barriers.append(b)
+
+
+func get_barriers() -> Array[String]:
+	return _barriers

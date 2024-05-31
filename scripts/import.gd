@@ -28,17 +28,17 @@ static func import_json(json_str: String) -> Data:
 	var json = JSON.parse_string(json_str)
 	if json == null:
 		return null
-		
+
 	if "format_version" not in json:
 		return null
-	
+
 	match floori(json.format_version):
 		1:
 			return load_v1(json)
 		_:
 			return null
-	
-	
+
+
 static func load_v1(json) -> Data:
 	var data: Data = Data.new()
 	if "name" in json:
@@ -88,9 +88,9 @@ static func load_v1(json) -> Data:
 									or bnorm == "sw"\
 									or bnorm == "nw":
 										dir = bnorm
-										
+
 								hex.barriers.append(dir)
-				
+
 				if hex.axial_coords != Vector2.INF:
 					data.hexes.append(hex)
 	return data

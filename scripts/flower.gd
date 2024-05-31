@@ -5,8 +5,8 @@ const DEBUG_COORDS: bool = false
 const FLOWER_SIZE: int = 3
 const FLOWER_DIAM: int = (FLOWER_SIZE * 2) - 1
 
-@export var hex_scale = 160
-@export var hex_spacing = 200
+static var hex_scale = 160
+static var hex_spacing = 200
 
 var _current_hex: Hex
 var _manager: Manager

@@ -1,7 +1,9 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://ffkwu82iptgy"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://ffkwu82iptgy"]
 
 [ext_resource type="FontFile" uid="uid://bkrx6s1iret2i" path="res://assets/fonts/Deledda Open Black.ttf" id="1_w30x4"]
 [ext_resource type="StyleBox" uid="uid://g4kae1g15uf1" path="res://assets/full_screen_button_style_box_flat.tres" id="2_2hmim"]
+[ext_resource type="Texture2D" uid="uid://b265fu432jw2u" path="res://assets/door_enter.png" id="2_t5im7"]
+[ext_resource type="Texture2D" uid="uid://64j4aw17q2go" path="res://assets/door.png" id="3_m2b5n"]
 [ext_resource type="FontFile" uid="uid://yrvvlsqlhpds" path="res://assets/fonts/Cadman_Roman.otf" id="3_w6qed"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3wbk"]
@@ -79,6 +81,8 @@ Button/fonts/font = ExtResource("1_w30x4")
 Button/styles/hover = SubResource("StyleBoxFlat_r3wbk")
 Button/styles/normal = SubResource("StyleBoxFlat_v8l1i")
 Button/styles/pressed = SubResource("StyleBoxFlat_ql0dr")
+CheckButton/icons/checked = ExtResource("2_t5im7")
+CheckButton/icons/unchecked = ExtResource("3_m2b5n")
 FlatColorButton/base_type = &"Button"
 FlatColorButton/styles/disabled = ExtResource("2_2hmim")
 FlatColorButton/styles/focus = ExtResource("2_2hmim")

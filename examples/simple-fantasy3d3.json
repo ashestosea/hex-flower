@@ -47,7 +47,11 @@
 				-2
 			],
 			"color": "#000000",
-			"barriers": []
+			"barriers": [
+				"n",
+				"ne",
+				"nw"
+			]
 		},
 		{
 			"label": "Scholar",
