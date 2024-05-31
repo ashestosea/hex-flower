@@ -8,6 +8,8 @@ const FLOWER_DIAM: int = (FLOWER_SIZE * 2) - 1
 static var hex_scale = 160
 static var hex_spacing = 180
 
+@export var hex_highlight: Node2D
+
 var _current_hex: Hex
 var _manager: Manager
 var _hexes: Array[Hex]
@@ -24,6 +26,8 @@ func setup(manager: Manager, hexes: Array[Import.HexData], start_coords: Vector2
 		var label: String = hex.label if !DEBUG_COORDS else "%s, %s, %s" % [coords.x, coords.y, coords.z]
 		hex_node.setup(_manager, hex, hex_scale, hex_spacing)
 		add_child(hex_node)
+
+	hex_highlight.scale = Vector2.ONE * 0.5 * hex_scale * 1.05
 
 	set_current_hex(get_hex(start_coords))
 
@@ -48,6 +52,7 @@ func wrap_cube(start: Vector3, direction: Vector3) -> Vector3:
 
 func set_current_hex(hex: Hex):
 	_current_hex = hex
+	hex_highlight.position = hex.position
 
 
 func show_current_hex():
@@ -58,6 +63,7 @@ func show_current_hex():
 func traverse(direction: Vector3) -> String:
 	var new_hex = get_adjacent(_current_hex, direction)
 	set_current_hex(new_hex)
+	_manager.set_current_hex(new_hex)
 	return new_hex.get_text()
 
 

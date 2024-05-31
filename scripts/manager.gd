@@ -14,7 +14,6 @@ extends Node
 @export var hex_edit: HexEdit
 @export var global_back_button: Button
 @export var global_back_button_anim: AnimationPlayer
-@export var hex_highlight: Node2D
 
 var dice: String
 var _global_back_button_callback: Callable
@@ -66,17 +65,7 @@ func _ready():
 
 	hex_edit.finished.connect(finish_edit_hex)
 
-
 	setup(Import.import_json(FileAccess.get_file_as_string("res://examples/empty.json")))
-
-	#var hexes = Import.import_json(FileAccess.get_file_as_string("res://examples/simple-fantasy.json")).hexes
-	#var _hex_scene = load("res://scenes/hexagon.tscn")
-	#for hex in hexes:
-		#var hex_node = _hex_scene.instantiate() as Node2D
-		#var coords = HexUtils.axial_to_cube_coords(hex.axial_coords)
-		#hex_node.position = HexUtils.get_hex_center(coords, hex_node.scale.x * 2)
-		#hex_node.color = Color.DIM_GRAY
-		#background_flower.add_child(hex_node)
 
 
 func kebab_handler(id: int):
@@ -100,10 +89,13 @@ func setup(data: Import.Data):
 
 
 func set_current_hex(hex: Hex):
+	flower.set_current_hex(hex);
+
+
+func reset_current_hex(hex: Hex):
 	history_text_edit.clear()
 	history_text_edit.insert_line_at(0, hex.get_text())
-	flower.set_current_hex(hex);
-	hex_highlight.position = hex.global_position
+	set_current_hex(hex)
 
 
 func edit_hex(hex: Hex):

@@ -16,10 +16,9 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 	if event is InputEventMouseButton:
 		if (event as InputEventMouseButton).double_click:
 			_manager.edit_hex(self)
-			_label.hide()
 		elif (event as InputEventMouseButton).pressed:
 			if _manager != null:
-				_manager.set_current_hex(self)
+				_manager.reset_current_hex(self)
 
 
 func setup(manager: Manager, hex_data: Import.HexData, hex_scale, hex_spacing: float):
@@ -38,11 +37,6 @@ func setup(manager: Manager, hex_data: Import.HexData, hex_scale, hex_spacing: f
 	_label.size = text_size
 	_label.position = text_pos
 	set_text(hex_data.label)
-
-
-func finish_edit(text: String):
-	_label.show();
-	_label.text = text
 
 
 func set_text(text: String):

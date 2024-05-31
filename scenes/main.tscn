@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/manager.gd" id="1_l30f5"]
 [ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
-[ext_resource type="Texture2D" uid="uid://oclms0ryldso" path="res://assets/debug_background.tres" id="3_2qtwd"]
+[ext_resource type="Texture2D" uid="uid://bntba8usws8ww" path="res://assets/debug_background.tres" id="3_2qtwd"]
 [ext_resource type="PackedScene" uid="uid://d030ybjtriqgu" path="res://scenes/navigation.tscn" id="3_mf25f"]
 [ext_resource type="FontFile" uid="uid://ni83yw310ies" path="res://assets/fonts/Cadman_Bold.otf" id="7_hlthi"]
 [ext_resource type="PackedScene" uid="uid://6tfpmb58pofv" path="res://scenes/hex_edit.tscn" id="8_evd7p"]
@@ -28,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "paste_json_menu", "file_dialog", "json_text_edit", "hex_edit", "global_back_button", "global_back_button_anim", "hex_highlight")]
+[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "paste_json_menu", "file_dialog", "json_text_edit", "hex_edit", "global_back_button", "global_back_button_anim")]
 script = ExtResource("1_l30f5")
 flower = NodePath("../MarginContainer/HexFlower")
 navigation = NodePath("../MarginContainer/NavigationContainer/Navigation")
@@ -43,7 +43,6 @@ json_text_edit = NodePath("../MarginContainer/PasteJSONMenu/ColorRect/MarginCont
 hex_edit = NodePath("../MarginContainer/HexEdit")
 global_back_button = NodePath("../MarginContainer/GlobalBackButton")
 global_back_button_anim = NodePath("../MarginContainer/GlobalBackButton/AnimationPlayer")
-hex_highlight = NodePath("../MarginContainer/HexHighlight")
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
@@ -132,13 +131,22 @@ size_flags_vertical = 3
 placeholder_text = "History"
 metadata/_edit_lock_ = true
 
-[node name="HexFlower" type="Control" parent="MarginContainer"]
+[node name="HexFlower" type="Control" parent="MarginContainer" node_paths=PackedStringArray("hex_highlight")]
 anchors_preset = 0
 offset_left = 400.0
 offset_top = 525.0
 offset_right = 400.0
 offset_bottom = 525.0
 script = ExtResource("2_bbsd1")
+hex_highlight = NodePath("HexHighlight")
+
+[node name="HexHighlight" type="Line2D" parent="MarginContainer/HexFlower"]
+scale = Vector2(100, 100)
+points = PackedVector2Array(-1, 0, -0.5, -0.866, 0.5, -0.866, 1, 0, 0.5, 0.866, -0.5, 0.866)
+closed = true
+width = 0.1
+default_color = Color(0.768627, 0.568627, 0.890196, 1)
+joint_mode = 2
 
 [node name="ImportButton" type="Button" parent="MarginContainer"]
 layout_mode = 0
@@ -148,46 +156,6 @@ offset_right = 465.0
 offset_bottom = 411.0
 theme_type_variation = &"BigButton"
 text = "Import"
-
-[node name="HexHighlight" type="Node2D" parent="MarginContainer"]
-visible = false
-position = Vector2(215, 967)
-scale = Vector2(90, 90)
-
-[node name="Polygon2D" type="Polygon2D" parent="MarginContainer/HexHighlight"]
-position = Vector2(-3.53903e-08, -0.877778)
-color = Color(1, 0.203922, 1, 1)
-polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
-
-[node name="Polygon2D2" type="Polygon2D" parent="MarginContainer/HexHighlight"]
-position = Vector2(-0.744445, 0.433333)
-rotation = -2.0944
-color = Color(1, 0.203922, 1, 1)
-polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
-
-[node name="Polygon2D3" type="Polygon2D" parent="MarginContainer/HexHighlight"]
-position = Vector2(-3.53903e-08, 0.855556)
-rotation = 3.14159
-color = Color(1, 0.203922, 1, 1)
-polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
-
-[node name="Polygon2D4" type="Polygon2D" parent="MarginContainer/HexHighlight"]
-position = Vector2(0.744444, 0.433333)
-rotation = 2.0944
-color = Color(1, 0.203922, 1, 1)
-polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
-
-[node name="Polygon2D5" type="Polygon2D" parent="MarginContainer/HexHighlight"]
-position = Vector2(0.756, -0.433)
-rotation = 1.0472
-color = Color(1, 0.203922, 1, 1)
-polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
-
-[node name="Polygon2D6" type="Polygon2D" parent="MarginContainer/HexHighlight"]
-position = Vector2(-0.756, -0.433)
-rotation = -1.0472
-color = Color(1, 0.203922, 1, 1)
-polygon = PackedVector2Array(0.476, 0, -0.476, 0, -0.476, 0.05, 0.476, 0.05)
 
 [node name="RollButton" type="Button" parent="MarginContainer"]
 layout_mode = 0
