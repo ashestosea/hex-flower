@@ -100,19 +100,17 @@ func reset_current_hex(hex: Hex):
 
 func edit_hex(hex: Hex):
 	global_back_button_show(finish_edit_hex)
-	hex_edit.open(hex)
+	hex.hide()
+	hex_edit.open(hex, flower)
 
 
 func finish_edit_hex():
-	var anim_len = hex_edit.close_anim() * 0.5
+	var anim_len = hex_edit.start_close(flower._current_hex) * 0.5
 
 	await get_tree().create_timer(anim_len).timeout
 
+	hex_edit.hide()
 	global_back_button_hide(anim_len)
-	hex_edit.close(anim_len)
-
-	await get_tree().create_timer(anim_len).timeout
-
 	flower.show_current_hex()
 
 

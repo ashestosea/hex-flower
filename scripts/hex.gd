@@ -15,24 +15,17 @@ var _barriers: Array[String]
 func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 	if event is InputEventMouseButton:
 		if (OS.get_name() == "Android" or OS.get_name() == "iOS"):
-				mobile_input(event)
+			if (event as InputEventMouseButton).button_index == 2:
+				_manager.edit_hex(self)
+			elif (event as InputEventMouseButton).pressed:
+				if _manager != null:
+					_manager.reset_current_hex(self)
 		else:
-				standalone_input(event)
-
-func mobile_input(event: InputEvent):
-	if (event as InputEventMouseButton).button_index == 2:
-		_manager.edit_hex(self)
-	elif (event as InputEventMouseButton).pressed:
-		if _manager != null:
-			_manager.reset_current_hex(self)
-
-
-func standalone_input(event: InputEvent):
-	if (event as InputEventMouseButton).double_click:
-		_manager.edit_hex(self)
-	elif (event as InputEventMouseButton).pressed:
-		if _manager != null:
-			_manager.reset_current_hex(self)
+			if (event as InputEventMouseButton).double_click:
+				_manager.edit_hex(self)
+			elif (event as InputEventMouseButton).pressed:
+				if _manager != null:
+					_manager.reset_current_hex(self)
 
 
 func setup(manager: Manager, hex_data: Import.HexData, hex_scale, hex_spacing: float):

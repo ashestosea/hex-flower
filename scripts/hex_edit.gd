@@ -3,8 +3,7 @@ extends Node2D
 
 signal finished
 
-@export var _hexagon: Polygon2D
-@export var _collider: CollisionPolygon2D
+@export var _hexagon: Hexagon
 @export var _anim: AnimationPlayer
 @export var _edit_parent: Control
 @export var _start_hex_checkbox: CheckBox
@@ -24,6 +23,9 @@ var _hex_text: String
 var _color: Color
 var _start_hex: bool
 var _barriers: Array[String]
+var _do_snap_pos: bool
+var _snap_target_pos: Vector2
+var _speed = 25
 
 func _on_hex_text_edit_gui_input(event:InputEvent):
 	if event.is_action("ui_accept"):
@@ -78,15 +80,22 @@ func _on_cancel_button_pressed():
 func _on_ok_button_pressed():
 	submit_edit()
 
+func _process(delta):
+	if _do_snap_pos:
+		if global_position.is_equal_approx(_snap_target_pos):
+			_do_snap_pos = false
+			global_position = _snap_target_pos
+		else:
+			global_position += (_snap_target_pos - global_position) * (1 - exp(-_speed * delta));
 
-func open(hex: Hex):
+
+func open(hex: Hex, flower: HexFlower):
 	_current_hex = hex
 
 	position = hex.global_position
 	var hex_scale = HexFlower.hex_scale
 
-	_hexagon.scale = Vector2(hex_scale / 2, hex_scale / 2)
-	_collider.scale = Vector2(hex_scale / 2, hex_scale / 2)
+	_hexagon.draw_scale = hex_scale / 2
 
 	set_barriers(hex.get_barriers())
 
@@ -102,7 +111,9 @@ func open(hex: Hex):
 
 	show()
 
-	_anim.play("hex_edit")
+	_anim.play("hex_edit_open")
+	_do_snap_pos = true
+	_snap_target_pos = flower.global_position
 	var anim_len = _anim.current_animation_length * 0.5
 
 	await get_tree().create_timer(anim_len).timeout
@@ -111,16 +122,14 @@ func open(hex: Hex):
 	_barriers_parent.show()
 
 
-func close_anim() -> float:
-	_anim.play_backwards("hex_edit")
-	return _anim.current_animation_length
 
-
-func close(time: float):
+func start_close(hex: Hex) -> float:
+	_anim.play("hex_edit_close")
+	_do_snap_pos = true
+	_snap_target_pos = hex.global_position
 	_edit_parent.hide()
 	_barriers_parent.hide()
-	await get_tree().create_timer(time).timeout
-	hide()
+	return _anim.current_animation_length
 
 
 func submit_edit():

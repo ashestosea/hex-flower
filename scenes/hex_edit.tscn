@@ -2,45 +2,20 @@
 
 [ext_resource type="Script" path="res://scripts/hex_edit.gd" id="1_4ivut"]
 [ext_resource type="PackedScene" uid="uid://lrirg2rvgvgy" path="res://scenes/hexagon.tscn" id="2_xwf1l"]
-[ext_resource type="Animation" uid="uid://bqw8mnaxrv0k8" path="res://animations/hex_edit.res" id="3_rgarb"]
-[ext_resource type="Theme" uid="uid://ffkwu82iptgy" path="res://themes/default_theme.tres" id="4_c5nq1"]
-
-[sub_resource type="Animation" id="Animation_ylfll"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HexagonScale:scale:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HexagonScale:scale:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
+[ext_resource type="Animation" uid="uid://bqw8mnaxrv0k8" path="res://animations/hex_edit_open.res" id="3_8b8fo"]
+[ext_resource type="Animation" uid="uid://c2doti6tbchva" path="res://animations/hex_edit_close.res" id="4_7w2g7"]
+[ext_resource type="Script" path="res://scripts/hexagon.gd" id="4_qir2f"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vt6lq"]
 _data = {
-"RESET": SubResource("Animation_ylfll"),
-"hex_edit": ExtResource("3_rgarb")
+"hex_edit_close": ExtResource("4_7w2g7"),
+"hex_edit_open": ExtResource("3_8b8fo")
 }
 
-[node name="HexEdit" type="StaticBody2D" node_paths=PackedStringArray("_hexagon", "_collider", "_anim", "_edit_parent", "_start_hex_checkbox", "_hex_text_edit", "_hex_color_button", "_barriers_parent", "_barriers_stay", "_barriers_n", "_barriers_ne", "_barriers_se", "_barriers_s", "_barriers_sw", "_barriers_nw")]
+[node name="HexEdit" type="StaticBody2D" node_paths=PackedStringArray("_hexagon", "_anim", "_edit_parent", "_start_hex_checkbox", "_hex_text_edit", "_hex_color_button", "_barriers_parent", "_barriers_stay", "_barriers_n", "_barriers_ne", "_barriers_se", "_barriers_s", "_barriers_sw", "_barriers_nw")]
 input_pickable = true
 script = ExtResource("1_4ivut")
-_hexagon = NodePath("HexagonScale/Hexagon")
-_collider = NodePath("CollisionPolygon2D")
+_hexagon = NodePath("UI/HexagonControl")
 _anim = NodePath("AnimationPlayer")
 _edit_parent = NodePath("UI/EditParent")
 _start_hex_checkbox = NodePath("UI/EditParent/StartHexCheckBox")
@@ -56,8 +31,10 @@ _barriers_sw = NodePath("UI/Barriers/BarrierSW")
 _barriers_nw = NodePath("UI/Barriers/BarrierNW")
 
 [node name="HexagonScale" type="Node2D" parent="."]
+visible = false
 
 [node name="Hexagon" parent="HexagonScale" instance=ExtResource("2_xwf1l")]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -78,7 +55,11 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("4_c5nq1")
+
+[node name="HexagonControl" type="Control" parent="UI"]
+anchors_preset = 0
+script = ExtResource("4_qir2f")
+draw_scale = 90.0
 
 [node name="EditParent" type="VBoxContainer" parent="UI"]
 layout_mode = 0

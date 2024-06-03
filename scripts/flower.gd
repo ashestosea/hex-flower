@@ -57,6 +57,7 @@ func set_current_hex(hex: Hex):
 
 func show_current_hex():
 	if _current_hex:
+		_current_hex.show()
 		_current_hex._label.show()
 
 
