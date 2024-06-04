@@ -61,6 +61,9 @@ func get_text() -> String:
 
 func set_color(color: Color):
 	_hexagon.color = color
+	var lum = (0.299 * color.r + 0.587 * color.g + 0.144 * color.b)
+	var val = 0 if lum > 0.5 else 1
+	_label.add_theme_color_override("font_color", Color(val, val, val))
 
 
 func get_color() -> Color:
