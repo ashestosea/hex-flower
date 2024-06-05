@@ -63,6 +63,7 @@ func _ready():
 	kebab_popup.add_item("Export", 1, KEY_E)
 	kebab_popup.id_pressed.connect(kebab_handler)
 
+	hex_edit.color_picker_opened.connect(hex_edit_color_picker)
 	hex_edit.finished.connect(finish_edit_hex)
 
 	setup(Import.import_json(FileAccess.get_file_as_string("res://examples/empty.json")))
@@ -102,6 +103,15 @@ func edit_hex(hex: Hex):
 	global_back_button_show(finish_edit_hex)
 	hex.hide()
 	hex_edit.open(hex, flower)
+
+
+func hex_edit_color_picker():
+	global_back_button_show(hex_edit_color_picker_hide)
+
+
+func hex_edit_color_picker_hide():
+	hex_edit.hide_color_picker()
+	global_back_button_show(finish_edit_hex)
 
 
 func finish_edit_hex():

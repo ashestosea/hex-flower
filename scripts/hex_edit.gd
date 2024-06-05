@@ -1,6 +1,7 @@
 class_name HexEdit
 extends Node2D
 
+signal color_picker_opened
 signal finished
 
 @export var _hexagon: Hexagon
@@ -27,14 +28,16 @@ var _do_snap_pos: bool
 var _snap_target_pos: Vector2
 var _speed = 25
 
-func _on_hex_text_edit_gui_input(event:InputEvent):
-	if event.is_action("ui_accept"):
-		_hex_text_edit.accept_event()
-		_hex_text = _hex_text_edit.text
-		if Input.is_key_pressed(KEY_SHIFT):
-			submit_edit()
-	elif event.is_action("ui_cancel"):
-		finished.emit()
+func _on_hex_text_edit_text_changed():
+	_hex_text = _hex_text_edit.text
+
+
+func _on_color_picker_button_picker_created():
+	_hex_color_button.get_popup().about_to_popup.connect(_on_color_picker_opened)
+
+
+func _on_color_picker_opened():
+	color_picker_opened.emit()
 
 
 func _on_color_picker_button_color_changed(color):
@@ -100,6 +103,7 @@ func open(hex: Hex, flower: HexFlower):
 	set_barriers(hex.get_barriers())
 
 	_hex_text_edit.text = hex.get_text()
+	_hex_text = hex.get_text()
 
 	_hex_color_button.color = hex.get_color()
 
@@ -178,3 +182,7 @@ func set_barriers(directions: Array[String]):
 
 func get_barriers() -> Array[String]:
 	return _barriers
+
+
+func hide_color_picker():
+	_hex_color_button.get_popup().hide()

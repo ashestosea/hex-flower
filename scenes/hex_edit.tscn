@@ -58,6 +58,7 @@ grow_vertical = 2
 
 [node name="HexagonControl" type="Control" parent="UI"]
 anchors_preset = 0
+scale = Vector2(2, 2)
 script = ExtResource("4_qir2f")
 draw_scale = 90.0
 
@@ -272,11 +273,12 @@ action_mode = 0
 flat = true
 metadata/_edit_use_anchors_ = true
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="toggled" from="UI/EditParent/BarrierStay" to="." method="_on_barrier_stay_toggled"]
 [connection signal="toggled" from="UI/EditParent/StartHexCheckBox" to="." method="_on_start_hex_check_box_toggled"]
 [connection signal="gui_input" from="UI/EditParent/LabelEditBox/VBoxContainer/HexTextEdit" to="." method="_on_hex_text_edit_gui_input"]
+[connection signal="text_changed" from="UI/EditParent/LabelEditBox/VBoxContainer/HexTextEdit" to="." method="_on_hex_text_edit_text_changed"]
 [connection signal="color_changed" from="UI/EditParent/ColorEditBox/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="picker_created" from="UI/EditParent/ColorEditBox/ColorPickerButton" to="." method="_on_color_picker_button_picker_created"]
 [connection signal="pressed" from="UI/EditParent/Buttons/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="UI/EditParent/Buttons/OKButton" to="." method="_on_ok_button_pressed"]
 [connection signal="toggled" from="UI/Barriers/BarrierN" to="." method="_on_barrier_n_toggled"]
