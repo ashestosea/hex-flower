@@ -145,19 +145,25 @@ func paste_json_menu_hide():
 
 
 func global_back_button_show(callback: Callable):
-	global_back_button.show()
 	if !global_back_button.visible:
 		global_back_button_anim.play_backwards("fade")
-	for dict in global_back_button.pressed.get_connections():
-		global_back_button.pressed.disconnect(dict["callable"])
+
+	global_back_button.show()
+
+	await get_tree().create_timer(0.5).timeout
+
 	global_back_button.pressed.connect(callback)
+	global_back_button.disabled = false
 
 
 func global_back_button_hide(seconds: float = 0):
+	global_back_button.disabled = true
+	for dict in global_back_button.pressed.get_connections():
+		global_back_button.pressed.disconnect(dict["callable"])
+
 	global_back_button_anim.play("fade")
 
 	if seconds > 0:
 		await get_tree().create_timer(seconds).timeout
 
 	global_back_button.hide()
-	global_back_button_anim.stop()

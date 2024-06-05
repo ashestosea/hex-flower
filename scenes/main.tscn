@@ -194,6 +194,7 @@ text = "⋮"
 
 [node name="GlobalBackButton" type="Button" parent="MarginContainer"]
 visible = false
+modulate = Color(0, 0, 0, 0.501961)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,6 +202,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"FlatColorButton"
+disabled = true
 shortcut = SubResource("Shortcut_fct4s")
 shortcut_feedback = false
 shortcut_in_tooltip = false

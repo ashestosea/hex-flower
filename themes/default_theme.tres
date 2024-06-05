@@ -20,7 +20,7 @@ bg_color = Color(0.0755101, 0.0755101, 0.0755101, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql0dr"]
 bg_color = Color(0.190762, 0.190762, 0.190762, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svkhl"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6504"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nuh44"]
 
@@ -93,10 +93,11 @@ Control/colors/font_color = Color(1, 0.980392, 0.941176, 1)
 Control/fonts/font = ExtResource("3_w6qed")
 FlatColorButton/base_type = &"Button"
 FlatColorButton/styles/disabled = ExtResource("5_ty1m6")
-FlatColorButton/styles/focus = ExtResource("5_ty1m6")
+FlatColorButton/styles/focus = SubResource("StyleBoxEmpty_h6504")
 FlatColorButton/styles/hover = ExtResource("5_ty1m6")
+FlatColorButton/styles/hover_pressed = ExtResource("5_ty1m6")
 FlatColorButton/styles/normal = ExtResource("5_ty1m6")
-FlatColorButton/styles/pressed = SubResource("StyleBoxEmpty_svkhl")
+FlatColorButton/styles/pressed = ExtResource("5_ty1m6")
 HeaderMedium/font_sizes/font_size = 30
 HeaderMedium/fonts/font = ExtResource("1_w30x4")
 HexCheckBox/base_type = &"CheckBox"
