@@ -98,9 +98,11 @@ func open(hex: Hex, flower: HexFlower):
 	position = hex.global_position
 	var hex_scale = HexFlower.hex_scale
 
-	_hexagon.draw_scale = hex_scale / 2
+	_hexagon.draw_scale = hex_scale / 2.0
 
 	set_barriers(hex.get_barriers())
+
+	_start_hex_checkbox.button_pressed = hex.get_start_hex()
 
 	_hex_text_edit.text = hex.get_text()
 	_hex_text = hex.get_text()

@@ -3,14 +3,12 @@ extends Node2D
 
 @export var _hexagon: Polygon2D
 @export var _collider: CollisionPolygon2D
-@export var _anim: AnimationPlayer
 @export var _label: Label
-@export var _highlight: Node2D
 
 var cube_coords: Vector3
-var _manager
+var _manager: Manager
+var _is_start: bool
 var _barriers: Array[String]
-
 
 func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int):
 	if event is InputEventMouseButton:
@@ -71,11 +69,11 @@ func get_color() -> Color:
 
 
 func set_start_hex(is_start: bool):
-	pass
+	_is_start = is_start
 
 
 func get_start_hex():
-	pass
+	return _is_start
 
 
 func set_barrier(direction: String, on: bool):

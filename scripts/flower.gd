@@ -22,8 +22,6 @@ func setup(manager: Manager, hexes: Array[Import.HexData], start_coords: Vector2
 	for hex in hexes:
 		var hex_node = _hex_scene.instantiate() as Hex
 		_hexes.append(hex_node)
-		var coords = HexUtils.axial_to_cube_coords(hex.axial_coords)
-		var label: String = hex.label if !DEBUG_COORDS else "%s, %s, %s" % [coords.x, coords.y, coords.z]
 		hex_node.setup(_manager, hex, hex_scale, hex_spacing)
 		add_child(hex_node)
 

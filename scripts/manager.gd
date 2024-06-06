@@ -16,7 +16,6 @@ extends Node
 @export var global_back_button_anim: AnimationPlayer
 
 var dice: String
-var _global_back_button_callback: Callable
 
 @onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
