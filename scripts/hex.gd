@@ -34,11 +34,12 @@ func setup(manager: Manager, hex_data: Import.HexData, hex_scale, hex_spacing: f
 
 	set_barriers(hex_data.barriers)
 
-	_hexagon.scale = Vector2(hex_scale / 2, hex_scale / 2)
-	_collider.scale = Vector2(hex_scale / 2, hex_scale / 2)
+	var half_hex = hex_scale * 0.5
+	_hexagon.scale = Vector2(half_hex, half_hex)
+	_collider.scale = Vector2(half_hex, half_hex)
 
-	var text_size = Vector2(hex_scale, hex_scale * HexUtils.BASE_HEX_SIZE.y * 1.9)
-	var text_pos = -text_size / 2
+	var text_size = Vector2(hex_scale * 0.75, hex_scale * HexUtils.BASE_HEX_SIZE.y * 0.95)
+	var text_pos = -text_size * 0.5
 	_label.size = text_size
 	_label.position = text_pos
 	set_text(hex_data.label)
