@@ -1,0 +1,15 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://c083grj8staeh"]
+
+[ext_resource type="Texture2D" uid="uid://dmpfjabaelujh" path="res://assets/button_pressed.png" id="1_1ucec"]
+
+[resource]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 11.0
+texture = ExtResource("1_1ucec")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+modulate_color = Color(1, 0.98786, 0.963048, 1)

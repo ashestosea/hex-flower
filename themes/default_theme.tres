@@ -1,15 +1,19 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://ffkwu82iptgy"]
+[gd_resource type="Theme" load_steps=31 format=3 uid="uid://ffkwu82iptgy"]
 
 [ext_resource type="FontFile" uid="uid://bkrx6s1iret2i" path="res://assets/fonts/Deledda Open Black.ttf" id="1_w30x4"]
 [ext_resource type="Texture2D" uid="uid://bn5gfbeq7enpa" path="res://assets/barrier_off.png" id="2_8qj15"]
 [ext_resource type="Texture2D" uid="uid://4xwx5r8w6juj" path="res://assets/barrier_on.png" id="3_5rgt6"]
 [ext_resource type="FontFile" uid="uid://yrvvlsqlhpds" path="res://assets/fonts/Cadman_Roman.otf" id="3_w6qed"]
 [ext_resource type="StyleBox" uid="uid://dy1d2ln28ixj7" path="res://themes/color_pick_button_style.tres" id="4_nid1m"]
+[ext_resource type="StyleBox" uid="uid://gtcpq4xt7ftv" path="res://themes/big_button_hover_style.tres" id="4_nujxi"]
+[ext_resource type="StyleBox" uid="uid://d1tygjhieeohh" path="res://themes/big_button_normal_style.tres" id="4_yrxdy"]
+[ext_resource type="StyleBox" uid="uid://c083grj8staeh" path="res://themes/big_button_pressed_style.tres" id="5_g3uct"]
 [ext_resource type="StyleBox" uid="uid://g4kae1g15uf1" path="res://themes/full_screen_button_style.tres" id="5_ty1m6"]
 [ext_resource type="StyleBox" uid="uid://cv55d5ti65eo" path="res://themes/modal_button_hover_style.tres" id="6_2aert"]
 [ext_resource type="StyleBox" uid="uid://6i2ejlbk2vao" path="res://themes/modal_button_style.tres" id="6_11ty6"]
 [ext_resource type="StyleBox" uid="uid://p1aocs10cir2" path="res://themes/modal_button_pressed_style.tres" id="7_abx76"]
 [ext_resource type="FontFile" uid="uid://bovxk6tmyqn2u" path="res://assets/fonts/Deledda Open Semibold.ttf" id="7_n0opb"]
+[ext_resource type="StyleBox" uid="uid://4opu57ddehj6" path="res://themes/modal_panel_style.tres" id="14_wbhtv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3wbk"]
 bg_color = Color(0.14902, 0.14902, 0.14902, 1)
@@ -79,8 +83,17 @@ BarrierCheckButton/fonts/font = ExtResource("1_w30x4")
 BarrierCheckButton/icons/checked = ExtResource("3_5rgt6")
 BarrierCheckButton/icons/unchecked = ExtResource("2_8qj15")
 BigButton/base_type = &"Button"
+BigButton/colors/font_color = Color(0.0500322, 0.0751245, 0.190924, 1)
+BigButton/colors/font_disabled_color = Color(0.0500322, 0.0751245, 0.190924, 1)
+BigButton/colors/font_focus_color = Color(0.0500322, 0.0751245, 0.190924, 1)
+BigButton/colors/font_hover_color = Color(0.0500322, 0.0751245, 0.190924, 1)
+BigButton/colors/font_hover_pressed_color = Color(0.0500322, 0.0751245, 0.190924, 1)
+BigButton/colors/font_pressed_color = Color(0.0500322, 0.0751245, 0.190924, 1)
 BigButton/font_sizes/font_size = 40
 BigButton/fonts/font = ExtResource("1_w30x4")
+BigButton/styles/hover = ExtResource("4_nujxi")
+BigButton/styles/normal = ExtResource("4_yrxdy")
+BigButton/styles/pressed = ExtResource("5_g3uct")
 Button/fonts/font = ExtResource("1_w30x4")
 Button/styles/hover = SubResource("StyleBoxFlat_r3wbk")
 Button/styles/normal = SubResource("StyleBoxFlat_v8l1i")
@@ -143,6 +156,8 @@ ModalButtonPos/colors/font_color = Color(0.694118, 0.890196, 0.572549, 1)
 ModalButtonPos/colors/font_focus_color = Color(0.694118, 0.890196, 0.572549, 1)
 ModalButtonPos/colors/font_hover_color = Color(0.694118, 0.890196, 0.572549, 0.784314)
 ModalButtonPos/colors/font_pressed_color = Color(0.694118, 0.890196, 0.572549, 1)
+ModalPanel/base_type = &"Panel"
+ModalPanel/styles/panel = ExtResource("14_wbhtv")
 TextEdit/colors/background_color = Color(0, 0, 0, 0)
 TextEdit/colors/caret_color = Color(1, 0.980392, 0.941176, 1)
 TextEdit/colors/font_placeholder_color = Color(1, 0.980392, 0.941176, 0.6)
