@@ -57,15 +57,15 @@ func _on_dice_focus_exited():
 func _ready():
 	file_dialog.file_selected.connect(file_selected)
 	var kebab_popup = kebab.get_popup()
-	kebab_popup.add_item("Import", 0, KEY_I)
-	kebab_popup.add_separator()
-	kebab_popup.add_item("Export", 1, KEY_E)
+	kebab_popup.add_item("Import", 0, KEY_MASK_CTRL | KEY_I)
+	kebab_popup.add_item("Export", 1, KEY_MASK_CTRL | KEY_E)
+	kebab_popup.add_item("Clear", 2)
 	kebab_popup.id_pressed.connect(kebab_handler)
 
 	hex_edit.color_picker_opened.connect(hex_edit_color_picker)
 	hex_edit.finished.connect(finish_edit_hex)
 
-	setup(Import.import_json(FileAccess.get_file_as_string("res://examples/empty.json")))
+	clear_flower()
 
 
 func kebab_handler(id: int):
@@ -74,6 +74,12 @@ func kebab_handler(id: int):
 			import_menu_show()
 		1:
 			pass
+		2:
+			clear_flower()
+
+
+func clear_flower():
+	setup(Import.import_json(FileAccess.get_file_as_string("res://examples/empty.json")))
 
 
 func file_selected(path):
