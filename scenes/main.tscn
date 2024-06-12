@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://nw74v30v0d5m"]
 
 [ext_resource type="Script" path="res://scripts/manager.gd" id="1_l30f5"]
-[ext_resource type="Script" path="res://scripts/flower.gd" id="2_bbsd1"]
 [ext_resource type="Texture2D" uid="uid://bntba8usws8ww" path="res://assets/debug_background.tres" id="3_2qtwd"]
 [ext_resource type="PackedScene" uid="uid://d030ybjtriqgu" path="res://scenes/navigation.tscn" id="3_mf25f"]
+[ext_resource type="PackedScene" uid="uid://bgrk21f3h6jr5" path="res://scenes/hex_flower.tscn" id="4_swd6c"]
 [ext_resource type="FontFile" uid="uid://ni83yw310ies" path="res://assets/fonts/Cadman_Bold.otf" id="7_hlthi"]
 [ext_resource type="PackedScene" uid="uid://6tfpmb58pofv" path="res://scenes/hex_edit.tscn" id="8_evd7p"]
 [ext_resource type="Animation" uid="uid://bxi7oxo07684q" path="res://animations/fade.res" id="8_r63mh"]
@@ -137,22 +137,7 @@ size_flags_vertical = 3
 placeholder_text = "History"
 metadata/_edit_lock_ = true
 
-[node name="HexFlower" type="Control" parent="MarginContainer" node_paths=PackedStringArray("hex_highlight")]
-anchors_preset = 0
-offset_left = 400.0
-offset_top = 525.0
-offset_right = 400.0
-offset_bottom = 525.0
-script = ExtResource("2_bbsd1")
-hex_highlight = NodePath("HexHighlight")
-
-[node name="HexHighlight" type="Line2D" parent="MarginContainer/HexFlower"]
-scale = Vector2(100, 100)
-points = PackedVector2Array(-1, 0, -0.5, -0.866, 0.5, -0.866, 1, 0, 0.5, 0.866, -0.5, 0.866)
-closed = true
-width = 0.1
-default_color = Color(0.768627, 0.568627, 0.890196, 1)
-joint_mode = 2
+[node name="HexFlower" parent="MarginContainer" instance=ExtResource("4_swd6c")]
 
 [node name="ImportButton" type="Button" parent="MarginContainer"]
 layout_mode = 0

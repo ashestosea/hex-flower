@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgrk21f3h6jr5"]
+
+[ext_resource type="Script" path="res://scripts/flower.gd" id="1_sv0nt"]
+
+[sub_resource type="Animation" id="Animation_6l8lc"]
+resource_name = "hex_highlight_bump"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.1, 4, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_soxgc"]
+_data = {
+"hex_highlight_bump": SubResource("Animation_6l8lc")
+}
+
+[node name="HexFlower" type="Control" node_paths=PackedStringArray("hex_parent", "hex_highlight_scale", "hex_highlight_anim", "hex_highlight")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 400.0
+offset_top = 525.0
+offset_right = 400.0
+offset_bottom = 525.0
+script = ExtResource("1_sv0nt")
+hex_parent = NodePath("HexParent")
+hex_highlight_scale = NodePath("HexHighlightScale")
+hex_highlight_anim = NodePath("HexHighlightScale/AnimationPlayer")
+hex_highlight = NodePath("HexHighlightScale/HexHighlight")
+
+[node name="HexHighlightScale" type="Node2D" parent="."]
+position = Vector2(-41, -847)
+
+[node name="HexHighlight" type="Line2D" parent="HexHighlightScale"]
+scale = Vector2(100, 100)
+points = PackedVector2Array(-1, 0, -0.5, -0.866, 0.5, -0.866, 1, 0, 0.5, 0.866, -0.5, 0.866)
+closed = true
+width = 0.1
+default_color = Color(0.768627, 0.568627, 0.890196, 1)
+joint_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HexHighlightScale"]
+libraries = {
+"": SubResource("AnimationLibrary_soxgc")
+}
+
+[node name="HexParent" type="Node2D" parent="."]

@@ -42,8 +42,8 @@ func _on_roll_pressed():
 	var dir_name = navigation.get_dir(roll)
 	var dir = HexUtils.DIRECTIONS[dir_name]
 
-	var new_hex: String = flower.traverse(dir)
-	history_text_edit.insert_line_at(history_text_edit.get_line_count() - 1, new_hex)
+	var new_hex_text: String = flower.traverse(dir)
+	history_text_edit.insert_line_at(history_text_edit.get_line_count() - 1, new_hex_text)
 
 
 func _on_dice_text_submitted(new_text:String):
@@ -88,14 +88,10 @@ func setup(data: Import.Data):
 	dice_line_edit.text = dice
 
 
-func set_current_hex(hex: Hex):
-	flower.set_current_hex(hex);
-
-
 func reset_current_hex(hex: Hex):
 	history_text_edit.clear()
 	history_text_edit.insert_line_at(0, hex.get_text())
-	set_current_hex(hex)
+	flower.set_current_hex(hex)
 
 
 func edit_hex(hex: Hex):
