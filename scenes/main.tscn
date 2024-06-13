@@ -30,12 +30,12 @@ mouse_filter = 2
 
 [node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "paste_json_menu", "file_dialog", "json_text_edit", "hex_edit", "global_back_button", "global_back_button_anim")]
 script = ExtResource("1_l30f5")
-flower = NodePath("../MarginContainer/HexFlower")
-navigation = NodePath("../MarginContainer/NavigationContainer/Navigation")
-kebab = NodePath("../MarginContainer/Kebab")
-flower_name = NodePath("../MarginContainer/FlowerName")
-dice_line_edit = NodePath("../MarginContainer/Dice/LineEdit")
-history_text_edit = NodePath("../MarginContainer/History/VBoxContainer/HistoryTextEdit")
+flower = NodePath("../MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/HexFlower")
+navigation = NodePath("../MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/NavigationContainer/Navigation")
+kebab = NodePath("../MarginContainer/KebabParent/Kebab")
+flower_name = NodePath("../MarginContainer/MarginContainer/VBoxContainer/FlowerNameParent/FlowerName")
+dice_line_edit = NodePath("../MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/Dice/LineEdit")
+history_text_edit = NodePath("../MarginContainer/MarginContainer/VBoxContainer/History/VBoxContainer/HistoryTextEdit")
 import_menu = NodePath("../MarginContainer/ImportMenu")
 paste_json_menu = NodePath("../MarginContainer/PasteJSONMenu")
 file_dialog = NodePath("../FileDialog")
@@ -70,111 +70,157 @@ grow_vertical = 2
 texture = ExtResource("3_2qtwd")
 expand_mode = 1
 
-[node name="NavigationContainer" type="Control" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
-anchors_preset = 0
-offset_left = 39.0
-offset_top = 870.185
-offset_right = 448.0
-offset_bottom = 1190.19
+theme_override_constants/separation = 20
+
+[node name="FlowerNameParent" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FlowerName" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/FlowerNameParent"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.14
+theme_type_variation = &"HeaderMedium"
+text = "Name"
+
+[node name="HexFlowerParent" type="CenterContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.33
+mouse_filter = 2
+
+[node name="HexFlower" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent" instance=ExtResource("4_swd6c")]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ImportParent" type="Control" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"ModalPanel"
+
+[node name="ImportButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -36.5
+offset_right = 78.5
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"BigButton"
+text = "Import"
+
+[node name="NavAndButtons" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NavigationContainer" type="CenterContainer" parent="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.67
 
-[node name="Navigation" parent="MarginContainer/NavigationContainer" instance=ExtResource("3_mf25f")]
+[node name="Navigation" parent="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/NavigationContainer" instance=ExtResource("3_mf25f")]
 layout_mode = 2
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 204.0
-offset_top = 160.0
-offset_right = 204.0
-offset_bottom = 160.0
 
-[node name="Dice" type="VBoxContainer" parent="MarginContainer"]
+[node name="ButtonsAndDice" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons"]
 layout_mode = 2
-offset_left = 549.0
-offset_top = 874.0
-offset_right = 740.0
-offset_bottom = 992.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Dice" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice"]
+layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/Dice"]
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/Dice"]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Dice"
 metadata/_edit_lock_ = true
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/Dice"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/Dice"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "3d3"
 metadata/_edit_lock_ = true
 
-[node name="History" type="MarginContainer" parent="MarginContainer"]
+[node name="RollButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice"]
 layout_mode = 2
-offset_left = 46.0
-offset_top = 1220.0
-offset_right = 755.0
-offset_bottom = 1525.0
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/History"]
-layout_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="Label" type="Label" parent="MarginContainer/History/VBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"HeaderMedium"
-text = "History"
-metadata/_edit_lock_ = true
-
-[node name="HistoryTextEdit" type="TextEdit" parent="MarginContainer/History/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-placeholder_text = "History"
-metadata/_edit_lock_ = true
-
-[node name="HexFlower" parent="MarginContainer" instance=ExtResource("4_swd6c")]
-
-[node name="ImportButton" type="Button" parent="MarginContainer"]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 366.0
-offset_right = 465.0
-offset_bottom = 411.0
-theme_type_variation = &"BigButton"
-text = "Import"
-
-[node name="RollButton" type="Button" parent="MarginContainer"]
-layout_mode = 0
-offset_left = 600.0
-offset_top = 1077.0
-offset_right = 675.0
-offset_bottom = 1122.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_type_variation = &"BigButton"
 text = "Roll"
 
-[node name="FlowerName" type="Label" parent="MarginContainer"]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 23.0
-offset_right = 258.0
-offset_bottom = 54.0
-theme_type_variation = &"HeaderMedium"
-text = "Name"
+[node name="History" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
 
-[node name="Kebab" type="MenuButton" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/History"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/History/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "History"
+metadata/_edit_lock_ = true
+
+[node name="HistoryTextEdit" type="TextEdit" parent="MarginContainer/MarginContainer/VBoxContainer/History/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "History"
+metadata/_edit_lock_ = true
+
+[node name="KebabParent" type="Control" parent="MarginContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+
+[node name="Kebab" type="MenuButton" parent="MarginContainer/KebabParent"]
 layout_mode = 0
-offset_left = 738.0
-offset_top = 2.0
-offset_right = 798.0
-offset_bottom = 62.0
+offset_left = -100.0
+offset_bottom = 100.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("7_hlthi")
+theme_override_font_sizes/font_size = 60
 text = "⋮"
 
 [node name="GlobalBackButton" type="Button" parent="MarginContainer"]
@@ -203,11 +249,18 @@ position = Vector2(3.385, 0)
 
 [node name="ImportMenu" type="Panel" parent="MarginContainer"]
 visible = false
-layout_mode = 0
-offset_left = 200.0
-offset_top = 600.0
-offset_right = 600.0
-offset_bottom = 1000.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_type_variation = &"ModalPanel"
 metadata/_edit_use_anchors_ = true
 
@@ -244,13 +297,11 @@ text = "Cancel
 [node name="PasteJSONMenu" type="Panel" parent="MarginContainer"]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = -50.0
-offset_bottom = -100.0
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.025
+anchor_right = 0.95
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"ModalPanel"
@@ -262,6 +313,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PasteJSONMenu/MarginContainer"]
 layout_mode = 2
@@ -297,11 +352,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Submit"
 
-[connection signal="focus_exited" from="MarginContainer/Dice/LineEdit" to="Manager" method="_on_dice_focus_exited"]
-[connection signal="text_submitted" from="MarginContainer/Dice/LineEdit" to="Manager" method="_on_dice_text_submitted"]
-[connection signal="pressed" from="MarginContainer/ImportButton" to="Manager" method="_on_open_import_pressed"]
-[connection signal="pressed" from="MarginContainer/ImportButton" to="MarginContainer/ImportButton" method="hide"]
-[connection signal="pressed" from="MarginContainer/RollButton" to="Manager" method="_on_roll_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent/Panel/ImportButton" to="Manager" method="_on_open_import_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent/Panel/ImportButton" to="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent" method="hide"]
+[connection signal="focus_exited" from="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/Dice/LineEdit" to="Manager" method="_on_dice_focus_exited"]
+[connection signal="text_submitted" from="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/Dice/LineEdit" to="Manager" method="_on_dice_text_submitted"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/RollButton" to="Manager" method="_on_roll_pressed"]
 [connection signal="pressed" from="MarginContainer/ImportMenu/CenterContainer/VBoxContainer/File" to="Manager" method="_on_load_file_pressed"]
 [connection signal="pressed" from="MarginContainer/ImportMenu/CenterContainer/VBoxContainer/Paste" to="Manager" method="_on_open_paste_pressed"]
 [connection signal="pressed" from="MarginContainer/ImportMenu/CenterContainer/VBoxContainer/Cancel" to="Manager" method="import_menu_hide"]

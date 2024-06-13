@@ -38,7 +38,7 @@ hex_highlight_anim = NodePath("HexHighlightScale/AnimationPlayer")
 hex_highlight = NodePath("HexHighlightScale/HexHighlight")
 
 [node name="HexHighlightScale" type="Node2D" parent="."]
-position = Vector2(-41, -847)
+position = Vector2(0, -2000)
 
 [node name="HexHighlight" type="Line2D" parent="HexHighlightScale"]
 scale = Vector2(100, 100)
