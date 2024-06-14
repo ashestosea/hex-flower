@@ -80,7 +80,7 @@ func kebab_handler(id: int):
 
 
 func clear_flower():
-	setup(Data.import_json(FileAccess.get_file_as_string("res://examples/empty.json")))
+	setup(Data.import_json(FileAccess.get_file_as_string("res://examples/blank.json")))
 
 
 func file_selected(path):
