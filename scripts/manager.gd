@@ -89,6 +89,7 @@ func file_selected(path):
 
 
 func setup(data: Data.FlowerData):
+	flower_name.text = data.flower_name
 	flower.setup(self, data.hexes)
 	navigation.setup(self, data.navigation)
 	dice = data.dice
