@@ -3,9 +3,7 @@
 	"name": "Simple Fantasy Life Path",
 	"dice": "2d6",
 	"navigation": {
-		"stay": [
-			-1
-		],
+		"stay": [],
 		"n": [
 			2,
 			12

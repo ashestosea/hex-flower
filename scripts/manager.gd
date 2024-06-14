@@ -8,6 +8,7 @@ extends Node
 @export var dice_line_edit: LineEdit
 @export var history_text_edit: TextEdit
 @export var import_menu: Control
+@export var import_helper_button_parent: Control
 @export var paste_json_menu: Control
 @export var file_dialog: FileDialog
 @export var json_text_edit: TextEdit
@@ -141,6 +142,7 @@ func finish_edit_hex():
 
 
 func import_menu_show():
+	import_helper_button_parent.hide()
 	import_menu.show()
 	global_back_button_show(import_menu_hide)
 

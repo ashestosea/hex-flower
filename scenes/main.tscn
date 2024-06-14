@@ -28,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "paste_json_menu", "file_dialog", "json_text_edit", "hex_edit", "global_back_button", "global_back_button_anim")]
+[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("flower", "navigation", "kebab", "flower_name", "dice_line_edit", "history_text_edit", "import_menu", "import_helper_button_parent", "paste_json_menu", "file_dialog", "json_text_edit", "hex_edit", "global_back_button", "global_back_button_anim")]
 script = ExtResource("1_l30f5")
 flower = NodePath("../MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/HexFlower")
 navigation = NodePath("../MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/NavigationContainer/Navigation")
@@ -37,6 +37,7 @@ flower_name = NodePath("../MarginContainer/MarginContainer/VBoxContainer/FlowerN
 dice_line_edit = NodePath("../MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/Dice/LineEdit")
 history_text_edit = NodePath("../MarginContainer/MarginContainer/VBoxContainer/History/VBoxContainer/HistoryTextEdit")
 import_menu = NodePath("../MarginContainer/ImportMenu")
+import_helper_button_parent = NodePath("../MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportHelperParent")
 paste_json_menu = NodePath("../MarginContainer/PasteJSONMenu")
 file_dialog = NodePath("../FileDialog")
 json_text_edit = NodePath("../MarginContainer/PasteJSONMenu/MarginContainer/VBoxContainer/PasteJSONBox/TextEdit")
@@ -107,39 +108,45 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="ImportParent" type="Control" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent"]
+[node name="ImportHelperParent" type="Control" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent"]
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportHelperParent"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -50.0
-offset_right = 100.0
-offset_bottom = 50.0
+offset_left = -135.0
+offset_top = -100.0
+offset_right = 135.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"ModalPanel"
 
-[node name="ImportButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent/Panel"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportHelperParent/Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -78.5
-offset_top = -36.5
-offset_right = 78.5
-offset_bottom = 36.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportHelperParent/Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ImportButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportHelperParent/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
 theme_type_variation = &"BigButton"
 text = "Import"
+
+[node name="NoThanksButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportHelperParent/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"BigButton"
+text = "No Thanks"
 
 [node name="NavAndButtons" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -353,8 +360,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Submit"
 
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent/Panel/ImportButton" to="Manager" method="_on_open_import_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent/Panel/ImportButton" to="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportParent" method="hide"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportHelperParent/Panel/CenterContainer/VBoxContainer/ImportButton" to="Manager" method="_on_open_import_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportHelperParent/Panel/CenterContainer/VBoxContainer/NoThanksButton" to="MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/ImportHelperParent" method="hide"]
 [connection signal="focus_exited" from="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/Dice/LineEdit" to="Manager" method="_on_dice_focus_exited"]
 [connection signal="text_submitted" from="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/Dice/LineEdit" to="Manager" method="_on_dice_text_submitted"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/RollButton" to="Manager" method="_on_roll_pressed"]
