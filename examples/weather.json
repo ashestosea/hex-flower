@@ -1,0 +1,191 @@
+{
+	"format_version": 1,
+	"flower_name": "Weather Hex Flower",
+	"dice": "2d6",
+	"navigation": {
+		"stay": [],
+		"n": [],
+		"ne": [],
+		"se": [],
+		"s": [],
+		"sw": [],
+		"nw": []
+	},
+	"hexes": [
+		{
+			"label": "Hazard",
+			"axial_coords": [
+				0,
+				-2
+			],
+			"color": "#000000ff",
+			"barriers": [
+				"nw",
+				"n",
+				"ne"
+			]
+		},
+		{
+			"label": "Scorching",
+			"axial_coords": [
+				-1,
+				-1
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Sunny",
+			"axial_coords": [
+				-2,
+				0
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Thunderstorm",
+			"axial_coords": [
+				1,
+				-2
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Cloudy",
+			"axial_coords": [
+				0,
+				-1
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Sunny",
+			"axial_coords": [
+				-1,
+				0
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Sunny",
+			"axial_coords": [
+				-2,
+				1
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Torrential rain",
+			"axial_coords": [
+				2,
+				-2
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Heavy clouds",
+			"axial_coords": [
+				1,
+				-1
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Scattered storms",
+			"axial_coords": [
+				0,
+				0
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Partly sunny",
+			"axial_coords": [
+				-1,
+				1
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Scattered storms",
+			"axial_coords": [
+				-2,
+				2
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Downpour",
+			"axial_coords": [
+				2,
+				-1
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Rainy",
+			"axial_coords": [
+				1,
+				0
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Cloudy",
+			"axial_coords": [
+				0,
+				1
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Partly sunny",
+			"axial_coords": [
+				-1,
+				2
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Rain/snow",
+			"axial_coords": [
+				2,
+				0
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Overcast",
+			"axial_coords": [
+				1,
+				1
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		},
+		{
+			"label": "Cloudy",
+			"axial_coords": [
+				0,
+				2
+			],
+			"color": "#ffffffff",
+			"barriers": []
+		}
+	]
+}
