@@ -22,6 +22,7 @@ func setup(manager: Manager, hexes: Array[Data.HexData], start_coords: Vector2 =
 	_manager = manager;
 
 	hex_parent.get_children().map(func(x): hex_parent.remove_child(x))
+	_hexes.clear()
 
 	_hex_scene = load("res://scenes/hex.tscn")
 	for hex in hexes:
