@@ -100,7 +100,8 @@ static func jsonify_v1(data: FlowerData) -> String:
 		var hex_data = {}
 		hex_data["label"] = hex.label
 		hex_data["axial_coords"] = [hex.axial_coords.x, hex.axial_coords.y]
-		hex_data["start_hex"] = hex.start_hex
+		if hex.start_hex:
+			hex_data["start_hex"] = hex.start_hex
 		hex_data["color"] = "#" + hex.color.to_html()
 		dict.hexes.append(hex_data)
 
