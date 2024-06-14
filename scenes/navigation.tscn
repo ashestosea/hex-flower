@@ -134,3 +134,11 @@ grow_horizontal = 0
 grow_vertical = 1
 alignment = 2
 metadata/_edit_lock_ = true
+
+[connection signal="text_changed" from="LineEdits/LineEdit_Stay" to="." method="_on_line_edit_stay_text_changed"]
+[connection signal="text_changed" from="LineEdits/LineEdit_N" to="." method="_on_line_edit_n_text_changed"]
+[connection signal="text_changed" from="LineEdits/LineEdit_NE" to="." method="_on_line_edit_ne_text_changed"]
+[connection signal="text_changed" from="LineEdits/LineEdit_SE" to="." method="_on_line_edit_se_text_changed"]
+[connection signal="text_changed" from="LineEdits/LineEdit_S" to="." method="_on_line_edit_s_text_changed"]
+[connection signal="text_changed" from="LineEdits/LineEdit_SW" to="." method="_on_line_edit_sw_text_changed"]
+[connection signal="text_changed" from="LineEdits/LineEdit_NW" to="." method="_on_line_edit_nw_text_changed"]
