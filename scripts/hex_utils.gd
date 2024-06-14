@@ -17,14 +17,14 @@ static func obj_to_coords(val) -> Vector3:
 		return val
 	elif typeof(val) == TYPE_VECTOR2:
 		return axial_to_cube_coords(val)
-		
+
 	return Vector3.INF
 
 
 static func axial_to_cube_coords(vec: Vector2) -> Vector3:
 	return Vector3(vec.x, vec.y, -vec.x - vec.y)
-	
-	
+
+
 static func distance(start, end):
 	start = HexUtils.obj_to_coords(start)
 	end = HexUtils.obj_to_coords(end)
@@ -33,7 +33,7 @@ static func distance(start, end):
 			+ abs(start.y - end.y)
 			+ abs(start.z - end.z)
 			) / 2)
-	
+
 
 static func get_hex_center(coords: Vector3, hex_scale: float) -> Vector2:
 	var hex_size = BASE_HEX_SIZE * hex_scale

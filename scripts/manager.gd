@@ -41,6 +41,8 @@ func _on_roll_pressed():
 	var roll: int = dice_syntax.roll(dice, _rng)['result']
 	print(roll)
 	var dir_name = navigation.get_dir(roll)
+	if dir_name == null:
+		dir_name = "stay"
 	var dir = HexUtils.DIRECTIONS[dir_name]
 
 	var new_hex_text: String = flower.traverse(dir)
