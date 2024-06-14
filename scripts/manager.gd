@@ -114,6 +114,9 @@ func export():
 
 	var data_string = Data.jsonify_v1(data)
 
+	paste_json_menu.find_child("TextEdit").text = data_string
+	paste_json_menu_show()
+
 
 func reset_current_hex(hex: Hex):
 	history_text_edit.clear()
