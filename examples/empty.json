@@ -1,32 +1,15 @@
 {
 	"format_version": 1,
-	"name": "Empty Hex Flower",
-	"dice": "2d6",
+	"name": "Hex Flower",
+	"dice": "",
 	"navigation": {
 		"stay": [],
-		"n": [
-			2,
-			12
-		],
-		"ne": [
-			3
-		],
-		"se": [
-			4,
-			5
-		],
-		"s": [
-			6,
-			7
-		],
-		"sw": [
-			8,
-			9
-		],
-		"nw": [
-			10,
-			11
-		]
+		"n": [],
+		"ne": [],
+		"se": [],
+		"s": [],
+		"sw": [],
+		"nw": []
 	},
 	"hexes": [
 		{
