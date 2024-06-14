@@ -116,6 +116,7 @@
 				0,
 				0
 			],
+			"start_hex": true,
 			"color": "#FFFFFF",
 			"barriers": []
 		},

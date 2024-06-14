@@ -1,30 +1,28 @@
-class_name Import
-#extends Object
+class_name Data
 
-class Data:
+class FlowerData:
 	var flower_name: String
 	var dice: String
 	var navigation: Dictionary
-	var start_coords: Array
 	var hexes: Array[HexData]
 
-# Data format v1
+# FlowerData format v1
 #	(Direction: String)
 #	(Axial Coords: Vector2)
 #	Flower Name: String
 #	Dice: String
 #	Navigation: Dictionary[Direction, Dice numbers(Array[int])]
-#	Start Coords: Array[Axial Coords]
 #	Hexes: Array[HexData]
 
 class HexData:
 	var label: String
 	var axial_coords: Vector2
+	var start_hex: bool
 	var color: Color
 	var barriers: Array[String]
 
 
-static func import_json(json_str: String) -> Data:
+static func import_json(json_str: String) -> FlowerData:
 	var json = JSON.parse_string(json_str)
 	if json == null:
 		return null
@@ -39,8 +37,8 @@ static func import_json(json_str: String) -> Data:
 			return null
 
 
-static func load_v1(json) -> Data:
-	var data: Data = Data.new()
+static func load_v1(json) -> FlowerData:
+	var data: FlowerData = FlowerData.new()
 	if "name" in json:
 		data.flower_name = json.name
 	if "dice" in json:
@@ -53,13 +51,6 @@ static func load_v1(json) -> Data:
 					for val in json.navigation[key]:
 						if typeof(val) == TYPE_FLOAT:
 							data.navigation[key].append(floori(val))
-	if "start_coords" in json:
-		if typeof(json.start_coords) == TYPE_ARRAY:
-			for arr in json.start_coords:
-				if typeof(arr) == TYPE_ARRAY:
-					var vec2 = _axial_array_to_vec2(arr)
-					if vec2 != Vector2.INF:
-						data.start_coords.append(vec2)
 	if "hexes" in json:
 		if typeof(json.hexes) == TYPE_ARRAY:
 			for jhex in json.hexes:
@@ -70,6 +61,9 @@ static func load_v1(json) -> Data:
 				if "axial_coords" in jhex:
 					if typeof(jhex.axial_coords) == TYPE_ARRAY:
 						hex.axial_coords = _axial_array_to_vec2(jhex.axial_coords)
+				if "start_hex" in jhex:
+					if typeof(jhex.start_hex) == TYPE_BOOL:
+						hex.start_hex = jhex.start_hex
 				if "color" in jhex:
 					if typeof(jhex.color) == TYPE_STRING:
 						hex.color = Color.from_string(jhex.color, Color.GHOST_WHITE)
@@ -95,6 +89,22 @@ static func load_v1(json) -> Data:
 					data.hexes.append(hex)
 	return data
 
+static func jsonify_v1(data: FlowerData) -> String:
+	var dict = {}
+	dict["format_version"] = 1
+	dict["flower_name"] = data.flower_name
+	dict["dice"] = data.dice
+	dict["navigation"] = data.navigation
+	dict["hexes"] = []
+	for hex in data.hexes:
+		var hex_data = {}
+		hex_data["label"] = hex.label
+		hex_data["axial_coords"] = [hex.axial_coords.x, hex.axial_coords.y]
+		hex_data["start_hex"] = hex.start_hex
+		hex_data["color"] = "#" + hex.color.to_html()
+		dict.hexes.append(hex_data)
+
+	return JSON.stringify(dict, "\t", false)
 
 static func _axial_array_to_vec2(arr: Array) -> Vector2:
 	if arr.size() == 2 and arr.all(func(x): return typeof(x) == TYPE_FLOAT):

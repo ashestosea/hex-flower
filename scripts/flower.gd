@@ -18,7 +18,7 @@ var _manager: Manager
 var _hexes: Array[Hex]
 var _hex_scene: PackedScene
 
-func setup(manager: Manager, hexes: Array[Import.HexData], start_coords: Vector2 = Vector2.ZERO):
+func setup(manager: Manager, hexes: Array[Data.HexData], start_coords: Vector2 = Vector2.ZERO):
 	_manager = manager;
 
 	hex_parent.get_children().map(func(x): hex_parent.remove_child(x))

@@ -73,6 +73,7 @@
 				0,
 				-1
 			],
+			"start_hex": true,
 			"color": "#FFFFFF",
 			"barriers": []
 		},
@@ -109,6 +110,7 @@
 				1,
 				-1
 			],
+			"start_hex": true,
 			"color": "#FFFFFF",
 			"barriers": []
 		},
@@ -145,6 +147,7 @@
 				2,
 				-1
 			],
+			"start_hex": true,
 			"color": "#FFFFFF",
 			"barriers": []
 		},

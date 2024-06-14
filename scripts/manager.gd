@@ -33,7 +33,7 @@ func _on_open_paste_pressed():
 
 func _on_load_paste_pressed():
 	import_menu_hide()
-	setup(Import.import_json(json_text_edit.text))
+	setup(Data.import_json(json_text_edit.text))
 
 
 func _on_roll_pressed():
@@ -73,25 +73,40 @@ func kebab_handler(id: int):
 		0:
 			import_menu_show()
 		1:
-			pass
+			export()
 		2:
 			clear_flower()
 
 
 func clear_flower():
-	setup(Import.import_json(FileAccess.get_file_as_string("res://examples/empty.json")))
+	setup(Data.import_json(FileAccess.get_file_as_string("res://examples/empty.json")))
 
 
 func file_selected(path):
 	import_menu_hide()
-	setup(Import.import_json(FileAccess.get_file_as_string(path)))
+	setup(Data.import_json(FileAccess.get_file_as_string(path)))
 
 
-func setup(data: Import.Data):
+func setup(data: Data.FlowerData):
 	flower.setup(self, data.hexes)
 	navigation.setup(self, data.navigation)
 	dice = data.dice
 	dice_line_edit.text = dice
+
+
+func export():
+	var data: Data.FlowerData = Data.FlowerData.new()
+	data.flower_name = flower_name.text
+	data.dice = dice_line_edit.text
+	data.navigation = navigation.directions
+	for hex in flower._hexes:
+		var hex_data = Data.HexData.new()
+		hex_data.label = hex.get_text()
+		hex_data.axial_coords = Vector2(hex.cube_coords.x, hex.cube_coords.y)
+		hex_data.color = hex.get_color()
+		data.hexes.append(hex_data)
+
+	var data_string = Data.jsonify_v1(data)
 
 
 func reset_current_hex(hex: Hex):
