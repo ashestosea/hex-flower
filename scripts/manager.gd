@@ -106,6 +106,7 @@ func export():
 		hex_data.label = hex.get_text()
 		hex_data.axial_coords = Vector2(hex.cube_coords.x, hex.cube_coords.y)
 		hex_data.color = hex.get_color()
+		hex_data.barriers = hex.get_barriers()
 		data.hexes.append(hex_data)
 
 	var data_string = Data.jsonify_v1(data)

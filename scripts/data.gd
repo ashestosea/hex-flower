@@ -103,6 +103,7 @@ static func jsonify_v1(data: FlowerData) -> String:
 		if hex.start_hex:
 			hex_data["start_hex"] = hex.start_hex
 		hex_data["color"] = "#" + hex.color.to_html()
+		hex_data["barriers"] = hex.barriers
 		dict.hexes.append(hex_data)
 
 	return JSON.stringify(dict, "\t", false)
