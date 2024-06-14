@@ -33,7 +33,7 @@ script = ExtResource("1_l30f5")
 flower = NodePath("../MarginContainer/MarginContainer/VBoxContainer/HexFlowerParent/HexFlower")
 navigation = NodePath("../MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/NavigationContainer/Navigation")
 kebab = NodePath("../MarginContainer/KebabParent/Kebab")
-flower_name = NodePath("../MarginContainer/MarginContainer/VBoxContainer/FlowerNameParent/FlowerName")
+flower_name = NodePath("../MarginContainer/MarginContainer/VBoxContainer/FlowerNameParent/Control/FlowerName")
 dice_line_edit = NodePath("../MarginContainer/MarginContainer/VBoxContainer/NavAndButtons/ButtonsAndDice/Dice/LineEdit")
 history_text_edit = NodePath("../MarginContainer/MarginContainer/VBoxContainer/History/VBoxContainer/HistoryTextEdit")
 import_menu = NodePath("../MarginContainer/ImportMenu")
@@ -89,13 +89,20 @@ theme_override_constants/separation = 20
 
 [node name="FlowerNameParent" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="FlowerName" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/FlowerNameParent"]
-layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.14
+
+[node name="Control" type="Control" parent="MarginContainer/MarginContainer/VBoxContainer/FlowerNameParent"]
+layout_mode = 2
+
+[node name="FlowerName" type="LineEdit" parent="MarginContainer/MarginContainer/VBoxContainer/FlowerNameParent/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_right = -80.0
 theme_type_variation = &"HeaderMedium"
 text = "Name"
+placeholder_text = "Hex Flower Name"
 
 [node name="HexFlowerParent" type="CenterContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

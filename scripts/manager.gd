@@ -4,7 +4,7 @@ extends Node
 @export var flower: HexFlower
 @export var navigation: Navigation
 @export var kebab: MenuButton
-@export var flower_name: Label
+@export var flower_name: LineEdit
 @export var dice_line_edit: LineEdit
 @export var history_text_edit: TextEdit
 @export var import_menu: Control
